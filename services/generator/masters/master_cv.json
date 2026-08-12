@@ -1,0 +1,36 @@
+{
+  "id": "master_cv",
+  "version": "v3",
+  "name": "Samira Benaciri",
+  "headline": "Esthéticienne & Coiffeuse — 15 ans d'expérience",
+  "summary": "Esthéticienne et coiffeuse d'expérience, spécialisée en soins avancés du visage et techniques de beauté. Bilingue français/arabe.",
+  "skills": [
+    "HydraFacial", "Microneedling", "Laser Carbone", "IPL", "Maquillage Permanent",
+    "Microblading", "Soins du visage", "Épilation", "Coiffure", "Balayage",
+    "Service à la clientèle"
+  ],
+  "experience": [
+    {
+      "title": "Esthéticienne senior",
+      "org": "Salon d'esthétique",
+      "years": "2011–2026",
+      "bullets": [
+        "Soins avancés du visage : HydraFacial, Microneedling",
+        "Traitements laser : IPL, Laser Carbone",
+        "Maquillage permanent et microblading"
+      ]
+    },
+    {
+      "title": "Coiffeuse",
+      "org": "Salon de coiffure",
+      "years": "2011–2026",
+      "bullets": [
+        "Coupes, coloration, balayage",
+        "Coiffures événementielles"
+      ]
+    }
+  ],
+  "languages": ["Français (natif)", "Arabe (C2)", "Anglais (intermédiaire)"],
+  "certifications": ["Formation en esthétique", "Maquillage permanent / Microblading"],
+  "eligibility": "Mobilité Francophone (C16) — embauche sans EIMT"
+}

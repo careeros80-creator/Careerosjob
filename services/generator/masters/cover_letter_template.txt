@@ -1,0 +1,12 @@
+Objet : Candidature — {{job_title}}
+
+Madame, Monsieur,
+
+Je vous soumets ma candidature pour le poste de {{job_title}}{{at_company}}.
+{{company_sentence}}
+Forte de 15 ans d'expérience en esthétique et coiffure ({{top_skills}}), je suis convaincue de pouvoir contribuer à votre équipe.
+Je suis éligible à la Mobilité Francophone (C16), ce qui permet une embauche simplifiée sans EIMT.
+Je serais ravie d'échanger avec vous.
+
+Cordialement,
+{{candidate_name}}
