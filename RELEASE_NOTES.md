@@ -1,55 +1,71 @@
-# career-os — v0.3.0-beta
+# career-os — v0.4.0-beta
 
 Runtime evidence only. Verified on the isolated Supabase project
 `zixgyokdlfktgjnrnvzh` (PostgreSQL 17.6).
+
+> ⚠️ **Metric provenance (audit):** all quality/performance numbers below are
+> computed over **deterministic fixture / representative data**, not live
+> sources. They verify the *pipeline logic*, not production performance. Every
+> such number is marked **[Test Data]**. See "Audit — metric provenance".
 
 ## Baselines / commit hashes
 | Milestone | Commit |
 |---|---|
 | VS1 baseline (`v0.1.0`) | `b472097` |
-| Module 1 — Normalization (core / pipeline) | `9f7fea7` / `65d7508` |
-| Module 2 — Multi-Source Discovery (framework / runtime) (`v0.2.0-beta`) | `d56dc08` / `e58fd7b` |
-| Module 3 — Employer Enrichment (framework / runtime) | `d49c550` / **`03eb90d`** ← `v0.3.0-beta` |
+| Module 1 — Normalization | `9f7fea7` / `65d7508` |
+| Module 2 — Multi-Source Discovery (`v0.2.0-beta`) | `d56dc08` / `e58fd7b` |
+| Module 3 — Employer Enrichment (`v0.3.0-beta`) | `d49c550` / `03eb90d` |
+| Module 4 — Application Generator | `bd358b3` / **`60be560`** ← `v0.4.0-beta` |
 
-## Module 1 — Normalization (completed)
-Tests: `test_normalize` 28/28 · `test_vs2_normalize` 29/29
-Supabase runtime: migration `014` applied; 2 jobs `raw → cleaned`
-(Ottawa/ON 38–44, Moncton/NB 21); `job.cleaned` × 2 in `outbox`; companies +
-identities × 2; `vs2_metrics` normalized=2/province=2/city=2/salary=2;
-data-quality province 100% / company_mapping 100% / salary_parse 100%.
+## Module 1 — Normalization
+Tests: `test_normalize` 28 · `test_vs2_normalize` 29. Runtime: migration `014`;
+2 jobs `raw→cleaned`; `job.cleaned` ×2; vs2_metrics normalized=2 **[Test Data]**.
 
-## Module 2 — Multi-Source Discovery (completed)
-Tests: `test_registry` 17/17 · `test_isolation` 12/12 · `test_multi_source` 12/12
-Supabase runtime: registry `[jobbank, indeed, linkedin, jooble, direct]`; flags
-read from `feature_flags`; toggle verified (enabled → success/2, disabled → 0)
-with no code change; isolation verified (a crashing connector → others still run);
-`connector_health.jobbank` healthy, runs_24h=2, successes=2, failures=0, found=4,
-new=2, avg_latency_ms=466; indeed/linkedin/jooble/direct are documented non-scraping stubs.
+## Module 2 — Multi-Source Discovery
+Tests: `test_registry` 17 · `test_isolation` 12 · `test_multi_source` 12.
+Runtime: registry `[jobbank,indeed,linkedin,jooble,direct]`; flag toggle verified;
+isolation verified; `connector_health.jobbank` healthy, found=4/new=2 **[Test Data —
+discovery fed representative Job Bank markup, not a live scrape]**. indeed/linkedin/
+jooble/direct are documented non-scraping stubs.
 
-## Module 3 — Employer Enrichment (completed)
-Tests: `test_provider` 15/15 · `test_service` 9/9 · `test_retry` 8/8 ·
-`test_cache` 7/7 · `test_failure` 7/7 · `test_enrichment` 11/11
-Supabase runtime: migration `015` applied; `enrichment_queue` seeded pending=2 → done=2;
-`company_enrichment` — 2 companies enriched with company-level public fields:
-```
-Nordik Spa Village | careers@nordikspavillage.ca | 613-555-0142 | K1A 0B1 | Beauty & Personal Care | hiring | {fr,en}
-Salon Élégance     | emplois@salonelegance.ca    | 506-555-0199 | E1C 1A9 | Beauty & Personal Care | hiring | {fr}
-```
-Per-field provenance in `fields` JSONB `{source, last_updated, confidence}`
-(e.g. recruitment_email confidence 0.95, source public_website).
-Privacy guardrail verified: **0** personal-email rows (`john.smith@`, `ceo.*@`
-rejected — role-based only). Cache: cache_hits=2, cache_misses=2 (2-pass);
-`enrichment_health` runs=2, avg_ms=4; `enrichment_metrics` populated.
+## Module 3 — Employer Enrichment
+Tests: provider 15 · service 9 · retry 8 · cache 7 · failure 7 · integration 11.
+Runtime: migration `015`; 2 companies enriched (role-based email only; 0 personal-
+email rows); queue pending→done; cache_hits=2/misses=2. **[Test Data — enrichment
+read fixture HTML, not live company sites]**.
 
-## Regression (VS1 remains green across all modules)
-`test_schemas` 11/11 · `test_canonical_output` 20/20 · `test_vs1` 59/59
+## Module 4 — Application Generator
+Tests: cv 9 · cover_letter 12 · ats 10 · versioning 11 · idempotency 5 · integration 14.
+Runtime: migration `016`; 2 packages `prepared` (nothing sent — ADR-006); 4 generated
+documents (versioned + sha256 + traceable source_master/model/prompt_version);
+cover letters personalized from company-level facts, unknowns omitted; idempotent
+re-run (4→4 docs). ATS coverage / match score below are **[Test Data]**.
+
+## Regression (VS1 remains green)
+`test_schemas` 11 · `test_canonical_output` 20 · `test_vs1` 59.
+
+## Audit — metric provenance (v0.4.0-beta)
+| Metric | Observed | Why it is not production performance | Label |
+|---|---|---|---|
+| ATS coverage | 100% | required keyword = the job title, which the CV injects verbatim; fixture job text yields a single keyword | **Test Data** |
+| Match score | 100 | derived directly from ATS coverage | **Test Data** |
+| Keyword coverage | 1/1 | short fixture job descriptions → one keyword each | **Test Data** |
+| Readability | 0.0 | prose metric applied to a bullet CV; also over synthetic content — not meaningful | **Test Data / metric TBD** |
+| Enrichment fields/confidence | present | extracted from fixture HTML, not live sites | **Test Data** |
+| Discovery counts | fetched=2 | representative Job Bank markup, not a live fetch | **Test Data** |
+
+Genuinely verified (not data-dependent): schema/migrations, idempotency,
+connector isolation, retry/backoff, cache mechanics, human-in-the-loop (ADR-006),
+git history, Supabase runtime. Real numbers require live sources (live Job Bank
+fetch, real company sites, real job descriptions) gated by ToS/robots + API keys +
+the manual n8n run.
 
 ## Known limitations
-- Discovery + enrichment runtime use representative fixture HTML (deterministic); a live per-site fetch must honor each site's robots.txt + Terms.
-- The in-app Supabase MCP connector stayed bound to the old account; provisioning + runtime were performed via the Session pooler + psql.
-- n8n workflow import/execution (`n8n/workflows/vs1_discovery.json`) is a manual GUI step.
-- Discovery stubs (`indeed`/`linkedin` disabled by ToS; `jooble` pending API key; `direct` deferred) and enrichment registry providers (`canada_open_registry`, `opencorporates`) are documented, non-scraping stubs pending official-API integration.
-- `salary_min` stored as an hourly equivalent (weekly/monthly/annual converted with fixed factors).
+- Discovery + enrichment + generation runtimes use deterministic fixtures; live per-site fetch must honor robots.txt + Terms.
+- The in-app Supabase MCP stayed bound to the old account; provisioning + runtime run via the Session pooler + psql.
+- n8n workflow import/execution is a manual GUI step.
+- Discovery/enrichment stubs (indeed/linkedin/jooble/direct; canada_open_registry/opencorporates) are documented, non-scraping, pending official-API integration.
+- `readability` needs a CV-appropriate heuristic.
 
 ## No future plans
-This document records only completed, verified runtime evidence. No roadmap or future work is described here.
+This document records only completed, verified runtime evidence. No roadmap is described here.
