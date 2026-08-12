@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "career-os/ai/extractor/v1",
+  "title": "AI Extractor Output",
+  "description": "Output contract for AI role: extractor. Used to parse raw job text into structured data.",
+  "type": "object",
+  "required": [
+    "title_clean",
+    "company_clean",
+    "contract_type",
+    "language_required",
+    "is_beauty_related",
+    "beauty_keywords_found"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "title_clean": {
+      "type": "string"
+    },
+    "company_clean": {
+      "type": "string"
+    },
+    "city": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "province": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Z]{2}$",
+      "description": "2-letter Canadian province code: ON, BC, NB..."
+    },
+    "salary_min": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "salary_max": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "salary_period": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "hourly",
+        "weekly",
+        "annual",
+        null
+      ]
+    },
+    "contract_type": {
+      "type": "string",
+      "enum": [
+        "full_time",
+        "part_time",
+        "contract",
+        "freelance",
+        "unknown"
+      ]
+    },
+    "language_required": {
+      "type": "string",
+      "enum": [
+        "fr",
+        "en",
+        "bilingual",
+        "unknown"
+      ]
+    },
+    "posted_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "apply_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "is_beauty_related": {
+      "type": "boolean"
+    },
+    "beauty_keywords_found": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$comment": "version: 1.0"
+}

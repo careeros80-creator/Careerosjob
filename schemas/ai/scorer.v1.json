@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "career-os/ai/scorer/v1",
+  "title": "AI Scorer Output",
+  "description": "Output contract for AI role: scorer. Called only after Rule Engine passes.",
+  "type": "object",
+  "required": [
+    "lmia_required",
+    "open_to_newcomers",
+    "experience_keywords_matched",
+    "experience_keywords_missing",
+    "is_relevant",
+    "relevance_reason",
+    "red_flags"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "lmia_required": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "c16_possible",
+        "unknown"
+      ]
+    },
+    "lmia_evidence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "open_to_newcomers": {
+      "type": "boolean"
+    },
+    "newcomer_evidence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "experience_keywords_matched": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "experience_keywords_missing": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "is_relevant": {
+      "type": "boolean"
+    },
+    "relevance_reason": {
+      "type": "string"
+    },
+    "red_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$comment": "version: 1.0"
+}

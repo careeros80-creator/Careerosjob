@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "career-os/ai/classifier/v1",
+  "title": "AI Classifier Output",
+  "description": "Output contract for AI role: classifier. Used to classify incoming email replies.",
+  "type": "object",
+  "required": [
+    "classification",
+    "confidence",
+    "key_phrase",
+    "is_urgent"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "classification": {
+      "type": "string",
+      "enum": [
+        "interview",
+        "offer",
+        "rejection",
+        "auto_reply",
+        "question",
+        "ignore"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "key_phrase": {
+      "type": "string"
+    },
+    "is_urgent": {
+      "type": "boolean"
+    },
+    "suggested_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "$comment": "version: 1.0"
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "career-os/events/job.discovered/v1",
+  "$comment": "version: 1.0",
+  "title": "job.discovered",
+  "description": "Emitted by Discovery Context when a new raw job is fetched from a connector",
+  "type": "object",
+  "required": [
+    "event",
+    "version",
+    "event_id",
+    "correlation_id",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "event": {
+      "type": "string",
+      "const": "job.discovered"
+    },
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique ID for idempotency"
+    },
+    "correlation_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Groups all events from one pipeline run"
+    },
+    "causation_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "event_id of the event that triggered this one"
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "raw_job_id",
+        "connector",
+        "fetched_at"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "raw_job_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "connector": {
+          "type": "string",
+          "enum": [
+            "jobbank",
+            "jooble",
+            "linkedin",
+            "direct",
+            "indeed"
+          ]
+        },
+        "external_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fetched_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "name": "VS1 — JobBank Discovery",
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [0, 0],
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "minutes", "minutesInterval": 15 }]
+        }
+      },
+      "notes": "Runs every 15 minutes. Controlled by feature flag: jobbank_connector_enabled"
+    },
+    {
+      "id": "check_flag",
+      "name": "Check Feature Flag",
+      "type": "n8n-nodes-base.supabase",
+      "position": [200, 0],
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "feature_flags",
+        "filters": {
+          "conditions": [
+            { "keyName": "name", "condition": "eq", "keyValue": "jobbank_connector_enabled" }
+          ]
+        },
+        "limit": 1
+      },
+      "notes": "Fetch feature flag status before doing any work"
+    },
+    {
+      "id": "flag_gate",
+      "name": "Flag Gate",
+      "type": "n8n-nodes-base.if",
+      "position": [400, 0],
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.is_enabled }}",
+              "value2": true,
+              "operation": "equal"
+            }
+          ]
+        }
+      },
+      "notes": "Only continue if flag is enabled. Stops execution silently if disabled."
+    },
+    {
+      "id": "log_start",
+      "name": "Log: Connector Started",
+      "type": "n8n-nodes-base.supabase",
+      "position": [600, -100],
+      "parameters": {
+        "operation": "create",
+        "tableId": "connector_runs",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "connector", "fieldValue": "jobbank" },
+            { "fieldId": "status", "fieldValue": "running" },
+            { "fieldId": "started_at", "fieldValue": "={{ new Date().toISOString() }}" }
+          ]
+        }
+      },
+      "notes": "Create connector_run record for health monitoring"
+    },
+    {
+      "id": "fetch_search_urls",
+      "name": "Build Search URLs",
+      "type": "n8n-nodes-base.code",
+      "position": [800, -100],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Build Job Bank search URLs\n// Based on JobBankConnector.searchConfigs()\nconst searches = [\n  { keyword: 'esthetician',  location: 'Ontario',          province: 'ON' },\n  { keyword: 'hairstylist',  location: 'Ontario',          province: 'ON' },\n  { keyword: 'esthetician',  location: 'New Brunswick',    province: 'NB' },\n  { keyword: 'esthetician',  location: 'British Columbia', province: 'BC' },\n  { keyword: 'makeup artist',location: 'Ontario',          province: 'ON' },\n];\n\nreturn searches.map(s => ({\n  url: `https://www.jobbank.gc.ca/jobsearch/jobsearch?searchstring=${encodeURIComponent(s.keyword)}&locationstring=${encodeURIComponent(s.location)}&sort=D&action=search`,\n  keyword: s.keyword,\n  province: s.province,\n}));"
+      },
+      "notes": "Generates list of URLs to fetch. Controlled by keyword/location config."
+    },
+    {
+      "id": "http_fetch",
+      "name": "HTTP: Fetch Job Bank Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [1000, -100],
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "method": "GET",
+        "options": {
+          "response": { "response": { "responseFormat": "text" } },
+          "timeout": 30000,
+          "headers": {
+            "parameters": [
+              { "name": "User-Agent", "value": "Mozilla/5.0 (compatible; career-os/1.0)" },
+              { "name": "Accept-Language", "value": "fr-CA,fr;q=0.9,en-CA;q=0.8" }
+            ]
+          }
+        }
+      },
+      "notes": "Fetches raw HTML. Runs in loop for each URL from previous node."
+    },
+    {
+      "id": "parse_canonical",
+      "name": "Parse → CanonicalJob",
+      "type": "n8n-nodes-base.code",
+      "position": [1200, -100],
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Parse HTML into CanonicalJob objects\n// Uses same logic as JobBankConnector\nconst html = $json.data;\nconst url  = $('HTTP: Fetch Job Bank Page').item.json.url;\n\n// Load connector (in n8n: use require with node_modules or inline logic)\nconst crypto = require('crypto');\n\nconst BEAUTY_KEYWORDS = [\n  'esthetician','esthéticienne','aesthetician',\n  'hairstylist','coiffeuse','coiffeur',\n  'makeup artist','make-up artist','maquilleuse',\n  'nail technician','spa therapist','beautician',\n  'skin care','soins esthétiques','salon','beauty',\n];\n\nfunction contentHash(title, company, location) {\n  const content = [title, company, location].map(s => (s||'').toLowerCase().trim()).join('|');\n  const hash = crypto.createHash('sha1').update('career-os-jobs|' + content).digest('hex');\n  return [hash.slice(0,8), hash.slice(8,12), '5'+hash.slice(13,16),\n    ((parseInt(hash.slice(16,18),16)&0x3f|0x80).toString(16)+hash.slice(18,20)),\n    hash.slice(20,32)].join('-');\n}\n\nfunction isBeauty(text) {\n  return BEAUTY_KEYWORDS.some(kw => (text||'').toLowerCase().includes(kw));\n}\n\n// Parse articles\nconst jobs = [];\nconst parts = html.split('<article');\n\nfor (let i = 1; i < parts.length; i++) {\n  const part = parts[i];\n  if (!part.includes('resultJobItem')) continue;\n  \n  const idMatch    = part.match(/data-id=\"(\\d+)\"/);\n  const titleMatch = part.match(/<span class=\"noctitle\"[^>]*>([^<]+)<\\/span>/i);\n  const compMatch  = part.match(/<span class=\"business\"[^>]*>([^<]+)<\\/span>/i);\n  const locMatch   = part.match(/<span class=\"location\"[^>]*>([^<]+)<\\/span>/i);\n  const salMatch   = part.match(/<span class=\"salary\"[^>]*>([^<]+)<\\/span>/i);\n  const dateMatch  = part.match(/datetime=\"([^\"]+)\"/);\n  \n  if (!idMatch || !titleMatch) continue;\n  \n  const jobId   = idMatch[1];\n  const title   = titleMatch[1].trim();\n  const company = compMatch?.[1]?.trim() || '';\n  const loc     = locMatch?.[1]?.trim() || '';\n  const text    = [title, company, loc].join(' ');\n  \n  if (!isBeauty(text)) continue;\n  \n  jobs.push({\n    external_id:     `JOBBANK_${jobId}`,\n    source:          'jobbank',\n    content_hash:    contentHash(title, company, loc),\n    title,\n    company_raw:     company,\n    company_domain:  null,\n    location_raw:    loc,\n    city:            null,\n    province:        null,\n    country:         'CA',\n    salary_raw:      salMatch?.[1]?.trim() || null,\n    salary_min:      null,\n    salary_max:      null,\n    salary_currency: 'CAD',\n    contract_type_raw: null,\n    language_raw:    null,\n    apply_url:       `https://www.jobbank.gc.ca/jobposting/${jobId}`,\n    source_url:      `https://www.jobbank.gc.ca/jobposting/${jobId}`,\n    raw_text:        [title, company, loc, salMatch?.[1]].filter(Boolean).join(' | '),\n    raw_html:        null,\n    posted_at:       dateMatch ? new Date(dateMatch[1]).toISOString() : null,\n    fetched_at:      new Date().toISOString(),\n  });\n}\n\nreturn jobs;"
+      },
+      "notes": "Outputs CanonicalJob[] — matches canonical-job.v1.json schema"
+    },
+    {
+      "id": "insert_raw",
+      "name": "INSERT: raw_jobs",
+      "type": "n8n-nodes-base.supabase",
+      "position": [1400, -100],
+      "parameters": {
+        "operation": "create",
+        "tableId": "raw_jobs",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "connector",           "fieldValue": "jobbank"     },
+            { "fieldId": "external_ref",         "fieldValue": "={{ $json.external_id }}" },
+            { "fieldId": "raw_payload",          "fieldValue": "={{ JSON.stringify($json) }}" },
+            { "fieldId": "processing_status",    "fieldValue": "pending"    }
+          ]
+        }
+      },
+      "notes": "Step 2: Store raw payload in staging table"
+    },
+    {
+      "id": "check_duplicate",
+      "name": "CHECK: Duplicate?",
+      "type": "n8n-nodes-base.supabase",
+      "position": [1600, -100],
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "jobs",
+        "filters": {
+          "conditions": [
+            { "keyName": "content_hash", "condition": "eq", "keyValue": "={{ $json.content_hash }}" }
+          ]
+        },
+        "limit": 1
+      },
+      "notes": "Step 3: Check if content_hash already exists (deduplication)"
+    },
+    {
+      "id": "is_new",
+      "name": "Is New Job?",
+      "type": "n8n-nodes-base.if",
+      "position": [1800, -100],
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.length }}",
+              "value2": 0,
+              "operation": "equal"
+            }
+          ]
+        }
+      },
+      "notes": "If length = 0 → new job. If length > 0 → duplicate, skip."
+    },
+    {
+      "id": "insert_job",
+      "name": "INSERT: jobs",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2000, -200],
+      "parameters": {
+        "operation": "create",
+        "tableId": "jobs",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "external_id",       "fieldValue": "={{ $('Parse → CanonicalJob').item.json.external_id }}" },
+            { "fieldId": "source",            "fieldValue": "jobbank" },
+            { "fieldId": "content_hash",      "fieldValue": "={{ $('Parse → CanonicalJob').item.json.content_hash }}" },
+            { "fieldId": "title",             "fieldValue": "={{ $('Parse → CanonicalJob').item.json.title }}" },
+            { "fieldId": "company_raw",       "fieldValue": "={{ $('Parse → CanonicalJob').item.json.company_raw }}" },
+            { "fieldId": "location_raw",      "fieldValue": "={{ $('Parse → CanonicalJob').item.json.location_raw }}" },
+            { "fieldId": "salary_raw",        "fieldValue": "={{ $('Parse → CanonicalJob').item.json.salary_raw }}" },
+            { "fieldId": "apply_url",         "fieldValue": "={{ $('Parse → CanonicalJob').item.json.apply_url }}" },
+            { "fieldId": "source_url",        "fieldValue": "={{ $('Parse → CanonicalJob').item.json.source_url }}" },
+            { "fieldId": "posted_at",         "fieldValue": "={{ $('Parse → CanonicalJob').item.json.posted_at }}" },
+            { "fieldId": "scraped_at",        "fieldValue": "={{ new Date().toISOString() }}" },
+            { "fieldId": "pipeline_status",   "fieldValue": "raw" }
+          ]
+        }
+      },
+      "notes": "Step 4: Insert CanonicalJob into jobs table"
+    },
+    {
+      "id": "insert_content",
+      "name": "INSERT: job_contents",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2200, -200],
+      "parameters": {
+        "operation": "create",
+        "tableId": "job_contents",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "job_id",           "fieldValue": "={{ $('INSERT: jobs').item.json.id }}" },
+            { "fieldId": "raw_text",         "fieldValue": "={{ $('Parse → CanonicalJob').item.json.raw_text }}" },
+            { "fieldId": "parser_version",   "fieldValue": "1.0.0" },
+            { "fieldId": "content_version",  "fieldValue": 1 }
+          ]
+        }
+      },
+      "notes": "Store text separately — keeps jobs table light"
+    },
+    {
+      "id": "publish_event",
+      "name": "INSERT: outbox (job.discovered)",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2400, -200],
+      "parameters": {
+        "operation": "rpc",
+        "functionName": "publish_event",
+        "parameters": {
+          "parameters": [
+            { "name": "p_event_type", "value": "job.discovered" },
+            { "name": "p_payload",    "value": "={{ JSON.stringify({ raw_job_id: $('INSERT: raw_jobs').item.json.id, connector: 'jobbank', external_ref: $('Parse → CanonicalJob').item.json.external_id, fetched_at: $('Parse → CanonicalJob').item.json.fetched_at }) }}" },
+            { "name": "p_job_id",     "value": "={{ $('INSERT: jobs').item.json.id }}" }
+          ]
+        }
+      },
+      "notes": "Step 5: Publish via Outbox. Same transaction model — outbox publisher will emit event."
+    },
+    {
+      "id": "log_success",
+      "name": "Log: Job Inserted",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2600, -200],
+      "parameters": {
+        "operation": "create",
+        "tableId": "logs",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "level",   "fieldValue": "info"           },
+            { "fieldId": "service", "fieldValue": "discovery"      },
+            { "fieldId": "job_id",  "fieldValue": "={{ $('INSERT: jobs').item.json.id }}" },
+            { "fieldId": "message", "fieldValue": "New job inserted" },
+            { "fieldId": "payload", "fieldValue": "={{ JSON.stringify({ external_id: $('Parse → CanonicalJob').item.json.external_id, title: $('Parse → CanonicalJob').item.json.title }) }}" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "log_duplicate",
+      "name": "Log: Duplicate Skipped",
+      "type": "n8n-nodes-base.supabase",
+      "position": [2000, 0],
+      "parameters": {
+        "operation": "create",
+        "tableId": "logs",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldId": "level",   "fieldValue": "debug"           },
+            { "fieldId": "service", "fieldValue": "discovery"       },
+            { "fieldId": "message", "fieldValue": "Duplicate skipped" },
+            { "fieldId": "payload", "fieldValue": "={{ JSON.stringify({ content_hash: $('Parse → CanonicalJob').item.json.content_hash }) }}" }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "trigger":        { "main": [[{ "node": "check_flag",     "type": "main", "index": 0 }]] },
+    "check_flag":     { "main": [[{ "node": "flag_gate",      "type": "main", "index": 0 }]] },
+    "flag_gate":      { "main": [
+      [{ "node": "log_start",        "type": "main", "index": 0 }],
+      []
+    ]},
+    "log_start":      { "main": [[{ "node": "fetch_search_urls", "type": "main", "index": 0 }]] },
+    "fetch_search_urls": { "main": [[{ "node": "http_fetch",  "type": "main", "index": 0 }]] },
+    "http_fetch":     { "main": [[{ "node": "parse_canonical","type": "main", "index": 0 }]] },
+    "parse_canonical":{ "main": [[{ "node": "insert_raw",    "type": "main", "index": 0 }]] },
+    "insert_raw":     { "main": [[{ "node": "check_duplicate","type": "main", "index": 0 }]] },
+    "check_duplicate":{ "main": [[{ "node": "is_new",        "type": "main", "index": 0 }]] },
+    "is_new":         { "main": [
+      [{ "node": "insert_job",    "type": "main", "index": 0 }],
+      [{ "node": "log_duplicate", "type": "main", "index": 0 }]
+    ]},
+    "insert_job":     { "main": [[{ "node": "insert_content", "type": "main", "index": 0 }]] },
+    "insert_content": { "main": [[{ "node": "publish_event",  "type": "main", "index": 0 }]] },
+    "publish_event":  { "main": [[{ "node": "log_success",    "type": "main", "index": 0 }]] }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "meta": {
+    "description": "VS1: JobBank → Canonical → DB → Outbox. First vertical slice — proves end-to-end data flow.",
+    "version": "1.0",
+    "vertical_slice": 1
+  }
+}

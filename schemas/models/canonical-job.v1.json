@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "career-os/models/canonical-job/v1",
+  "$comment": "version: 1.0 — Uniform output from all connectors. Downstream has no knowledge of source.",
+  "title": "CanonicalJob",
+  "description": "Unified job model. All connectors must output this schema. Everything after this point is source-agnostic.",
+  "type": "object",
+  "required": [
+    "external_id",
+    "source",
+    "content_hash",
+    "company_raw",
+    "location_raw",
+    "apply_url",
+    "raw_text",
+    "fetched_at",
+    "title"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "external_id": {
+      "type": "string",
+      "description": "Stable source-scoped ID. Format: SOURCE_ORIGINALID. e.g. JOBBANK_4287165",
+      "pattern": "^[A-Z]+_[a-zA-Z0-9_-]+$"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "jobbank",
+        "jooble",
+        "linkedin",
+        "website",
+        "indeed"
+      ],
+      "description": "Which connector produced this record"
+    },
+    "content_hash": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID v5 from title|company_raw|location_raw — used for deduplication"
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 2,
+      "description": "Job title as-is from source — null if not detectable"
+    },
+    "company_raw": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Company name exactly as scraped — Normalizer resolves this to companies table"
+    },
+    "company_domain": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Company website domain if available — used for Company Identity matching"
+    },
+    "location_raw": {
+      "type": "string",
+      "description": "Full location string as scraped. e.g. 'Ottawa, ON' or 'Gatineau, Quebec, Canada'"
+    },
+    "city": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Extracted city — filled by Normalizer if not available from source"
+    },
+    "province": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Z]{2}$",
+      "description": "2-letter Canadian province code — extracted by Normalizer"
+    },
+    "country": {
+      "type": "string",
+      "default": "CA"
+    },
+    "salary_raw": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Salary as displayed in posting. e.g. '$35-$45/hour' or 'competitive'"
+    },
+    "salary_min": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Parsed minimum salary (hourly equivalent) — filled by Normalizer"
+    },
+    "salary_max": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "salary_currency": {
+      "type": "string",
+      "default": "CAD"
+    },
+    "contract_type_raw": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Contract type as-is from source. Normalizer maps to contract_type ENUM"
+    },
+    "language_raw": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Language requirement as-is from source"
+    },
+    "apply_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Direct URL to apply. Must be present — without it the job is useless"
+    },
+    "source_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri",
+      "description": "URL of the page where the job was found (may differ from apply_url)"
+    },
+    "raw_text": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Job description text. Brief from search pages, full from detail pages."
+    },
+    "raw_html": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Raw HTML if available — stored in job_contents, not in jobs table"
+    },
+    "posted_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "When the job was posted according to source"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this record was fetched — set by connector"
+    }
+  }
+}

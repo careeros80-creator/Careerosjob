@@ -1,0 +1,17 @@
+# Secrets — never commit. Config is externalized to these files.
+.env
+.env.local
+dashboard/.env
+dashboard/.env.local
+
+# Dependencies / build output
+node_modules/
+dashboard/node_modules/
+dashboard/dist/
+
+# Supabase CLI local state (may cache project ref / connection info)
+supabase/.temp/
+supabase/.branches/
+
+# Logs / scratch
+*.log

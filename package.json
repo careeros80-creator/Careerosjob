@@ -1,0 +1,21 @@
+{
+  "name": "career-os",
+  "version": "0.1.0",
+  "description": "Career OS — AI-powered job hunting system for Canada immigration",
+  "private": true,
+  "scripts": {
+    "test:schemas": "node tests/events/test_schemas.js",
+    "test:migrations": "./tests/migrations/test_migrations.sh",
+    "test": "npm run test:schemas && npm run test:migrations",
+    "migrate:test": "./scripts/migrate_test.sh",
+    "migrate:apply": "./scripts/migrate_apply.sh"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "dotenv": "^17.4.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
