@@ -1,4 +1,4 @@
-# career-os — v0.4.0-beta
+# career-os — v0.5.0-beta
 
 Runtime evidence only. Verified on the isolated Supabase project
 `zixgyokdlfktgjnrnvzh` (PostgreSQL 17.6).
@@ -15,7 +15,8 @@ Runtime evidence only. Verified on the isolated Supabase project
 | Module 1 — Normalization | `9f7fea7` / `65d7508` |
 | Module 2 — Multi-Source Discovery (`v0.2.0-beta`) | `d56dc08` / `e58fd7b` |
 | Module 3 — Employer Enrichment (`v0.3.0-beta`) | `d49c550` / `03eb90d` |
-| Module 4 — Application Generator | `bd358b3` / **`60be560`** ← `v0.4.0-beta` |
+| Module 4 — Application Generator (`v0.4.0-beta`) | `bd358b3` / `60be560` |
+| Module 5 — Email Intelligence | `55bd349` / **`a486794`** ← `v0.5.0-beta` |
 
 ## Module 1 — Normalization
 Tests: `test_normalize` 28 · `test_vs2_normalize` 29. Runtime: migration `014`;
@@ -40,6 +41,17 @@ Runtime: migration `016`; 2 packages `prepared` (nothing sent — ADR-006); 4 ge
 documents (versioned + sha256 + traceable source_master/model/prompt_version);
 cover letters personalized from company-level facts, unknowns omitted; idempotent
 re-run (4→4 docs). ATS coverage / match score below are **[Test Data]**.
+
+## Module 5 — Email Intelligence
+Tests: classifier 11 · parser 14 · attachments 6 · threading 6 · integration 15.
+Runtime **[Test Data — fixtures, no live inbox]**: migration `017`; 6 emails
+classified (interview/offer/rejection/question/auto_reply/ignore); interview
+metadata extracted (2026-08-20 14:00 EDT, Online, Zoom URL, reply_deadline
+2026-08-18); offer attachment ×1; info-request has reply_deadline but no false
+meeting; 4 emails linked to applications; 4 application_timeline events;
+email_dashboard total=6/unread_actions=3/interviews=1/offers=1/rejected=1/
+info_requests=1/auto_replies=1/unknown=1/waiting=2; idempotent re-run (6→6, 4→4).
+READ-ONLY (ADR-006); Gmail OAuth-only, no passwords.
 
 ## Regression (VS1 remains green)
 `test_schemas` 11 · `test_canonical_output` 20 · `test_vs1` 59.
