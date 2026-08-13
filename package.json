@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "test:schemas": "node tests/events/test_schemas.js",
-    "test:migrations": "./tests/migrations/test_migrations.sh",
-    "test": "npm run test:schemas && npm run test:migrations",
+    "test:migrations": "node tests/migrations/test_migrations.js",
+    "test:suites": "node tests/run_all.js",
+    "test": "node tests/run_all.js",
     "migrate:test": "./scripts/migrate_test.sh",
     "migrate:apply": "./scripts/migrate_apply.sh"
   },

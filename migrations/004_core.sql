@@ -24,7 +24,7 @@ END;
 $$;
 
 -- ── COMPANIES ─────────────────────────────────────────────
-CREATE TABLE companies (
+CREATE TABLE IF NOT EXISTS companies (
   id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name             TEXT NOT NULL,
   name_slug        TEXT GENERATED ALWAYS AS (
@@ -70,7 +70,7 @@ CREATE INDEX idx_companies_name_trgm
 
 -- ── COMPANY IDENTITIES ────────────────────────────────────
 -- Handles same company appearing with different names across sources
-CREATE TABLE company_identities (
+CREATE TABLE IF NOT EXISTS company_identities (
   id               UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   company_id       UUID NOT NULL REFERENCES companies(id),
   raw_name         TEXT NOT NULL,     -- as scraped from source
@@ -94,7 +94,7 @@ CREATE INDEX idx_company_identities_name_trgm
   ON company_identities USING gin(normalized_name gin_trgm_ops);
 
 -- ── DOCUMENTS ─────────────────────────────────────────────
-CREATE TABLE documents (
+CREATE TABLE IF NOT EXISTS documents (
   id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   type        doc_type NOT NULL,
   language    TEXT NOT NULL,     -- fr / en / ar
@@ -116,7 +116,7 @@ CREATE UNIQUE INDEX idx_documents_default
   WHERE is_default = true AND is_deleted = false;
 
 -- ── AI MODEL CONFIG ───────────────────────────────────────
-CREATE TABLE ai_model_config (
+CREATE TABLE IF NOT EXISTS ai_model_config (
   id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   role         ai_role NOT NULL UNIQUE,
   provider     TEXT NOT NULL,    -- openai / anthropic / google
@@ -130,7 +130,7 @@ CREATE TABLE ai_model_config (
 
 -- ── SECRET REFERENCES ─────────────────────────────────────
 -- Stores references to secrets only — never actual values
-CREATE TABLE secret_refs (
+CREATE TABLE IF NOT EXISTS secret_refs (
   id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name       TEXT NOT NULL UNIQUE,
   -- e.g. OPENAI_API_KEY / ANTHROPIC_API_KEY / GMAIL_TOKEN / TELEGRAM_BOT_TOKEN
