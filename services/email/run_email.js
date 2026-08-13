@@ -26,7 +26,7 @@ function emailSQL(e) {
 function timelineSQL(t) {
   return `INSERT INTO application_timeline (application_id, job_id, email_id, event_type, event_at, detail) ` +
     `VALUES (${qu(t.application_id)}, ${qu(t.job_id)}, (SELECT id FROM emails WHERE gmail_message_id=${q(t.gmail_message_id)}), ${q(t.event_type)}, ${qts(t.event_at)}, ${qj(t.detail)}) ` +
-    `ON CONFLICT (email_id, event_type) DO NOTHING;`;
+    `ON CONFLICT (email_id, event_type) WHERE email_id IS NOT NULL DO NOTHING;`;
 }
 
 async function main() {

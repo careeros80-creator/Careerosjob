@@ -68,7 +68,12 @@ function parseEmail(email = {}) {
   const date = parseDate(text);
   const time = parseTime(text);
   const tz = parseTimezone(text);
-  const meeting_at = date ? `${date}T${time || '00:00'}:00` : null;
+  // Only treat a date as a MEETING when there's a meeting signal (a time, a
+  // meeting URL, or a meeting keyword) — otherwise a "reply by <date>" deadline
+  // would be misread as a meeting.
+  const hasMeetingSignal = Boolean(time) || Boolean(url) ||
+    /\b(interview|entrevue|meet(ing)?|rencontre|call|zoom|teams|google meet|invit)\b/i.test(text);
+  const meeting_at = (date && hasMeetingSignal) ? `${date}T${time || '00:00'}:00` : null;
 
   return {
     from_address: email.from_address || null,

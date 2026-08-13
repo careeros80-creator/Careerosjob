@@ -46,7 +46,7 @@ const section = (t) => console.log(`\n${t}`);
   const esql = emailSQL(int);
   check(/INSERT INTO emails/.test(esql) && /ON CONFLICT \(gmail_message_id\) DO UPDATE/.test(esql), 'emails upsert idempotent by gmail_message_id');
   const tsql = timelineSQL(timeline[0]);
-  check(/ON CONFLICT \(email_id, event_type\) DO NOTHING/.test(tsql), 'timeline idempotent by (email,event)');
+  check(/ON CONFLICT \(email_id, event_type\)(?: WHERE email_id IS NOT NULL)? DO NOTHING/.test(tsql), 'timeline idempotent by (email,event)');
   const all = [...emails.map(emailSQL), ...timeline.map(timelineSQL)].join('\n');
   // read-only: only writes to emails / application_timeline; no send/outbox/status=sent
   check(!/INSERT INTO outbox|status\s*=\s*'sent'|sendmail|smtp|gmail\.send/i.test(all), 'no outbound/send action generated (read-only)');
