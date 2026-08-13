@@ -20,9 +20,10 @@ const qts = (v) => (v == null ? 'NULL' : `${q(v)}::timestamptz`);
 const qj = (v) => `$e$${JSON.stringify(v)}$e$::jsonb`;
 
 function emailSQL(e) {
-  return `INSERT INTO emails (gmail_message_id, gmail_thread_id, application_id, job_id, company_id, from_address, subject, body_text, received_at, classification, confidence, is_urgent, requires_action, reply_deadline, meeting_at, meeting_timezone, meeting_location, meeting_url, attachments) ` +
-    `VALUES (${q(e.gmail_message_id)}, ${q(e.gmail_thread_id)}, ${qu(e.application_id)}, ${qu(e.job_id)}, ${qu(e.company_id)}, ${q(e.from_address)}, ${q(e.subject)}, ${q(e.body_text)}, ${qts(e.received_at)}, ${q(e.classification)}::email_classification, ${qn(e.confidence)}, ${qb(e.is_urgent)}, ${qb(e.requires_action)}, ${qts(e.reply_deadline)}, ${qts(e.meeting_at)}, ${q(e.meeting_timezone)}, ${q(e.meeting_location)}, ${q(e.meeting_url)}, ${qj(e.attachments)}) ` +
-    `ON CONFLICT (gmail_message_id) DO UPDATE SET application_id=EXCLUDED.application_id, job_id=EXCLUDED.job_id, company_id=EXCLUDED.company_id, classification=EXCLUDED.classification, confidence=EXCLUDED.confidence, is_urgent=EXCLUDED.is_urgent, requires_action=EXCLUDED.requires_action, reply_deadline=EXCLUDED.reply_deadline, meeting_at=EXCLUDED.meeting_at, meeting_timezone=EXCLUDED.meeting_timezone, meeting_location=EXCLUDED.meeting_location, meeting_url=EXCLUDED.meeting_url, attachments=EXCLUDED.attachments;`;
+  const ds = e.data_source === 'production' ? 'production' : 'test';   // provenance (never fabricated)
+  return `INSERT INTO emails (gmail_message_id, gmail_thread_id, application_id, job_id, company_id, from_address, subject, body_text, received_at, classification, confidence, is_urgent, requires_action, reply_deadline, meeting_at, meeting_timezone, meeting_location, meeting_url, attachments, data_source) ` +
+    `VALUES (${q(e.gmail_message_id)}, ${q(e.gmail_thread_id)}, ${qu(e.application_id)}, ${qu(e.job_id)}, ${qu(e.company_id)}, ${q(e.from_address)}, ${q(e.subject)}, ${q(e.body_text)}, ${qts(e.received_at)}, ${q(e.classification)}::email_classification, ${qn(e.confidence)}, ${qb(e.is_urgent)}, ${qb(e.requires_action)}, ${qts(e.reply_deadline)}, ${qts(e.meeting_at)}, ${q(e.meeting_timezone)}, ${q(e.meeting_location)}, ${q(e.meeting_url)}, ${qj(e.attachments)}, $e$${ds}$e$) ` +
+    `ON CONFLICT (gmail_message_id) DO UPDATE SET application_id=EXCLUDED.application_id, job_id=EXCLUDED.job_id, company_id=EXCLUDED.company_id, classification=EXCLUDED.classification, confidence=EXCLUDED.confidence, is_urgent=EXCLUDED.is_urgent, requires_action=EXCLUDED.requires_action, reply_deadline=EXCLUDED.reply_deadline, meeting_at=EXCLUDED.meeting_at, meeting_timezone=EXCLUDED.meeting_timezone, meeting_location=EXCLUDED.meeting_location, meeting_url=EXCLUDED.meeting_url, attachments=EXCLUDED.attachments, data_source=EXCLUDED.data_source;`;
 }
 
 function timelineSQL(t) {
@@ -51,7 +52,8 @@ async function main() {
       { context: 'email', operation: 'persist', ms: 1 },
     ],
   })];
-  for (const e of emails) sql.push(emailSQL(e));
+  const dataSource = input.data_source === 'production' ? 'production' : 'test';
+  for (const e of emails) { e.data_source = dataSource; sql.push(emailSQL(e)); }
   for (const t of timeline) sql.push(timelineSQL(t));
   sql.push('COMMIT;');
 
