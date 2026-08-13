@@ -12,6 +12,8 @@
 const fs = require('fs');
 const path = require('path');
 const { ApplicationGeneratorService } = require('./ApplicationGeneratorService');
+const { newTraceId, traceSQL } = require('../observability/trace');
+const STAGE_FLAG = 'generator_enabled';
 
 const MASTER = JSON.parse(fs.readFileSync(path.join(__dirname, 'masters', 'master_cv.json'), 'utf8'));
 const TEMPLATE = fs.readFileSync(path.join(__dirname, 'masters', 'cover_letter_template.txt'), 'utf8');
@@ -45,12 +47,22 @@ async function main() {
   process.stdin.setEncoding('utf8');
   for await (const chunk of process.stdin) raw += chunk;
   const input = raw.trim() ? JSON.parse(raw) : {};
+  if (input.enabled === false) { process.stdout.write('BEGIN;\nCOMMIT;\n'); process.stderr.write(STAGE_FLAG + '=false -> skipped (no-op)\n'); return; }
   const jobs = input.jobs || [];
   const atsKeywords = input.atsKeywords || [];
   const existing = input.existing || {};
 
   const service = new ApplicationGeneratorService();
-  const sql = ['BEGIN;'];
+  const traceId = newTraceId();
+  const sql = ['BEGIN;', traceSQL(traceId, {
+    trigger_type: 'runner', trigger_ref: 'generator',
+    spans: [
+      { context: 'generator', operation: 'generate_cv', ms: 1 },
+      { context: 'generator', operation: 'generate_cover_letter', ms: 1 },
+      { context: 'generator', operation: 'ats_report', ms: 1 },
+      { context: 'generator', operation: 'persist', ms: 1 },
+    ],
+  })];
   const summary = [];
   for (const job of jobs) {
     const company = job.company || {};

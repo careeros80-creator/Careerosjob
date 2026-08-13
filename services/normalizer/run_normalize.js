@@ -76,14 +76,25 @@ function planNormalization({ rawJobs = [], identities = [], dedupKeys = [] } = {
   return plan;
 }
 
+const { newTraceId, traceSQL } = require('../observability/trace');
+const STAGE_FLAG = 'normalization_enabled';
+
 // ── SQL rendering (dollar-quoted; values never contain the $v$ tag) ──
 const q  = v => (v == null ? 'NULL' : `$v$${String(v)}$v$`);
 const qi = v => (v == null ? 'NULL' : String(Math.trunc(v)));
 const qb = v => (v ? 'true' : 'false');
 const qu = v => (v == null ? 'NULL' : `'${v}'::uuid`);
 
-function renderSQL(plan) {
+function renderSQL(plan, traceId = null) {
   const L = ['BEGIN;'];
+  if (traceId) L.push(traceSQL(traceId, {
+    trigger_type: 'runner', trigger_ref: 'normalization',
+    spans: [
+      { context: 'normalization', operation: 'plan', ms: 1 },
+      { context: 'normalization', operation: 'persist_jobs', ms: 1 },
+      { context: 'normalization', operation: 'emit_job_cleaned', ms: 1 },
+    ],
+  }));
 
   for (const c of plan.companies) {
     L.push(`INSERT INTO companies (id, name, city, province) VALUES (${qu(c.id)}, ${q(c.name)}, ${q(c.city)}, ${q(c.province)});`);
@@ -106,7 +117,7 @@ function renderSQL(plan) {
       `'raw_job_id', (SELECT id FROM raw_jobs WHERE external_ref=${q(e.external_id)} ORDER BY created_at DESC LIMIT 1), ` +
       `'content_hash', ${q(e.payload.content_hash)}::uuid, ` +
       `'parser_version', ${q(e.payload.parser_version)}, ` +
-      `'is_duplicate', ${qb(e.payload.is_duplicate)}), ${qu(e.job_id)});`
+      `'is_duplicate', ${qb(e.payload.is_duplicate)}), ${qu(e.job_id)}${traceId ? `, NULL, NULL, '${traceId}'::uuid` : ''});`
     );
   }
   L.push('COMMIT;');
@@ -122,8 +133,10 @@ if (require.main === module) {
   process.stdin.on('data', d => (raw += d));
   process.stdin.on('end', () => {
     const input = raw.trim() ? JSON.parse(raw) : {};
+    if (input.enabled === false) { process.stdout.write('BEGIN;\nCOMMIT;\n'); process.stderr.write(STAGE_FLAG + '=false -> skipped (no-op)\n'); return; }
+    const traceId = newTraceId();
     const plan = planNormalization(input);
-    process.stdout.write(renderSQL(plan));
-    process.stderr.write(`normalized ${plan.metrics.jobs_seen} job(s): cleaned=${plan.metrics.jobs_cleaned} dup=${plan.metrics.duplicates} companies+${plan.metrics.companies_created} events=${plan.metrics.events_job_cleaned}\n`);
+    process.stdout.write(renderSQL(plan, traceId));
+    process.stderr.write(`normalized ${plan.metrics.jobs_seen} job(s): cleaned=${plan.metrics.jobs_cleaned} dup=${plan.metrics.duplicates} companies+${plan.metrics.companies_created} events=${plan.metrics.events_job_cleaned} trace=${traceId}\n`);
   });
 }

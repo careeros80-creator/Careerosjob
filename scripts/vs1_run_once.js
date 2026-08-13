@@ -19,6 +19,8 @@
  */
 
 const { JobBankConnector } = require('../connectors/JobBankConnector');
+const { newTraceId, traceSQL } = require('../services/observability/trace');
+const TRACE_ID = newTraceId();
 
 // Representative Job Bank search-results markup (structure the connector parses).
 const SEARCH_HTML = `
@@ -51,6 +53,15 @@ function ts(val) { return val === null || val === undefined ? 'NULL' : `'${val}'
 
 const out = [];
 out.push('BEGIN;');
+out.push(traceSQL(TRACE_ID, {
+  trigger_type: 'runner', trigger_ref: 'discovery_seed',
+  spans: [
+    { context: 'discovery', operation: 'fetch', ms: 1 },
+    { context: 'discovery', operation: 'parse_canonical', ms: 1 },
+    { context: 'discovery', operation: 'insert_jobs', ms: 1 },
+    { context: 'discovery', operation: 'emit_job_discovered', ms: 1 },
+  ],
+}));
 out.push(`-- connector run start (mirrors log_start node)`);
 out.push(`INSERT INTO connector_runs (id, connector, status, started_at)`);
 out.push(`VALUES ('11111111-1111-4111-8111-111111111111','jobbank','running', now() - interval '1 second');`);
@@ -92,7 +103,7 @@ for (const j of jobs) {
   out.push(`SELECT publish_event('job.discovered',`);
   out.push(`  jsonb_build_object('raw_job_id',(SELECT id FROM raw_jobs WHERE external_ref=${dq(j.external_id,'x')} ORDER BY created_at DESC LIMIT 1),`);
   out.push(`    'connector','jobbank','external_ref',${dq(j.external_id,'x')},'fetched_at', now()),`);
-  out.push(`  (SELECT id FROM jobs WHERE external_id=${dq(j.external_id,'x')}))`);
+  out.push(`  (SELECT id FROM jobs WHERE external_id=${dq(j.external_id,'x')}), NULL, NULL, '${TRACE_ID}'::uuid)`);
   out.push(`WHERE EXISTS (SELECT 1 FROM jobs WHERE external_id=${dq(j.external_id,'x')});`);
   out.push('');
 }

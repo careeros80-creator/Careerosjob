@@ -15,6 +15,7 @@
  */
 const crypto = require('crypto');
 const { buildRegistry } = require('../../connectors/sources');
+const { newTraceId, traceSQL } = require('../observability/trace');
 
 const SAMPLE_HTML = `
 <html><body>
@@ -62,7 +63,11 @@ async function main() {
     isEnabled: (flag) => flags[flag] === true,
   });
 
-  const sql = ['BEGIN;'];
+  const traceId = newTraceId();
+  const sql = ['BEGIN;', traceSQL(traceId, {
+    trigger_type: 'runner', trigger_ref: 'discovery',
+    spans: results.map(r => ({ context: 'discovery', operation: 'connector:' + r.connector, status: r.status === 'failed' ? 'error' : 'ok', ms: r.ms || 0 })),
+  })];
   const summary = [];
   for (const r of results) {
     let jobsNew = 0, jobsDup = 0;

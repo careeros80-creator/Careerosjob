@@ -9,6 +9,8 @@
  *   input: { messages:[...], applications:[{id,job_id,company_id,gmail_thread_id,company_name,job_title}] }
  */
 const { EmailIntelligenceService } = require('./EmailIntelligenceService');
+const { newTraceId, traceSQL } = require('../observability/trace');
+const STAGE_FLAG = 'email_intelligence_enabled';
 
 const q  = (v) => (v == null ? 'NULL' : `$e$${String(v)}$e$`);
 const qu = (v) => (v == null ? 'NULL' : `'${v}'::uuid`);
@@ -34,11 +36,21 @@ async function main() {
   process.stdin.setEncoding('utf8');
   for await (const chunk of process.stdin) raw += chunk;
   const input = raw.trim() ? JSON.parse(raw) : {};
+  if (input.enabled === false) { process.stdout.write('BEGIN;\nCOMMIT;\n'); process.stderr.write(STAGE_FLAG + '=false -> skipped (no-op)\n'); return; }
 
   const service = new EmailIntelligenceService();
   const { emails, timeline, metrics } = service.process(input.messages || [], { applications: input.applications || [] });
 
-  const sql = ['BEGIN;'];
+  const traceId = newTraceId();
+  const sql = ['BEGIN;', traceSQL(traceId, {
+    trigger_type: 'runner', trigger_ref: 'email_intelligence',
+    spans: [
+      { context: 'email', operation: 'classify', ms: 1 },
+      { context: 'email', operation: 'parse_metadata', ms: 1 },
+      { context: 'email', operation: 'link_application', ms: 1 },
+      { context: 'email', operation: 'persist', ms: 1 },
+    ],
+  })];
   for (const e of emails) sql.push(emailSQL(e));
   for (const t of timeline) sql.push(timelineSQL(t));
   sql.push('COMMIT;');

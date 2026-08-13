@@ -15,6 +15,8 @@
  */
 const { CompanyEnrichmentService } = require('./CompanyEnrichmentService');
 const { PublicWebsiteProvider } = require('./providers/PublicWebsiteProvider');
+const { newTraceId, traceSQL } = require('../observability/trace');
+const STAGE_FLAG = 'enrichment_enabled';
 
 // Representative PUBLIC pages (fixtures). Note the deliberate personal email —
 // the provider must reject it and keep only the role-based careers@ address.
@@ -72,6 +74,8 @@ async function main() {
   process.stdin.setEncoding('utf8');
   for await (const chunk of process.stdin) raw += chunk;
   const input = raw.trim() ? JSON.parse(raw) : {};
+  if (input.enabled === false) { process.stdout.write('BEGIN;\nCOMMIT;\n'); process.stderr.write(STAGE_FLAG + '=false -> skipped (no-op)\n'); return; }
+  const traceId = newTraceId();
   const companies = (input.companies || []).map(c => ({ ...c, website: c.website || `https://${slug(c.name || c.company_key)}.example.ca` }));
   const attemptsMap = input.queueAttempts || {};
 
@@ -87,7 +91,14 @@ async function main() {
   // Pass 2 — same batch again → cache hits (runtime cache evidence).
   const pass2 = await service.processBatch(companies, ctx);
 
-  const sql = ['BEGIN;'];
+  const sql = ['BEGIN;', traceSQL(traceId, {
+    trigger_type: 'runner', trigger_ref: 'enrichment',
+    spans: [
+      { context: 'enrichment', operation: 'fetch_public_pages', ms: 1 },
+      { context: 'enrichment', operation: 'extract_fields', ms: 1 },
+      { context: 'enrichment', operation: 'persist', ms: 1 },
+    ],
+  })];
   for (const r of pass1.results) sql.push(upsertSQL(r, (attemptsMap[r.company_id] || 0) + (r.attempts || 1)));
   const h = service.health();
   sql.push(
