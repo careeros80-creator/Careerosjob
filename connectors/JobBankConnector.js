@@ -113,34 +113,34 @@ class JobBankConnector {
   }
 
   parseArticle(html) {
-    // Job ID
-    const idMatch = html.match(/data-id="(\d+)"/);
-    const jobId = idMatch?.[1];
+    // Job ID — 2026 Job Bank markup exposes it as id="article-<id>" plus an
+    // anchor to /jobposting/<id>; legacy markup used data-id="<id>".
+    // (Runtime drift bug-fix — pilot/production-validation. Backward compatible.)
+    const jobId =
+      html.match(/data-id="(\d+)"/)?.[1] ||
+      html.match(/id="article-(\d+)"/)?.[1] ||
+      html.match(/jobposting\/(\d+)/)?.[1];
     if (!jobId) return null;
 
-    // Title
-    const titleMatch = html.match(/<span class="noctitle"[^>]*>([^<]+)<\/span>/i)
-      || html.match(/<h3[^>]*>.*?<a[^>]*>([^<]+)<\/a>/i);
-    const title = titleMatch?.[1]?.trim();
+    // Title — <span class="noctitle"> (current markup wraps it in an <h3> with
+    // surrounding whitespace/newlines, so match non-greedily and collapse WS).
+    const title = (
+      html.match(/<span class="noctitle"[^>]*>([\s\S]*?)<\/span>/i)?.[1] ||
+      html.match(/<h3[^>]*>.*?<a[^>]*>([^<]+)<\/a>/i)?.[1] ||
+      ''
+    ).replace(/\s+/g, ' ').trim();
 
-    // Company
-    const companyMatch = html.match(/<span class="business"[^>]*>([^<]+)<\/span>/i)
-      || html.match(/class="[^"]*employer[^"]*"[^>]*>([^<]+)</i);
-    const company = companyMatch?.[1]?.trim();
+    // Fields live in <li class="..."> today, <span class="..."> in legacy markup.
+    const company  = this.fieldValue(html, 'business');
+    const location = this.stripLabel(this.fieldValue(html, 'location'), 'Location');
+    const salary   = this.stripLabel(this.fieldValue(html, 'salary'), 'Salary');
 
-    // Location
-    const locationMatch = html.match(/<span class="location"[^>]*>([^<]+)<\/span>/i);
-    const location = locationMatch?.[1]?.trim();
+    // Posted date — datetime="..." (legacy) or <li class="date">August 12, 2026</li>
+    const postedAt =
+      html.match(/datetime="([^"]+)"/i)?.[1] ||
+      this.fieldValue(html, 'date') || null;
 
-    // Posted date
-    const dateMatch = html.match(/datetime="([^"]+)"/i);
-    const postedAt = dateMatch?.[1];
-
-    // Salary
-    const salaryMatch = html.match(/<span class="salary"[^>]*>([^<]+)<\/span>/i);
-    const salary = salaryMatch?.[1]?.trim();
-
-    if (!title || !jobId) return null;
+    if (!title) return null;
 
     return {
       job_bank_id:  jobId,
@@ -152,6 +152,25 @@ class JobBankConnector {
       source_url:   `${this.baseUrl}/jobposting/${jobId}`,
       apply_url:    `${this.baseUrl}/jobposting/${jobId}`,
     };
+  }
+
+  /**
+   * Extract a field that appears as <li class="X">…</li> (current Job Bank
+   * markup) or <span class="X">…</span> (legacy markup). Inner tags — icons,
+   * screen-reader spans — are stripped and whitespace collapsed.
+   */
+  fieldValue(html, cls) {
+    const m =
+      html.match(new RegExp(`<li class="${cls}"[^>]*>([\\s\\S]*?)<\\/li>`, 'i')) ||
+      html.match(new RegExp(`<span class="${cls}"[^>]*>([\\s\\S]*?)<\\/span>`, 'i'));
+    if (!m) return '';
+    return m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  /** Drop a leading accessibility label word (e.g. "Location ", "Salary "). */
+  stripLabel(value, label) {
+    if (!value) return value;
+    return value.replace(new RegExp(`^${label}\\s+`, 'i'), '').trim();
   }
 
   extractJobDetail(html, url, jobId) {
