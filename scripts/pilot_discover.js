@@ -23,6 +23,7 @@
 const { execFileSync } = require('child_process');
 const { JobBankConnector } = require('../connectors/JobBankConnector');
 const { newTraceId, traceSQL } = require('../services/observability/trace');
+const { actionSQL, deadLetterSQL } = require('../services/pilot/actionLog');
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
 const MAX_RETRIES = 2;
@@ -143,12 +144,10 @@ function main() {
 
   // structured production-action log + dead-letter for failed fetches
   for (const a of actions) {
-    out.push(`INSERT INTO production_actions (action, stage, trace_id, correlation_id, data_source, status, attempt, duration_ms, detail)`);
-    out.push(`VALUES (${dq(a.action, 'a')}, ${dq(a.stage, 'g')}, '${traceId}'::uuid, '${traceId}'::uuid, 'production', ${dq(a.status, 'st')}, ${a.attempt}, ${a.duration_ms == null ? 'NULL' : a.duration_ms}, ${dq(JSON.stringify(a.detail), 'd')}::jsonb);`);
+    out.push(actionSQL({ action: a.action, stage: a.stage, traceId, correlationId: traceId,
+      dataSource: 'production', status: a.status, attempt: a.attempt, durationMs: a.duration_ms, detail: a.detail }));
     if (a.status === 'error') {
-      // dead_letter_queue: unresolved rows (resolved=false, the default) are the retryable ones.
-      out.push(`INSERT INTO dead_letter_queue (event_type, payload, error)`);
-      out.push(`VALUES ('pilot_discover.fetch_failed', ${dq(JSON.stringify(a.detail), 'd')}::jsonb, ${dq(a.detail.error, 'e')});`);
+      out.push(deadLetterSQL({ eventType: 'pilot_discover.fetch_failed', payload: a.detail, error: a.detail.error }));
     }
   }
 

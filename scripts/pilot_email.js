@@ -24,6 +24,8 @@ const { GmailProvider } = require('../services/email/GmailProvider');
 const { EmailIntelligenceService } = require('../services/email/EmailIntelligenceService');
 const { emailSQL, timelineSQL } = require('../services/email/run_email');
 const { newTraceId, traceSQL } = require('../services/observability/trace');
+const { withRetry } = require('../services/pilot/retry');
+const { actionSQL, deadLetterSQL } = require('../services/pilot/actionLog');
 
 async function readStdin() {
   let raw = '';
@@ -41,11 +43,22 @@ async function main() {
   let applications = input.applications || [];
   let messages = [];
   let banner;
+  let attempts = 1;
+  let fetchError = null;
 
   const t0 = Date.now();
   if (source === 'production') {
-    messages = await provider.fetchMessages();    // REAL Gmail (OAuth, read-only)
-    banner = `PRODUCTION RUNTIME — Gmail OAuth active: ${messages.length} real message(s) ingested.`;
+    try {
+      // retryable: transient token/list/get failures are retried before giving up.
+      const r = await withRetry(() => provider.fetchMessages(), { retries: 2, baseDelayMs: 400 });
+      messages = r.value;
+      attempts = r.attempts;
+      banner = `PRODUCTION RUNTIME — Gmail OAuth active: ${messages.length} real message(s) ingested (attempt ${attempts}).`;
+    } catch (e) {
+      fetchError = e;                              // exhausted → dead-letter, never fabricate
+      attempts = e.attempts || 3;
+      banner = `PRODUCTION RUNTIME — Gmail fetch FAILED after ${attempts} attempts (retryable, dead-lettered): ${e.message}`;
+    }
   } else {
     const fx = require('../services/email/fixtures/messages');   // Test Data
     messages = fx.MESSAGES || [];
@@ -79,11 +92,22 @@ async function main() {
   })];
   for (const e of emails) sql.push(emailSQL(e));
   for (const t of timeline) sql.push(timelineSQL(t));
-  sql.push(
-    `INSERT INTO production_actions (action, stage, trace_id, correlation_id, data_source, status, duration_ms, detail) ` +
-    `VALUES ('email_ingest', 'gmail', '${traceId}'::uuid, '${traceId}'::uuid, '${source}', 'success', ${durationMs}, ` +
-    `$d$${JSON.stringify({ source, messages: messages.length, emails: emails.length, pending_pilot_user: source === 'test' })}$d$::jsonb);`
-  );
+
+  const status = fetchError ? 'error' : (source === 'test' ? 'skipped' : 'success');
+  sql.push(actionSQL({
+    action: 'email_ingest', stage: 'gmail', traceId, correlationId: traceId,
+    dataSource: source, status, attempt: attempts, durationMs,
+    detail: {
+      source, messages: messages.length, emails: emails.length,
+      pending_pilot_user: source === 'test',
+      error: fetchError ? String(fetchError.message) : undefined,
+    },
+  }));
+  if (fetchError) {
+    // retryable: unresolved dead_letter rows are re-run later.
+    sql.push(deadLetterSQL({ eventType: 'pilot_email.gmail_fetch_failed',
+      payload: { source, attempts }, error: String(fetchError.message) }));
+  }
   sql.push('COMMIT;');
 
   process.stdout.write(sql.join('\n') + '\n');
