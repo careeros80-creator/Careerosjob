@@ -46,10 +46,72 @@ function StatusBadge({ status }) {
   );
 }
 
+const PILOT_METRICS = [
+  ['jobs_discovered', 'Jobs discovered'],
+  ['jobs_cleaned', 'Jobs cleaned'],
+  ['companies_enriched', 'Companies enriched'],
+  ['applications_prepared', 'Applications prepared'],
+  ['applications_approved', 'Applications approved'],
+  ['applications_sent', 'Applications sent'],
+  ['interviews', 'Interviews'],
+  ['offers', 'Offers'],
+  ['rejections', 'Rejections'],
+  ['waiting_responses', 'Waiting responses'],
+];
+const pct = (v) => (v === null || v === undefined ? '—' : `${v}%`);
+
+function PilotDashboard({ pilot, prod }) {
+  if (!pilot) return null;
+  const p = pilot.production || {};
+  const t = pilot.test || {};
+  return (
+    <section className="mb-8">
+      <div className="mb-3 flex items-center justify-between">
+        <h2 className="text-lg font-semibold">Pilot Production Validation</h2>
+        <span className="text-xs uppercase tracking-wider text-slate-400">Production Runtime vs Test Data</span>
+      </div>
+      <div className="overflow-hidden rounded-2xl border border-white/10">
+        <table className="min-w-full text-left text-sm">
+          <thead className="bg-white/5 text-xs uppercase tracking-wider text-slate-400">
+            <tr>
+              <th className="px-4 py-3 font-medium">Metric</th>
+              <th className="px-4 py-3 font-medium text-emerald-300">● Production Runtime</th>
+              <th className="px-4 py-3 font-medium text-slate-300">○ Test Data</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-white/5">
+            {PILOT_METRICS.map(([k, label]) => (
+              <tr key={k} className="hover:bg-white/5">
+                <td className="px-4 py-2.5 text-slate-300">{label}</td>
+                <td className="px-4 py-2.5 text-lg font-semibold text-emerald-300">{fmt(p[k] ?? 0)}</td>
+                <td className="px-4 py-2.5 text-slate-400">{fmt(t[k] ?? 0)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <Card label="Discovery success" value={pct(prod?.discovery_success_rate_pct)} accent="text-emerald-300" />
+        <Card label="Duplicate rate" value={pct(prod?.duplicate_rate_pct)} accent="text-amber-300" />
+        <Card label="ATS coverage" value={pct(prod?.ats_coverage_pct)} accent="text-sky-300" />
+        <Card label="Avg processing" value={prod?.avg_processing_ms != null ? `${prod.avg_processing_ms} ms` : '—'} />
+      </div>
+      <p className="mt-3 text-xs text-slate-500">
+        Production metrics are computed <span className="text-slate-300">only</span> from{' '}
+        <code>data_source='production'</code> — never fixtures. Interview / offer / response rates and real
+        Gmail are <span className="text-amber-300">Pending Pilot User</span> (Gmail OAuth). Approval and sending
+        are manual (ADR-006).
+      </p>
+    </section>
+  );
+}
+
 export default function App() {
   const [jobs, setJobs] = useState([]);
   const [metrics, setMetrics] = useState(null);
   const [successRate, setSuccessRate] = useState(null);
+  const [pilot, setPilot] = useState(null);        // { production:{...}, test:{...} }
+  const [prodMetrics, setProdMetrics] = useState(null);
   const [status, setStatus] = useState('loading'); // loading | ready | error | unconfigured
   const [error, setError] = useState('');
 
@@ -58,7 +120,7 @@ export default function App() {
     setStatus('loading');
     setError('');
     try {
-      const [jobsRes, metricsRes, connRes] = await Promise.all([
+      const [jobsRes, metricsRes, connRes, pilotRes, prodRes] = await Promise.all([
         supabase
           .from('jobs')
           .select('external_id,title,company_raw,location_raw,salary_raw,pipeline_status,scraped_at')
@@ -72,15 +134,25 @@ export default function App() {
           .select('pipeline_success_rate')
           .eq('connector', 'jobbank')
           .maybeSingle(),
+        supabase.from('pilot_dashboard').select('*'),
+        supabase.from('pilot_production_metrics').select('*').maybeSingle(),
       ]);
 
       if (jobsRes.error) throw jobsRes.error;
       if (metricsRes.error) throw metricsRes.error;
       if (connRes.error) throw connRes.error;
+      if (pilotRes.error) throw pilotRes.error;
+      if (prodRes.error) throw prodRes.error;
 
       setJobs(jobsRes.data || []);
       setMetrics(metricsRes.data || { jobs_discovered: 0, jobs_inserted: 0, duplicates_detected: 0 });
       setSuccessRate(connRes.data ? connRes.data.pipeline_success_rate : null);
+      const pilotRows = pilotRes.data || [];
+      setPilot({
+        production: pilotRows.find((r) => r.data_source === 'production') || {},
+        test: pilotRows.find((r) => r.data_source === 'test') || {},
+      });
+      setProdMetrics(prodRes.data || null);
       setStatus('ready');
     } catch (e) {
       setError(e.message || String(e));
@@ -128,6 +200,9 @@ export default function App() {
 
         {status !== 'unconfigured' && (
           <>
+            <PilotDashboard pilot={pilot} prod={prodMetrics} />
+
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-400">VS1 discovery (all sources)</h3>
             <section className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
               <Card label="Jobs discovered" value={fmt(metrics?.jobs_discovered ?? (status === 'loading' ? '…' : 0))} />
               <Card label="Jobs inserted" value={fmt(metrics?.jobs_inserted ?? (status === 'loading' ? '…' : 0))} accent="text-emerald-300" />
