@@ -15,3 +15,6 @@ supabase/.branches/
 
 # Logs / scratch
 *.log
+
+# pilot production-validation transient work files
+.pilot_tmp/
