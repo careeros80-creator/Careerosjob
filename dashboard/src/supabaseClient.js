@@ -11,4 +11,15 @@ export const isConfigured = Boolean(url && anonKey);
 
 // Only construct the client when configured, so the app can render a helpful
 // setup message instead of throwing when env vars are absent.
-export const supabase = isConfigured ? createClient(url, anonKey) : null;
+// Explicit auth options: session persists in localStorage and access tokens
+// auto-refresh, so a signed-in pilot user stays signed in across reloads.
+export const supabase = isConfigured
+  ? createClient(url, anonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        storageKey: 'careeros.auth',
+      },
+    })
+  : null;

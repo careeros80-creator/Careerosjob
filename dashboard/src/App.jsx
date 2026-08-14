@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase, isConfigured } from './supabaseClient';
+import Auth from './Auth';
+import Readiness from './Readiness';
 
 const JOB_COLUMNS = [
   { key: 'title', label: 'Title' },
@@ -114,6 +116,34 @@ export default function App() {
   const [prodMetrics, setProdMetrics] = useState(null);
   const [status, setStatus] = useState('loading'); // loading | ready | error | unconfigured
   const [error, setError] = useState('');
+  const [session, setSession] = useState(null);
+  const [view, setView] = useState('dashboard'); // dashboard | readiness | account
+
+  // Session: load once, then track auth changes (persisted in localStorage).
+  useEffect(() => {
+    if (!isConfigured) return;
+    supabase.auth.getSession().then(({ data }) => setSession(data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
+      setSession(s);
+      if (s) ensureProfile(s);
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  // Pilot profile flow: on first sign-in, link this auth user to a pilot profile
+  // (RLS lets an authenticated user see/insert only their own row).
+  async function ensureProfile(s) {
+    try {
+      const { data } = await supabase.from('pilot_profile').select('id').eq('auth_uid', s.user.id).maybeSingle();
+      if (!data) {
+        await supabase.from('pilot_profile').insert({
+          auth_uid: s.user.id, email: s.user.email, display_name: s.user.email,
+        });
+      }
+    } catch { /* non-fatal; surfaced on the Account view */ }
+  }
+
+  async function signOut() { await supabase.auth.signOut(); setView('dashboard'); }
 
   async function load() {
     if (!isConfigured) { setStatus('unconfigured'); return; }
@@ -165,21 +195,58 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-10">
-        <header className="mb-8 flex items-end justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">career-os · VS1 Discovery</h1>
-            <p className="mt-1 text-sm text-slate-400">
-              Real Job Bank Canada jobs, live from Supabase.
-            </p>
+        <header className="mb-8">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold tracking-tight">career-os · Pilot Console</h1>
+              <p className="mt-1 text-sm text-slate-400">Real Job Bank Canada jobs, live from Supabase.</p>
+            </div>
+            <div className="text-right text-sm">
+              {session ? (
+                <div className="flex items-center gap-3">
+                  <span className="text-slate-400">Signed in as <span className="text-slate-200">{session.user.email}</span></span>
+                  <button onClick={signOut} className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 font-medium hover:bg-white/10">Sign out</button>
+                </div>
+              ) : (
+                <span className="text-slate-500">Not signed in</span>
+              )}
+            </div>
           </div>
-          <button
-            onClick={load}
-            className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium hover:bg-white/10"
-          >
-            Refresh
-          </button>
+          <nav className="mt-4 flex gap-2">
+            {[['dashboard', 'Dashboard'], ['readiness', 'Production Readiness'], ['account', 'Account']].map(([v, label]) => (
+              <button
+                key={v} onClick={() => setView(v)}
+                className={`rounded-xl px-3 py-1.5 text-sm font-medium ${
+                  view === v ? 'bg-white/10 text-white border border-white/20' : 'border border-white/10 text-slate-300 hover:bg-white/5'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+            {view === 'dashboard' && (
+              <button onClick={load} className="ml-auto rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium hover:bg-white/10">Refresh</button>
+            )}
+          </nav>
         </header>
 
+        {view === 'readiness' && <Readiness session={session} />}
+
+        {view === 'account' && (
+          <section>
+            {session ? (
+              <div className="mx-auto max-w-sm rounded-2xl border border-white/10 bg-white/5 p-6 text-sm">
+                <div className="text-slate-400">Signed in as</div>
+                <div className="mt-1 text-lg font-semibold text-white">{session.user.email}</div>
+                <div className="mt-1 text-xs text-slate-500">user id: {session.user.id}</div>
+                <button onClick={signOut} className="mt-4 w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 font-medium hover:bg-white/10">Sign out</button>
+              </div>
+            ) : (
+              <Auth />
+            )}
+          </section>
+        )}
+
+        {view === 'dashboard' && (<>
         {status === 'unconfigured' && (
           <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-6 text-amber-200">
             <div className="font-semibold">Supabase is not configured.</div>
@@ -253,6 +320,7 @@ export default function App() {
             </footer>
           </>
         )}
+        </>)}
       </div>
     </div>
   );
