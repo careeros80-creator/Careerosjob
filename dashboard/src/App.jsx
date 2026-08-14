@@ -125,21 +125,19 @@ export default function App() {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
       setSession(s);
-      if (s) ensureProfile(s);
+      if (s) ensureProfile();
     });
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  // Pilot profile flow: on first sign-in, link this auth user to a pilot profile
-  // (RLS lets an authenticated user see/insert only their own row).
-  async function ensureProfile(s) {
+  // Pilot profile flow: on sign-in, link this auth user to the existing seeded
+  // pilot profile (which holds the imported CV/template/preferences). The client
+  // cannot see an unlinked profile (RLS), so linking goes through the sanctioned
+  // SECURITY DEFINER RPC link_pilot_profile() — it links the seeded row, is
+  // idempotent, and only creates a new profile when none exists at all.
+  async function ensureProfile() {
     try {
-      const { data } = await supabase.from('pilot_profile').select('id').eq('auth_uid', s.user.id).maybeSingle();
-      if (!data) {
-        await supabase.from('pilot_profile').insert({
-          auth_uid: s.user.id, email: s.user.email, display_name: s.user.email,
-        });
-      }
+      await supabase.rpc('link_pilot_profile');
     } catch { /* non-fatal; surfaced on the Account view */ }
   }
 
