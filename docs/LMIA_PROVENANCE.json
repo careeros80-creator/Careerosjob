@@ -1,0 +1,11 @@
+{
+  "dataset_title": "Temporary Foreign Worker Program (TFWP): Positive Labour Market Impact Assessment (LMIA) Employers",
+  "dataset_id": "90fed587-1364-4f33-a9ee-208181dc0b97",
+  "resource_file": "tfwp_2020q3_positive_en.csv",
+  "resource_url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/d7f10890-cfd4-4b15-baa7-d40bad38343b/download/tfwp_2020q3_positive_en.csv",
+  "dataset_period": "2020 Q3 (most recent employer-level list published; program stopped employer-level publication after 2020Q3)",
+  "retrieved_at_utc": "2026-08-18T16:00:13Z",
+  "sha256": "d1a5510c62125955ff54c08454a19b3d29dff3a4538f9d31a3ea54856f27877f",
+  "source_api": "https://open.canada.ca/data/api/3/action/package_show?id=90fed587-1364-4f33-a9ee-208181dc0b97",
+  "note": "Historical positive LMIA is employer intelligence only and does not prove sponsorship for the current job."
+}
