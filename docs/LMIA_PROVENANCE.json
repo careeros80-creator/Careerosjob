@@ -1,36 +1,59 @@
 {
-  "superseded_analysis": {
-    "status": "SUPERSEDED_INCOMPLETE_DATASET_COVERAGE",
-    "reason": "commit 1979b50 used only tfwp_2020q3_positive_en.csv; a single quarter cannot support NO_MATCH/UNKNOWN=0 or \"latest employer-level list\" claims",
-    "file": "tfwp_2020q3_positive_en.csv"
-  },
-  "dataset_title": "Temporary Foreign Worker Program (TFWP): Positive Labour Market Impact Assessment (LMIA) Employers List",
+  "superseded_analyses": [
+    {
+      "commit": "1979b50",
+      "status": "SUPERSEDED_INCOMPLETE_DATASET_COVERAGE",
+      "reason": "used only 2020Q3"
+    },
+    {
+      "commit": "11957ba",
+      "status": "SUPERSEDED_INCOMPLETE_DATASET_COVERAGE",
+      "reason": "2023Q1-Q3 left as gaps (were actually OOXML, now parsed)"
+    }
+  ],
+  "dataset_title": "TFWP: Positive LMIA Employers List",
   "dataset_id": "90fed587-1364-4f33-a9ee-208181dc0b97",
   "package_metadata_modified": "2026-07-22",
-  "retrieved_at_utc": "2026-08-18T19:41:53.079Z",
+  "retrieved_at_utc": "2026-08-18T21:39:39.302Z",
   "coverage": {
-    "quarters_ingested": 36,
+    "quarters_ingested": 39,
     "range": "2014..2026Q1",
     "latest_employer_level_quarter": "2026Q1",
-    "total_unique_rows": 368550,
-    "gap_quarters": [
-      {
-        "quarter": "2023Q1",
-        "format": "XLS",
-        "reason": "XLS binary not parseable dependency-light; no CSV/XLSX alternative published"
-      },
-      {
-        "quarter": "2023Q2",
-        "format": "XLS",
-        "reason": "XLS binary not parseable dependency-light; no CSV/XLSX alternative published"
-      },
-      {
-        "quarter": "2023Q3",
-        "format": "XLS",
-        "reason": "XLS binary not parseable dependency-light; no CSV/XLSX alternative published"
-      }
-    ]
+    "total_unique_rows": 472224,
+    "gap_quarters": []
   },
+  "xls_actually_ooxml": [
+    {
+      "quarter": "2023Q1",
+      "src_sha256": "8cc7eb7ccb91c5cf9e46f4108ce5906d26fb8008c0b13741dd597752889cc79d",
+      "parser": "node unzip+xml (OOXML) v1.1.0",
+      "converted_sha256": "c6e865ef6a6a7a2a1d52897680ababdcd0a2cd11091d495b79281ff7627011c8",
+      "header": "province/territory|program stream|employer|address|occupation|incorporate status|approved lmias|approved positions",
+      "row_count": 17109,
+      "warnings": [],
+      "note": "catalogue-labelled XLS; actual bytes are OOXML/zip (PK\\x03\\x04) → parsed with unzip/XML"
+    },
+    {
+      "quarter": "2023Q2",
+      "src_sha256": "133b9744cb5103e726639072eed4b39cf276376084dac92ac17ca67d0a596707",
+      "parser": "node unzip+xml (OOXML) v1.1.0",
+      "converted_sha256": "7589d1bcad9e80af277b315c320360cd3488485fdc40cc977fc5b816bc10ecd4",
+      "header": "province/territory|program stream|employer|address|occupation|incorporate status|approved lmias|approved positions",
+      "row_count": 16170,
+      "warnings": [],
+      "note": "catalogue-labelled XLS; actual bytes are OOXML/zip (PK\\x03\\x04) → parsed with unzip/XML"
+    },
+    {
+      "quarter": "2023Q3",
+      "src_sha256": "c2ce4646a4c7dfdf9c78172982320a5fa68faf536a799f9ea717c188445caca7",
+      "parser": "node unzip+xml (OOXML) v1.1.0",
+      "converted_sha256": "3da8d62ff94fe8878eb18fb08088445628f7b83f332332b39fea55a5c5d66abc",
+      "header": "province/territory|program stream|employer|address|occupation|incorporate status|approved lmias|approved positions",
+      "row_count": 18558,
+      "warnings": [],
+      "note": "catalogue-labelled XLS; actual bytes are OOXML/zip (PK\\x03\\x04) → parsed with unzip/XML"
+    }
+  ],
   "resources": [
     {
       "quarter": "2014",
@@ -40,8 +63,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "a53287b0b88a3c606019dfb44f7ebeac8601d56e72bd5413ecc0fc35c8649c06",
-      "row_count": 4021,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 4021
     },
     {
       "quarter": "2015",
@@ -51,8 +73,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "6761a121e853c75c978dc58962167013b13ac36d4ea7862a3c6c8788f9aa17e4",
-      "row_count": 0,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 0
     },
     {
       "quarter": "2016",
@@ -62,8 +83,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "15042bdfcfc3857a6fca78fc240c68b7335a2687d8caca88aaeeb78e7de57ef1",
-      "row_count": 12996,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 12996
     },
     {
       "quarter": "2017Q1",
@@ -73,8 +93,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "2c21f0716dc7860f7ac00aa52a9d771a68d7b208a17b5ed40dfa6a5a931d4b2c",
-      "row_count": 9833,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 9833
     },
     {
       "quarter": "2017Q3",
@@ -84,8 +103,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "3c5468d4b333316439471e1a25095082bd92a259307c4eee3df768ff62bc66dc",
-      "row_count": 4108,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 4108
     },
     {
       "quarter": "2017Q4",
@@ -95,8 +113,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "840e6f39e255968f283a135b916af5f85c777c79d6d49aea3c67d21dddf63d4f",
-      "row_count": 4406,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 4406
     },
     {
       "quarter": "2018Q1",
@@ -106,8 +123,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "373e1fe1f137e8b0eb5bbaa7b6b7128286e26542f2a39a8e883e1eb510ebe799",
-      "row_count": 4135,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 4135
     },
     {
       "quarter": "2018Q2",
@@ -117,8 +133,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "8f21f07bb2c32694a52272c0a76a7c5f7734d3ba65a1845b9b373e1cc710b7f4",
-      "row_count": 4201,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 4201
     },
     {
       "quarter": "2018Q3",
@@ -128,8 +143,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "9757e372fb90489267d5f6a5ce8a48040e8a7ee1e19d27c002c407b289e5ccf1",
-      "row_count": 4289,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 4289
     },
     {
       "quarter": "2018Q4",
@@ -139,8 +153,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "659233ff5fa02e356abb45b7625f4adffa036ad4955902c9646a812ffbfc3b61",
-      "row_count": 5283,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 5283
     },
     {
       "quarter": "2019Q1",
@@ -150,8 +163,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "8b2770a7d5b134ebf57ad5c60f7013fcc06ee0941d6ca3a5887019c1bf0f842f",
-      "row_count": 6650,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 6650
     },
     {
       "quarter": "2019Q2",
@@ -161,8 +173,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "0dea9a7156065c5b00f2c2eb73f686217607e4ee6f8a54911af747fcef5e1b79",
-      "row_count": 6317,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 6317
     },
     {
       "quarter": "2019Q3",
@@ -172,8 +183,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "19baf06b3af0b2948b1bdefb9b7b6cf015e12339a59c76e4b3aff405b794299c",
-      "row_count": 7329,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 7329
     },
     {
       "quarter": "2019Q4",
@@ -183,8 +193,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "90de3a9570d2a27b41b492b7249e27a9e06df3b6fdb11df8f469954f54e528ef",
-      "row_count": 9228,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 9228
     },
     {
       "quarter": "2020Q1",
@@ -194,8 +203,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "e86c8cfdcf013e59f17816e1f81ca5384cb66fdbbe84719047c4374207d646c5",
-      "row_count": 8814,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 8814
     },
     {
       "quarter": "2020Q2",
@@ -205,8 +213,7 @@
       "metadata_modified": "2022-04-27",
       "retrieval": "OK",
       "sha256": "694f34f36e0dbe128b81d9c34ee707648a796ccde1f506f1091149f4c0ed2b8c",
-      "row_count": 3472,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 3472
     },
     {
       "quarter": "2020Q3",
@@ -216,8 +223,7 @@
       "metadata_modified": "2022-02-10",
       "retrieval": "OK",
       "sha256": "d1a5510c62125955ff54c08454a19b3d29dff3a4538f9d31a3ea54856f27877f",
-      "row_count": 7476,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 7476
     },
     {
       "quarter": "2020Q4",
@@ -227,8 +233,7 @@
       "metadata_modified": "2022-04-27",
       "retrieval": "OK",
       "sha256": "d5d8bd46b12a1ffb7354232c4b2a7c0d58260e2242c70717b01808f76dc06e2d",
-      "row_count": 8375,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 8375
     },
     {
       "quarter": "2021Q1",
@@ -238,8 +243,7 @@
       "metadata_modified": "2022-04-27",
       "retrieval": "OK",
       "sha256": "c417888e024cb53661af21843fd4a3e38a9e619470f50efc1e7e888337c0031c",
-      "row_count": 8685,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 8685
     },
     {
       "quarter": "2021Q2",
@@ -249,8 +253,7 @@
       "metadata_modified": "2021-09-03",
       "retrieval": "OK",
       "sha256": "a06d94b053f08d993ae3de0f56fc5642ea2c263483cd6e3c5a04b511a1583322",
-      "row_count": 8168,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 8168
     },
     {
       "quarter": "2021Q3",
@@ -260,8 +263,7 @@
       "metadata_modified": "2021-12-10",
       "retrieval": "OK",
       "sha256": "372bf17d4d167f816df892531e51c5fd9e0abbcb0ab5f59e4098611a96617188",
-      "row_count": 4655,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 4655
     },
     {
       "quarter": "2021Q4",
@@ -271,8 +273,7 @@
       "metadata_modified": "2022-04-25",
       "retrieval": "OK",
       "sha256": "5b06c7a264b17326876b9429727339ddf9b0b0564968b26b11f3409b03a1ed27",
-      "row_count": 7028,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 7028
     },
     {
       "quarter": "2022Q1",
@@ -282,8 +283,7 @@
       "metadata_modified": "2022-08-08",
       "retrieval": "OK",
       "sha256": "7eb6607feb617f782dd1d025bdccc082a2a13cd95cae633998d56cbd0db0d6e6",
-      "row_count": 10512,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 10512
     },
     {
       "quarter": "2022Q2",
@@ -293,8 +293,7 @@
       "metadata_modified": "2022-10-17",
       "retrieval": "OK",
       "sha256": "b1bcb07f56569623a6619f483a1c5dccbc05a562ebdddb8286e02000c71051cf",
-      "row_count": 15167,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 15167
     },
     {
       "quarter": "2022Q3",
@@ -304,8 +303,7 @@
       "metadata_modified": "2023-01-06",
       "retrieval": "OK",
       "sha256": "c2e0da3905fe753615640bb8d724260b99456b0a0c331d8577e668dd8a3aa540",
-      "row_count": 14079,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 14079
     },
     {
       "quarter": "2022Q4",
@@ -315,8 +313,7 @@
       "metadata_modified": "2023-03-21",
       "retrieval": "OK",
       "sha256": "be174853eb3b91d9e0f4b27a2199b1170bb0943a984c5a09d50f6eff1c271ced",
-      "row_count": 17002,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 17002
     },
     {
       "quarter": "2023Q1",
@@ -324,10 +321,9 @@
       "format": "XLS",
       "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/65794992-cce4-4103-a1f6-ec6e3d249e90/download/tfwp_2023q1_pos_en.xlsx",
       "metadata_modified": "2023-06-21",
-      "retrieval": "FAILED:unparseable format xls",
+      "retrieval": "OK",
       "sha256": "8cc7eb7ccb91c5cf9e46f4108ce5906d26fb8008c0b13741dd597752889cc79d",
-      "row_count": 0,
-      "header": null
+      "row_count": 17109
     },
     {
       "quarter": "2023Q2",
@@ -335,10 +331,9 @@
       "format": "XLS",
       "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/aed9328a-1b42-48bd-a096-75ef06eba025/download/tfwp_2023q2_pos_en.xlsx",
       "metadata_modified": "2023-09-14",
-      "retrieval": "FAILED:unparseable format xls",
+      "retrieval": "OK",
       "sha256": "133b9744cb5103e726639072eed4b39cf276376084dac92ac17ca67d0a596707",
-      "row_count": 0,
-      "header": null
+      "row_count": 16170
     },
     {
       "quarter": "2023Q3",
@@ -346,10 +341,9 @@
       "format": "XLS",
       "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/d48a4d9a-fffa-4c02-81c9-93332c52f2df/download/tfwp_2023q3_pos_en.xlsx",
       "metadata_modified": "2023-12-11",
-      "retrieval": "FAILED:unparseable format xls",
+      "retrieval": "OK",
       "sha256": "c2ce4646a4c7dfdf9c78172982320a5fa68faf536a799f9ea717c188445caca7",
-      "row_count": 0,
-      "header": null
+      "row_count": 18558
     },
     {
       "quarter": "2023Q4",
@@ -359,8 +353,7 @@
       "metadata_modified": "2024-04-17",
       "retrieval": "OK",
       "sha256": "67d8ae88d38a0ddbe6ef63763e6cbb46b34d9c24de08b8aeef32dfd1adabdfb0",
-      "row_count": 22026,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 22026
     },
     {
       "quarter": "2024Q1",
@@ -370,8 +363,7 @@
       "metadata_modified": "2024-06-20",
       "retrieval": "OK",
       "sha256": "99c033aaf3325f98b26971ae7d1e88087fa15734a6fa63547416a44854a19153",
-      "row_count": 25579,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 25579
     },
     {
       "quarter": "2024Q2",
@@ -381,8 +373,7 @@
       "metadata_modified": "2024-10-24",
       "retrieval": "OK",
       "sha256": "93c60ed063deee8c5c6417eb547b91d5b97904df4e6eb0973a274e937c8ab8f8",
-      "row_count": 23351,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 23351
     },
     {
       "quarter": "2024Q3",
@@ -392,8 +383,7 @@
       "metadata_modified": "2024-12-20",
       "retrieval": "OK",
       "sha256": "e3653ed42bddd5788e1590024342e779aedc68c23254dacfbd9c183ce8c6eaf2",
-      "row_count": 20590,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 20590
     },
     {
       "quarter": "2024Q4",
@@ -403,8 +393,7 @@
       "metadata_modified": "2025-03-18",
       "retrieval": "OK",
       "sha256": "131f297a086eae0e7ffc232ee8b432b6347a76ff661272773b187b1343d051a6",
-      "row_count": 17745,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 17745
     },
     {
       "quarter": "2025Q1",
@@ -414,8 +403,7 @@
       "metadata_modified": "2025-06-19",
       "retrieval": "OK",
       "sha256": "e8828f20e99ed2fa426851ce5310429de68c4535dce960ac131c41bbb2b8f278",
-      "row_count": 17952,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 17952
     },
     {
       "quarter": "2025Q2",
@@ -425,8 +413,7 @@
       "metadata_modified": "2025-10-23",
       "retrieval": "OK",
       "sha256": "922dea3cc5d28c0605e02a9927dfc42beba0b26de6c053b9c7393013069215da",
-      "row_count": 15273,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 15273
     },
     {
       "quarter": "2025Q3",
@@ -436,8 +423,7 @@
       "metadata_modified": "2026-01-07",
       "retrieval": "OK",
       "sha256": "fbf64621635b162eb652e050ad1dd6351bbca9d935d11368f069bf71a8dcafb3",
-      "row_count": 11278,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 11278
     },
     {
       "quarter": "2025Q4",
@@ -447,8 +433,7 @@
       "metadata_modified": "2026-03-16",
       "retrieval": "OK",
       "sha256": "1e7d3726e625dac215720bdaee8aa9f87b297f386440280a835de6bab588a99c",
-      "row_count": 9737,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 9737
     },
     {
       "quarter": "2026Q1",
@@ -458,9 +443,8 @@
       "metadata_modified": "2026-07-21",
       "retrieval": "OK",
       "sha256": "2f48cb522180ff82e6768a68b679bed4d4c89efa28d1c5aca7bc1604c99a044e",
-      "row_count": 8790,
-      "header": "province|stream|employer|address|occupation"
+      "row_count": 8790
     }
   ],
-  "note": "Historical positive LMIA is employer intelligence only and does NOT prove sponsorship for the current job. Negative-LMIA data is NOT used to infer unwillingness."
+  "note": "Historical positive LMIA is employer intelligence only — NOT current sponsorship, current LMIA, willingness to sponsor, or work authorization. Negative-LMIA data not used."
 }
