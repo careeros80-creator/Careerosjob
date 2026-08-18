@@ -1,11 +1,466 @@
 {
-  "dataset_title": "Temporary Foreign Worker Program (TFWP): Positive Labour Market Impact Assessment (LMIA) Employers",
+  "superseded_analysis": {
+    "status": "SUPERSEDED_INCOMPLETE_DATASET_COVERAGE",
+    "reason": "commit 1979b50 used only tfwp_2020q3_positive_en.csv; a single quarter cannot support NO_MATCH/UNKNOWN=0 or \"latest employer-level list\" claims",
+    "file": "tfwp_2020q3_positive_en.csv"
+  },
+  "dataset_title": "Temporary Foreign Worker Program (TFWP): Positive Labour Market Impact Assessment (LMIA) Employers List",
   "dataset_id": "90fed587-1364-4f33-a9ee-208181dc0b97",
-  "resource_file": "tfwp_2020q3_positive_en.csv",
-  "resource_url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/d7f10890-cfd4-4b15-baa7-d40bad38343b/download/tfwp_2020q3_positive_en.csv",
-  "dataset_period": "2020 Q3 (most recent employer-level list published; program stopped employer-level publication after 2020Q3)",
-  "retrieved_at_utc": "2026-08-18T16:00:13Z",
-  "sha256": "d1a5510c62125955ff54c08454a19b3d29dff3a4538f9d31a3ea54856f27877f",
-  "source_api": "https://open.canada.ca/data/api/3/action/package_show?id=90fed587-1364-4f33-a9ee-208181dc0b97",
-  "note": "Historical positive LMIA is employer intelligence only and does not prove sponsorship for the current job."
+  "package_metadata_modified": "2026-07-22",
+  "retrieved_at_utc": "2026-08-18T19:41:53.079Z",
+  "coverage": {
+    "quarters_ingested": 36,
+    "range": "2014..2026Q1",
+    "latest_employer_level_quarter": "2026Q1",
+    "total_unique_rows": 368550,
+    "gap_quarters": [
+      {
+        "quarter": "2023Q1",
+        "format": "XLS",
+        "reason": "XLS binary not parseable dependency-light; no CSV/XLSX alternative published"
+      },
+      {
+        "quarter": "2023Q2",
+        "format": "XLS",
+        "reason": "XLS binary not parseable dependency-light; no CSV/XLSX alternative published"
+      },
+      {
+        "quarter": "2023Q3",
+        "format": "XLS",
+        "reason": "XLS binary not parseable dependency-light; no CSV/XLSX alternative published"
+      }
+    ]
+  },
+  "resources": [
+    {
+      "quarter": "2014",
+      "uuid": "bd5dab03-02dc-4542-8e01-c04dca9a0337",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/bd5dab03-02dc-4542-8e01-c04dca9a0337/download/positive_employers_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "a53287b0b88a3c606019dfb44f7ebeac8601d56e72bd5413ecc0fc35c8649c06",
+      "row_count": 4021,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2015",
+      "uuid": "5b9c1873-dc36-456d-a308-2819d4e25309",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/5b9c1873-dc36-456d-a308-2819d4e25309/download/2015_positive_employers_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "6761a121e853c75c978dc58962167013b13ac36d4ea7862a3c6c8788f9aa17e4",
+      "row_count": 0,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2016",
+      "uuid": "68a48c73-39a1-4049-a7ae-044f9c6c87b3",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/68a48c73-39a1-4049-a7ae-044f9c6c87b3/download/2016_positive_employer_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "15042bdfcfc3857a6fca78fc240c68b7335a2687d8caca88aaeeb78e7de57ef1",
+      "row_count": 12996,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2017Q1",
+      "uuid": "b0f8c373-9141-49b9-bba7-54afcd9835fc",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/b0f8c373-9141-49b9-bba7-54afcd9835fc/download/2017q1q2_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "2c21f0716dc7860f7ac00aa52a9d771a68d7b208a17b5ed40dfa6a5a931d4b2c",
+      "row_count": 9833,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2017Q3",
+      "uuid": "f9352594-c095-4c63-b6b5-d88c2dc564de",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/f9352594-c095-4c63-b6b5-d88c2dc564de/download/2017q3_positive_employer_stream_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "3c5468d4b333316439471e1a25095082bd92a259307c4eee3df768ff62bc66dc",
+      "row_count": 4108,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2017Q4",
+      "uuid": "90a8f6af-18d8-47ed-a874-f1f5b12f23a3",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/90a8f6af-18d8-47ed-a874-f1f5b12f23a3/download/2017q4_positive_employer_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "840e6f39e255968f283a135b916af5f85c777c79d6d49aea3c67d21dddf63d4f",
+      "row_count": 4406,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2018Q1",
+      "uuid": "6caf0a3d-2d12-4f87-8029-77213921da50",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/6caf0a3d-2d12-4f87-8029-77213921da50/download/2018q1_positive_employer_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "373e1fe1f137e8b0eb5bbaa7b6b7128286e26542f2a39a8e883e1eb510ebe799",
+      "row_count": 4135,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2018Q2",
+      "uuid": "76559be2-7106-4f46-ab89-cbbe218d7a7c",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/76559be2-7106-4f46-ab89-cbbe218d7a7c/download/2018q2_positive_employer_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "8f21f07bb2c32694a52272c0a76a7c5f7734d3ba65a1845b9b373e1cc710b7f4",
+      "row_count": 4201,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2018Q3",
+      "uuid": "6a450855-2a4c-4b00-993b-cc72325f5e3a",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/6a450855-2a4c-4b00-993b-cc72325f5e3a/download/2018q3_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "9757e372fb90489267d5f6a5ce8a48040e8a7ee1e19d27c002c407b289e5ccf1",
+      "row_count": 4289,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2018Q4",
+      "uuid": "dc22140f-8b1b-49c3-a700-63f741ae491e",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/dc22140f-8b1b-49c3-a700-63f741ae491e/download/2018q4_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "659233ff5fa02e356abb45b7625f4adffa036ad4955902c9646a812ffbfc3b61",
+      "row_count": 5283,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2019Q1",
+      "uuid": "6fb9a0c8-57d2-4e86-a0f6-4c4b97c32e46",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/6fb9a0c8-57d2-4e86-a0f6-4c4b97c32e46/download/tfwp_2019q1_employer_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "8b2770a7d5b134ebf57ad5c60f7013fcc06ee0941d6ca3a5887019c1bf0f842f",
+      "row_count": 6650,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2019Q2",
+      "uuid": "d32f33b5-08ce-4ca7-a0b7-1072cd964ff8",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/d32f33b5-08ce-4ca7-a0b7-1072cd964ff8/download/tfwp_2019q2_employer_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "0dea9a7156065c5b00f2c2eb73f686217607e4ee6f8a54911af747fcef5e1b79",
+      "row_count": 6317,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2019Q3",
+      "uuid": "263eeeed-18ee-4a3d-a3e7-9c7e971793fd",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/263eeeed-18ee-4a3d-a3e7-9c7e971793fd/download/tfwp_2019q3_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "19baf06b3af0b2948b1bdefb9b7b6cf015e12339a59c76e4b3aff405b794299c",
+      "row_count": 7329,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2019Q4",
+      "uuid": "3a5efac6-6332-47a2-b729-733af38705a8",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/3a5efac6-6332-47a2-b729-733af38705a8/download/tfwp_2019q4_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "90de3a9570d2a27b41b492b7249e27a9e06df3b6fdb11df8f469954f54e528ef",
+      "row_count": 9228,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2020Q1",
+      "uuid": "00d8e64f-a6d9-4cee-b6a7-bf232e8f7d10",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/00d8e64f-a6d9-4cee-b6a7-bf232e8f7d10/download/tfwp_2020q1_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "e86c8cfdcf013e59f17816e1f81ca5384cb66fdbbe84719047c4374207d646c5",
+      "row_count": 8814,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2020Q2",
+      "uuid": "cfd54dfb-cc07-4699-912d-6f2ca7239fd9",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/cfd54dfb-cc07-4699-912d-6f2ca7239fd9/download/useb-dgcetfw-tetdip-piddiviaionline-publicationemployer-list2020-employer-list2020q22020q2csv202.csv",
+      "metadata_modified": "2022-04-27",
+      "retrieval": "OK",
+      "sha256": "694f34f36e0dbe128b81d9c34ee707648a796ccde1f506f1091149f4c0ed2b8c",
+      "row_count": 3472,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2020Q3",
+      "uuid": "d7f10890-cfd4-4b15-baa7-d40bad38343b",
+      "format": "CSV",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/d7f10890-cfd4-4b15-baa7-d40bad38343b/download/tfwp_2020q3_positive_en.csv",
+      "metadata_modified": "2022-02-10",
+      "retrieval": "OK",
+      "sha256": "d1a5510c62125955ff54c08454a19b3d29dff3a4538f9d31a3ea54856f27877f",
+      "row_count": 7476,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2020Q4",
+      "uuid": "c7a9aa48-fa8c-48cc-a535-d2e64bd96b37",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/c7a9aa48-fa8c-48cc-a535-d2e64bd96b37/download/useb-dgcetfw-tetdip-piddiviaionline-publicationemployer-list2020-employer-list2020q4tfwp_2020q4.xlsx",
+      "metadata_modified": "2022-04-27",
+      "retrieval": "OK",
+      "sha256": "d5d8bd46b12a1ffb7354232c4b2a7c0d58260e2242c70717b01808f76dc06e2d",
+      "row_count": 8375,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2021Q1",
+      "uuid": "9c690222-fc92-4849-bd55-9bf4085d3dac",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/9c690222-fc92-4849-bd55-9bf4085d3dac/download/useb-dgcetfw-tetdip-piddiviaionline-publicationemployer-list2021-employer-listq1-2021tfwp_2021q.xlsx",
+      "metadata_modified": "2022-04-27",
+      "retrieval": "OK",
+      "sha256": "c417888e024cb53661af21843fd4a3e38a9e619470f50efc1e7e888337c0031c",
+      "row_count": 8685,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2021Q2",
+      "uuid": "55209ff8-a9cd-466e-85f3-72a0a31a5e9b",
+      "format": "XLSX",
+      "url": "https://www.esdc.gc.ca/ouvert-open/bca-seb/imt-lmi/TFWP_2021Q2_Positive_EN.xlsx",
+      "metadata_modified": "2021-09-03",
+      "retrieval": "OK",
+      "sha256": "a06d94b053f08d993ae3de0f56fc5642ea2c263483cd6e3c5a04b511a1583322",
+      "row_count": 8168,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2021Q3",
+      "uuid": "cbb38578-9116-44f4-9976-124c1031e201",
+      "format": "XLSX",
+      "url": "https://www.esdc.gc.ca/ouvert-open/bca-seb/ae-ei/TFWP_2021Q3_Positive_EN.xlsx",
+      "metadata_modified": "2021-12-10",
+      "retrieval": "OK",
+      "sha256": "372bf17d4d167f816df892531e51c5fd9e0abbcb0ab5f59e4098611a96617188",
+      "row_count": 4655,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2021Q4",
+      "uuid": "84b1e3f0-7160-4dbf-9093-3ad8616dd28a",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/84b1e3f0-7160-4dbf-9093-3ad8616dd28a/download/useb-dgcetfw-tetdip-piddiviaionline-publicationemployer-list2021-employer-list2021q4finaltfwp_2.xlsx",
+      "metadata_modified": "2022-04-25",
+      "retrieval": "OK",
+      "sha256": "5b06c7a264b17326876b9429727339ddf9b0b0564968b26b11f3409b03a1ed27",
+      "row_count": 7028,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2022Q1",
+      "uuid": "8da7aa91-8df9-469e-9120-87ddf12c9944",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/8da7aa91-8df9-469e-9120-87ddf12c9944/download/tfwp_2022q1_positive_en.xlsx",
+      "metadata_modified": "2022-08-08",
+      "retrieval": "OK",
+      "sha256": "7eb6607feb617f782dd1d025bdccc082a2a13cd95cae633998d56cbd0db0d6e6",
+      "row_count": 10512,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2022Q2",
+      "uuid": "dd627095-614a-45df-a7ef-df0a4a46a812",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/dd627095-614a-45df-a7ef-df0a4a46a812/download/tfwp_2022q2_positive_en.xlsx",
+      "metadata_modified": "2022-10-17",
+      "retrieval": "OK",
+      "sha256": "b1bcb07f56569623a6619f483a1c5dccbc05a562ebdddb8286e02000c71051cf",
+      "row_count": 15167,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2022Q3",
+      "uuid": "b369ae20-0c7e-4d10-93ca-07c86c91e6fe",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/b369ae20-0c7e-4d10-93ca-07c86c91e6fe/download/tfwp_2022q3_positive_en.xlsx",
+      "metadata_modified": "2023-01-06",
+      "retrieval": "OK",
+      "sha256": "c2e0da3905fe753615640bb8d724260b99456b0a0c331d8577e668dd8a3aa540",
+      "row_count": 14079,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2022Q4",
+      "uuid": "cff0477d-8ab1-4252-b56a-2cd96b057049",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/cff0477d-8ab1-4252-b56a-2cd96b057049/download/tfwp_2022q4_pos_en.xlsx",
+      "metadata_modified": "2023-03-21",
+      "retrieval": "OK",
+      "sha256": "be174853eb3b91d9e0f4b27a2199b1170bb0943a984c5a09d50f6eff1c271ced",
+      "row_count": 17002,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2023Q1",
+      "uuid": "65794992-cce4-4103-a1f6-ec6e3d249e90",
+      "format": "XLS",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/65794992-cce4-4103-a1f6-ec6e3d249e90/download/tfwp_2023q1_pos_en.xlsx",
+      "metadata_modified": "2023-06-21",
+      "retrieval": "FAILED:unparseable format xls",
+      "sha256": "8cc7eb7ccb91c5cf9e46f4108ce5906d26fb8008c0b13741dd597752889cc79d",
+      "row_count": 0,
+      "header": null
+    },
+    {
+      "quarter": "2023Q2",
+      "uuid": "aed9328a-1b42-48bd-a096-75ef06eba025",
+      "format": "XLS",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/aed9328a-1b42-48bd-a096-75ef06eba025/download/tfwp_2023q2_pos_en.xlsx",
+      "metadata_modified": "2023-09-14",
+      "retrieval": "FAILED:unparseable format xls",
+      "sha256": "133b9744cb5103e726639072eed4b39cf276376084dac92ac17ca67d0a596707",
+      "row_count": 0,
+      "header": null
+    },
+    {
+      "quarter": "2023Q3",
+      "uuid": "d48a4d9a-fffa-4c02-81c9-93332c52f2df",
+      "format": "XLS",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/d48a4d9a-fffa-4c02-81c9-93332c52f2df/download/tfwp_2023q3_pos_en.xlsx",
+      "metadata_modified": "2023-12-11",
+      "retrieval": "FAILED:unparseable format xls",
+      "sha256": "c2ce4646a4c7dfdf9c78172982320a5fa68faf536a799f9ea717c188445caca7",
+      "row_count": 0,
+      "header": null
+    },
+    {
+      "quarter": "2023Q4",
+      "uuid": "aa0a56e3-244e-4958-8f60-82e5b478bebe",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/aa0a56e3-244e-4958-8f60-82e5b478bebe/download/tfwp_2023q4_pos_en.xlsx",
+      "metadata_modified": "2024-04-17",
+      "retrieval": "OK",
+      "sha256": "67d8ae88d38a0ddbe6ef63763e6cbb46b34d9c24de08b8aeef32dfd1adabdfb0",
+      "row_count": 22026,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2024Q1",
+      "uuid": "049928ce-0e7f-480b-9983-f5fa46f612ae",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/049928ce-0e7f-480b-9983-f5fa46f612ae/download/tfwp_2024q1_pos_en.xlsx",
+      "metadata_modified": "2024-06-20",
+      "retrieval": "OK",
+      "sha256": "99c033aaf3325f98b26971ae7d1e88087fa15734a6fa63547416a44854a19153",
+      "row_count": 25579,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2024Q2",
+      "uuid": "56aba012-5b4a-4628-8398-b0d433a6d08f",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/56aba012-5b4a-4628-8398-b0d433a6d08f/download/tfwp_2024q2_pos_en.xlsx",
+      "metadata_modified": "2024-10-24",
+      "retrieval": "OK",
+      "sha256": "93c60ed063deee8c5c6417eb547b91d5b97904df4e6eb0973a274e937c8ab8f8",
+      "row_count": 23351,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2024Q3",
+      "uuid": "78fc6fae-db4f-46c5-b3de-0a9cd7795c6b",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/78fc6fae-db4f-46c5-b3de-0a9cd7795c6b/download/tfwp_2024q3_pos_en.xlsx",
+      "metadata_modified": "2024-12-20",
+      "retrieval": "OK",
+      "sha256": "e3653ed42bddd5788e1590024342e779aedc68c23254dacfbd9c183ce8c6eaf2",
+      "row_count": 20590,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2024Q4",
+      "uuid": "36d1f9d3-9906-4079-8741-c55bf539de3b",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/36d1f9d3-9906-4079-8741-c55bf539de3b/download/tfwp_2024q4_pos_en.xlsx",
+      "metadata_modified": "2025-03-18",
+      "retrieval": "OK",
+      "sha256": "131f297a086eae0e7ffc232ee8b432b6347a76ff661272773b187b1343d051a6",
+      "row_count": 17745,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2025Q1",
+      "uuid": "f995383c-800e-46dd-92fa-a06ec7a9a706",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/f995383c-800e-46dd-92fa-a06ec7a9a706/download/tfwp_2025q1_pos_en.xlsx",
+      "metadata_modified": "2025-06-19",
+      "retrieval": "OK",
+      "sha256": "e8828f20e99ed2fa426851ce5310429de68c4535dce960ac131c41bbb2b8f278",
+      "row_count": 17952,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2025Q2",
+      "uuid": "fbfda891-5327-4e01-927e-0e0dd580d304",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/fbfda891-5327-4e01-927e-0e0dd580d304/download/tfwp_2025q2_pos_en.xlsx",
+      "metadata_modified": "2025-10-23",
+      "retrieval": "OK",
+      "sha256": "922dea3cc5d28c0605e02a9927dfc42beba0b26de6c053b9c7393013069215da",
+      "row_count": 15273,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2025Q3",
+      "uuid": "3b7a821b-becc-4d96-9e39-0c2849f90c50",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/3b7a821b-becc-4d96-9e39-0c2849f90c50/download/tfwp_2025q3_pos_en.xlsx",
+      "metadata_modified": "2026-01-07",
+      "retrieval": "OK",
+      "sha256": "fbf64621635b162eb652e050ad1dd6351bbca9d935d11368f069bf71a8dcafb3",
+      "row_count": 11278,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2025Q4",
+      "uuid": "06512c1b-d4a7-413f-bc1e-fc38de9f9aca",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/06512c1b-d4a7-413f-bc1e-fc38de9f9aca/download/tfwp_2025q4_pos_en.xlsx",
+      "metadata_modified": "2026-03-16",
+      "retrieval": "OK",
+      "sha256": "1e7d3726e625dac215720bdaee8aa9f87b297f386440280a835de6bab588a99c",
+      "row_count": 9737,
+      "header": "province|stream|employer|address|occupation"
+    },
+    {
+      "quarter": "2026Q1",
+      "uuid": "4ee7a4e0-ffc3-47af-94e7-30929d1eeb67",
+      "format": "XLSX",
+      "url": "https://open.canada.ca/data/dataset/90fed587-1364-4f33-a9ee-208181dc0b97/resource/4ee7a4e0-ffc3-47af-94e7-30929d1eeb67/download/tfwp_2026q1_pos_en.xlsx",
+      "metadata_modified": "2026-07-21",
+      "retrieval": "OK",
+      "sha256": "2f48cb522180ff82e6768a68b679bed4d4c89efa28d1c5aca7bc1604c99a044e",
+      "row_count": 8790,
+      "header": "province|stream|employer|address|occupation"
+    }
+  ],
+  "note": "Historical positive LMIA is employer intelligence only and does NOT prove sponsorship for the current job. Negative-LMIA data is NOT used to infer unwillingness."
 }
