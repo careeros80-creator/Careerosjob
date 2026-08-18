@@ -47,7 +47,7 @@ function generateCoverLetter(template, master, company = {}, job = {}, opts = {}
     checksum: checksum(content),
     word_count: wordCount(content),
     model: MODEL,
-    source_master: 'cover_letter_template@v1',
+    source_master: 'cover_letter_template@v2',
     prompt_version: opts.prompt_version || 'writer-1.0.0',
     company_name: name,
   };

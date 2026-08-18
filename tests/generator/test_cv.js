@@ -27,12 +27,15 @@ section('[ no fabrication ]');
 const masterSet = new Set(MASTER.skills);
 const cvSkills = skillsLine.split('·').map(s => s.trim());
 check(cvSkills.every(s => masterSet.has(s)), 'CV skills are a subset of the master (nothing invented)');
-check(cv.content.includes(MASTER.name) && cv.content.includes(MASTER.eligibility), 'name + eligibility from master');
+check(cv.content.includes(MASTER.name), 'candidate name from master');
+// Immigration/eligibility is emitted ONLY from verified evidence; the master carries none → CV must omit it.
+check(!/ADMISSIBILIT[ÉE]|C16|Mobilit[ée] Francophone|sans EIMT|LMIA/i.test(cv.content), 'no unsupported immigration/eligibility claim in CV');
+check(/débutant/i.test(cv.content) && /maternelle/i.test(cv.content) && !/\(natif\)/i.test(cv.content), 'languages accurate (French beginner, Arabic native; no "natif")');
 
 section('[ metadata ]');
 check(/^[a-f0-9]{64}$/.test(cv.checksum), 'sha256 checksum present');
 check(cv.word_count > 0 && cv.model === 'deterministic-template-v1', 'word_count + model recorded');
-check(cv.source_master === 'master_cv@v3', 'source master traced (id@version)');
+check(cv.source_master === 'master_cv@v4', 'source master traced (id@version)');
 
 console.log('\n═══════════════════════════════════════');
 console.log(`  Passed: ${passed} | Failed: ${failed}`);

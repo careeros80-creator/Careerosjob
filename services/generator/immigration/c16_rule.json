@@ -1,0 +1,28 @@
+{
+  "rule_id": "C16_mobilite_francophone",
+  "source_url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/temporary-residents/foreign-workers/exemption-codes/significant-benefit-francophone-mobility-c16.html",
+  "retrieval_attempted_at": "2026-08-14",
+  "retrieval_result": "FAILED",
+  "retrieval_detail": "HTTP 000 — canada.ca not reachable from the execution environment (control check example.com=200). The official rule could NOT be independently retrieved or verified.",
+  "status": "UNKNOWN",
+  "affirmative_wording_allowed": false,
+  "unverified_reference": {
+    "provenance": "user-supplied, NOT independently retrieved",
+    "page_as_of": "2026-04-20",
+    "criteria": [
+      "NCLC 7 (French)",
+      "outside Quebec",
+      "TEER 0-3",
+      "employer submission via the Portal under C16",
+      "employer compliance fee",
+      "offer-of-employment number"
+    ]
+  },
+  "candidate_assessment": {
+    "candidate": "Samira Benaciri",
+    "french_level_declared": "Beginner",
+    "meets_referenced_french_threshold": false,
+    "conclusion": "C16 is NOT evidenced. The official rule could not be independently retrieved, and the declared French level (Beginner) is below the referenced NCLC 7 requirement. No affirmative C16 / Mobilité francophone / LMIA-exempt wording is permitted anywhere in candidate-facing content."
+  },
+  "policy": "Immigration wording must be generated only from verified structured evidence. Missing/unverified evidence defaults to UNKNOWN and all affirmative claims are omitted."
+}

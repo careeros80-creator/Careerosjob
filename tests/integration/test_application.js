@@ -29,8 +29,8 @@ const company = { id: 'bbbbbbbb-0000-4000-8000-000000000002', name: 'Nordik Spa 
   check(pkg.ats.coverage_pct >= 0 && pkg.ats.length_words > 0, 'coverage + length measured');
 
   section('[ traceability ]');
-  check(pkg.cv.source_master === 'master_cv@v3' && pkg.cv.model && pkg.cv.prompt_version, 'CV traces master + model + prompt');
-  check(pkg.cover_letter.source_master === 'cover_letter_template@v1', 'letter traces its template');
+  check(pkg.cv.source_master === 'master_cv@v4' && pkg.cv.model && pkg.cv.prompt_version, 'CV traces master + model + prompt');
+  check(pkg.cover_letter.source_master === 'cover_letter_template@v2', 'letter traces its template');
   check(pkg.cv.generated_at === '2026-08-12T00:00:00Z', 'generation timestamp recorded');
 
   section('[ persistence SQL ]');

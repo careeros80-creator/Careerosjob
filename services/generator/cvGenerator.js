@@ -30,8 +30,16 @@ function generateCV(master, job = {}, opts = {}) {
     lines.push(`- ${e.title}, ${e.org} (${e.years})`);
     for (const b of e.bullets) lines.push(`  • ${b}`);
   }
-  lines.push('', 'LANGUES : ' + master.languages.join(', '));
-  lines.push('ADMISSIBILITÉ : ' + master.eligibility);
+  // Languages: render from the accurate display string / structured levels — never a claim beyond what the master states.
+  const langs = master.languages_display
+    || (Array.isArray(master.languages)
+        ? master.languages.map(l => (typeof l === 'string' ? l : `${l.language} — ${l.level}`)).join(' · ')
+        : '');
+  if (langs) lines.push('', 'LANGUES : ' + langs);
+  // Immigration/eligibility: emitted ONLY from verified structured evidence; unknown → omitted (no affirmative claim).
+  if (master.eligibility && master.eligibility_verified === true) {
+    lines.push('ADMISSIBILITÉ : ' + master.eligibility);
+  }
 
   const content = lines.join('\n').trim() + '\n';
   return {

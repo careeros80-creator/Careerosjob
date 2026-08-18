@@ -228,7 +228,7 @@ VALUES
   '1.0.0',
   'scorer',
   'fr',
-  E'Evaluate this job posting for a candidate with the following profile:\n- 15 years esthetics/hairdressing experience\n- Skills: HydraFacial, Microneedling, Laser Carbone, IPL, Maquillage Permanent, Microblading\n- Eligible: Mobilité Francophone C16 (no LMIA required)\n- French/Arabic speaker\n\nJob text:\n{{raw_text}}\n\nReturn ONLY valid JSON matching the scorer schema.',
+  E'Evaluate this job posting for a candidate with the following profile:\n- 15 years esthetics/hairdressing experience\n- Skills: HydraFacial, Microneedling, Laser Carbone, IPL, Maquillage Permanent, Microblading\n- Languages: Arabic (native), English (good working proficiency), French (beginner)\n- Immigration/work authorization: UNKNOWN — not verified\n\nJob text:\n{{raw_text}}\n\nReturn ONLY valid JSON matching the scorer schema.',
   '["raw_text"]',
   true
 ),
@@ -246,7 +246,7 @@ VALUES
   '1.0.0',
   'writer',
   'fr',
-  E'Write a professional cover letter in French for the following application.\n\nCandidate: Samira Benaciri\nPosition: {{job_title}}\nCompany: {{company_name}}, {{city}}, Canada\nSalary: {{salary_display}}\n\nKey facts:\n- 15 years experience: HydraFacial, Microneedling, Laser Carbone, IPL, Maquillage Permanent, Microblading, Coiffures événementielles\n- Eligible Mobilité Francophone C16 (no LMIA, cost: 230 CAD, ~10 weeks)\n- Visa valide jusqu\'en 2028, disponible {{availability}}\n- Francophone native (arabe C2)\n\nTone: professional, warm, confident. Max 4 paragraphs.\nAlways mention Mobilité Francophone advantage clearly.\n\nReturn ONLY valid JSON matching the writer schema.',
+  E'Write a professional cover letter in French for the following application.\n\nCandidate: Samira Benaciri\nPosition: {{job_title}}\nCompany: {{company_name}}, {{city}}, Canada\nSalary: {{salary_display}}\n\nKey facts:\n- 15 years experience: HydraFacial, Microneedling, Laser Carbone, IPL, Maquillage Permanent, Microblading, Coiffures événementielles\n- Languages: Arabic (native), English (good working proficiency), French (beginner)\n- Immigration/work authorization: UNKNOWN — do not assert eligibility\n\nTone: professional, warm, confident. Max 4 paragraphs.\nDo not state or imply any immigration eligibility, language certification, or work authorization; omit any claim not backed by verified evidence.\n\nReturn ONLY valid JSON matching the writer schema.',
   '["job_title", "company_name", "city", "salary_display", "availability"]',
   true
 )

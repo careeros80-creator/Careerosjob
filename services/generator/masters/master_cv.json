@@ -1,9 +1,9 @@
 {
   "id": "master_cv",
-  "version": "v3",
+  "version": "v4",
   "name": "Samira Benaciri",
   "headline": "Esthéticienne & Coiffeuse — 15 ans d'expérience",
-  "summary": "Esthéticienne et coiffeuse d'expérience, spécialisée en soins avancés du visage et techniques de beauté. Bilingue français/arabe.",
+  "summary": "Esthéticienne et coiffeuse d'expérience, spécialisée en soins avancés du visage et techniques de beauté.",
   "skills": [
     "HydraFacial", "Microneedling", "Laser Carbone", "IPL", "Maquillage Permanent",
     "Microblading", "Soins du visage", "Épilation", "Coiffure", "Balayage",
@@ -30,7 +30,19 @@
       ]
     }
   ],
-  "languages": ["Français (natif)", "Arabe (C2)", "Anglais (intermédiaire)"],
+  "languages": [
+    { "language": "Arabic", "level": "Native", "evidence": "declared" },
+    { "language": "English", "level": "Good working proficiency", "evidence": "declared" },
+    { "language": "French", "level": "Beginner", "evidence": "declared" }
+  ],
+  "languages_display": "Arabe : langue maternelle · Anglais : bonne maîtrise professionnelle · Français : niveau débutant",
   "certifications": ["Formation en esthétique", "Maquillage permanent / Microblading"],
-  "eligibility": "Mobilité Francophone (C16) — embauche sans EIMT"
+  "eligibility": null,
+  "eligibility_verified": false,
+  "work_authorization": { "status": "UNKNOWN", "evidence": "none on file" },
+  "immigration": {
+    "c16_status": "UNKNOWN",
+    "note": "Aucune éligibilité confirmée. Toute démarche de permis de travail resterait à vérifier."
+  },
+  "_correction_note": "v4 removes unsupported native/bilingual/fluent French and C16/LMIA-exempt claims. Binding facts: Arabic native, French beginner, English good working proficiency."
 }
