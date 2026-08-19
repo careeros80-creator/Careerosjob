@@ -1,6 +1,6 @@
 {
   "id": "master_cv",
-  "version": "v5.1",
+  "version": "v5.2",
   "language": "en",
   "name": "Samira Benaciri",
   "contact": {
@@ -8,11 +8,11 @@
     "phone": "+212 6 62 79 32 95",
     "location": "Salé, Morocco"
   },
-  "summary": "Beauty professional with 17 years of experience in women's hairdressing and esthetics, including salon ownership and management since 2021. Owner-manager of ASY Beauty in Salé, delivering hairdressing and esthetic services with a focus on client care, service quality, and hygiene standards. Skilled in haircutting, colouring, styling, facials, make-up, microblading and permanent make-up, with strong client consultation and day-to-day salon operations.",
+  "summary": "Beauty professional with 17 years of experience in women's hairdressing and esthetics, and owner-manager of ASY Beauty in Salé since 2021. Experienced in haircutting, colouring, hairstyling, and hair treatments, along with general esthetic care and make-up, supported by attentive client consultation and consistent hygiene standards. Skilled in day-to-day salon operations, including appointment scheduling, stock coordination, and service-quality supervision.",
   "core_skills": {
-    "Hairdressing": ["Women's hairdressing", "Haircutting", "Hairstyling", "Hair colouring", "Hair treatments", "Hair and scalp care", "Event styling", "Client consultation"],
-    "Esthetics": ["Facial and beauty care", "General esthetic services", "Make-up", "Microblading", "Permanent make-up", "Advanced esthetics", "Cosmetic skin and hair products"],
-    "Salon operations": ["Salon daily operations", "Appointment and client management", "Stock and product coordination", "Service-quality supervision", "Hygiene and safety"]
+    "Hairdressing": ["Women's haircutting", "Hair colouring (highlights, tints, rinses)", "Hairstyling", "Hair treatments", "Hair and scalp care", "Client consultation"],
+    "Esthetics": ["General esthetic care", "Make-up application"],
+    "Salon operations": ["Daily salon operations", "Appointment and client management", "Stock and product coordination", "Service-quality supervision", "Hygiene and safety"]
   },
   "experience": [
     {
@@ -21,9 +21,9 @@
       "location": "Salé, Morocco",
       "dates": "September 2021 – Present",
       "bullets": [
-        "Own and manage the salon's daily operations, scheduling, and client experience.",
-        "Provide women's hairdressing and esthetic services, including cutting, colouring, styling, facials, make-up, microblading and permanent make-up.",
-        "Lead client consultations and tailor services to individual needs.",
+        "Own and manage the salon's daily operations, scheduling, and client bookings.",
+        "Provide women's hairdressing and esthetic services, including cutting, colouring, styling, hair treatments, general esthetic care, and make-up.",
+        "Lead client consultations and recommend services based on each client's preferences.",
         "Maintain hygiene and safety standards and supervise service quality.",
         "Coordinate stock and product ordering."
       ]
@@ -33,38 +33,40 @@
       "employer": "Salon Cléopâtre",
       "location": "Salé, Morocco",
       "dates": "2015 – 2021",
-      "bullets": ["Delivered hairdressing and esthetic services to a regular clientele.", "Advised clients on hair and skin care and performed make-up services."]
+      "bullets": ["Provided women's hairdressing and general esthetic services to a regular clientele.", "Advised clients on hair care and performed make-up services."]
     },
     {
       "role": "Hairdresser and Esthetician",
       "employer": "Salon Top 2000",
       "location": "Rabat, Morocco",
       "dates": "2013 – 2015",
-      "bullets": ["Provided cutting, colouring, styling, and esthetic treatments.", "Supported client reception and salon organization."]
+      "bullets": ["Provided cutting, colouring, and styling services.", "Supported client reception and salon organization."]
     },
     {
       "role": "Hairdresser and Esthetician",
       "employer": "Salon La Manucure",
       "location": "Rabat, Morocco",
       "dates": "July 2009 – 2013",
-      "bullets": ["Performed women's hairdressing and beauty services.", "Maintained workstation hygiene and prepared client services."]
+      "bullets": ["Performed women's hairdressing and general beauty services.", "Maintained workstation hygiene and prepared client services."]
     },
     {
       "role": "Hairdressing and Esthetics Intern",
       "employer": "Salon Al Amira",
       "location": "Salé, Morocco",
       "dates": "2009 | 6-month internship",
-      "bullets": ["Practical salon training in women's hairdressing and esthetic services.", "Customer reception, hygiene, workstation preparation, and supervised beauty services."]
+      "bullets": ["Practical salon training in women's hairdressing and general esthetic services.", "Customer reception, hygiene, and workstation preparation under supervision."]
     }
+  ],
+  "credentials": [
+    "Professional hairdressing/craft registration — Chamber of Handicrafts, Salé (2009)"
   ],
   "education": [
     "Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé",
-    "Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique, 2022–2023",
-    "Diploma in Esthetics — Association de Solidarité Sociale et Artisanale Mohammedia (September 17, 2019)",
-    "Professional hairdressing/craft status — Chamber of Handicrafts, Salé (2009)",
+    "Diploma in Esthetics — Association de Solidarité Sociale et Artisanale, Mohammedia (September 17, 2019)",
     "Moroccan Baccalaureate, Literature and Humanities (French Option) — 2025, \"Assez bien\""
   ],
   "training": [
+    "Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique (2022–2023)",
     "Advanced Esthetics — Al-Majd Academy, Casablanca (35 hours, 2023)",
     "Microblading — Maison Joulla, Casablanca (November 29, 2022)",
     "Permanent Make-up — Ozone Plus, Casablanca (2016)",
@@ -77,5 +79,5 @@
     { "language": "English", "level": "Good working proficiency" },
     { "language": "French", "level": "Beginner" }
   ],
-  "relocation": "Available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process."
+  "relocation": "Based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process."
 }

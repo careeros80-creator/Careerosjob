@@ -21,8 +21,8 @@ function generateEnglishCV(master, job = {}) {
   L.push('PROFESSIONAL SUMMARY');
   // lead emphasis by role, from the same verified summary content
   const lead = esth
-    ? 'Beauty professional with 17 years of experience in esthetics and women\'s hairdressing, including salon ownership and management since 2021.'
-    : 'Beauty professional with 17 years of experience in women\'s hairdressing and esthetics, including salon ownership and management since 2021.';
+    ? 'Beauty professional with 17 years of experience in esthetics and women\'s hairdressing, and owner-manager of ASY Beauty in Salé since 2021.'
+    : 'Beauty professional with 17 years of experience in women\'s hairdressing and esthetics, and owner-manager of ASY Beauty in Salé since 2021.';
   L.push(lead + ' ' + master.summary.split('. ').slice(1).join('. '));
   L.push('');
   L.push('CORE SKILLS');
@@ -36,10 +36,15 @@ function generateEnglishCV(master, job = {}) {
     for (const b of e.bullets) L.push(`- ${b}`);
     L.push('');
   }
-  L.push('EDUCATION AND CORE QUALIFICATIONS');
+  if (Array.isArray(master.credentials) && master.credentials.length) {
+    L.push('PROFESSIONAL CREDENTIALS');
+    for (const cr of master.credentials) L.push(`- ${cr}`);
+    L.push('');
+  }
+  L.push('EDUCATION AND DIPLOMAS');
   for (const ed of master.education) L.push(`- ${ed}`);
   L.push('');
-  L.push('ADDITIONAL PROFESSIONAL TRAINING');
+  L.push('ADDITIONAL TRAINING');
   for (const t of master.training) L.push(`- ${t}`);
   L.push('');
   L.push('LANGUAGES');

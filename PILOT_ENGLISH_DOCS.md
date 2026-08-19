@@ -1,53 +1,56 @@
-# Samira Benaciri — English Application Documents (Phase 5B, human review)
+# Samira Benaciri — English Application Documents (Phase 5C, human review)
 
-Read-only. Full rendered text for human review. Cosmetic fix applied: internship date `(2009 (6 months))` → `2009 | 6-month internship`. master_cv@v5 → **master_cv@v5.1** (corrected version; v5 history preserved). No approval/send/Gmail/draft/contact; no workflow-status change; candidate facts unchanged.
+Read-only. Full rendered text for human review. Evidence provenance corrected, unsupported promotional claims removed, skills reclassified by evidence, CV restructured, and each cover letter rewritten from the live posting duties. `master_cv@v5.1` → **`master_cv@v5.2`** (history preserved). No approval / send / Gmail / draft / employer contact; no workflow-status change; candidate facts unchanged.
 
-## A. Master English CV (master_cv@v5.1)
-*Words: 495 · est. pages: 0.99 · checksum `4356c74e471b191d`*
+## A. Master English CV — master_cv@v5.2
+*Words: 486 · checksum `313bb06aca881ba3bfa7d52d2e5f41299ca9a4a617a73dbf0ea6af510c193897`*
+
 ```text
 Samira Benaciri
 Salé, Morocco | samirabenaciri88@gmail.com | +212 6 62 79 32 95
 
 PROFESSIONAL SUMMARY
-Beauty professional with 17 years of experience in women's hairdressing and esthetics, including salon ownership and management since 2021. Owner-manager of ASY Beauty in Salé, delivering hairdressing and esthetic services with a focus on client care, service quality, and hygiene standards. Skilled in haircutting, colouring, styling, facials, make-up, microblading and permanent make-up, with strong client consultation and day-to-day salon operations.
+Beauty professional with 17 years of experience in women's hairdressing and esthetics, and owner-manager of ASY Beauty in Salé since 2021. Experienced in haircutting, colouring, hairstyling, and hair treatments, along with general esthetic care and make-up, supported by attentive client consultation and consistent hygiene standards. Skilled in day-to-day salon operations, including appointment scheduling, stock coordination, and service-quality supervision.
 
 CORE SKILLS
-Hairdressing: Women's hairdressing, Haircutting, Hairstyling, Hair colouring, Hair treatments, Hair and scalp care, Event styling, Client consultation
-Esthetics: Facial and beauty care, General esthetic services, Make-up, Microblading, Permanent make-up, Advanced esthetics, Cosmetic skin and hair products
-Salon operations: Salon daily operations, Appointment and client management, Stock and product coordination, Service-quality supervision, Hygiene and safety
+Hairdressing: Women's haircutting, Hair colouring (highlights, tints, rinses), Hairstyling, Hair treatments, Hair and scalp care, Client consultation
+Esthetics: General esthetic care, Make-up application
+Salon operations: Daily salon operations, Appointment and client management, Stock and product coordination, Service-quality supervision, Hygiene and safety
 
 PROFESSIONAL EXPERIENCE
 Owner-Manager | Senior Hairdresser and Esthetician — ASY Beauty, Salé, Morocco (September 2021 – Present)
-- Own and manage the salon's daily operations, scheduling, and client experience.
-- Provide women's hairdressing and esthetic services, including cutting, colouring, styling, facials, make-up, microblading and permanent make-up.
-- Lead client consultations and tailor services to individual needs.
+- Own and manage the salon's daily operations, scheduling, and client bookings.
+- Provide women's hairdressing and esthetic services, including cutting, colouring, styling, hair treatments, general esthetic care, and make-up.
+- Lead client consultations and recommend services based on each client's preferences.
 - Maintain hygiene and safety standards and supervise service quality.
 - Coordinate stock and product ordering.
 
 Hairdresser and Esthetician — Salon Cléopâtre, Salé, Morocco (2015 – 2021)
-- Delivered hairdressing and esthetic services to a regular clientele.
-- Advised clients on hair and skin care and performed make-up services.
+- Provided women's hairdressing and general esthetic services to a regular clientele.
+- Advised clients on hair care and performed make-up services.
 
 Hairdresser and Esthetician — Salon Top 2000, Rabat, Morocco (2013 – 2015)
-- Provided cutting, colouring, styling, and esthetic treatments.
+- Provided cutting, colouring, and styling services.
 - Supported client reception and salon organization.
 
 Hairdresser and Esthetician — Salon La Manucure, Rabat, Morocco (July 2009 – 2013)
-- Performed women's hairdressing and beauty services.
+- Performed women's hairdressing and general beauty services.
 - Maintained workstation hygiene and prepared client services.
 
 Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009 | 6-month internship)
-- Practical salon training in women's hairdressing and esthetic services.
-- Customer reception, hygiene, workstation preparation, and supervised beauty services.
+- Practical salon training in women's hairdressing and general esthetic services.
+- Customer reception, hygiene, and workstation preparation under supervision.
 
-EDUCATION AND CORE QUALIFICATIONS
+PROFESSIONAL CREDENTIALS
+- Professional hairdressing/craft registration — Chamber of Handicrafts, Salé (2009)
+
+EDUCATION AND DIPLOMAS
 - Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
-- Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique, 2022–2023
-- Diploma in Esthetics — Association de Solidarité Sociale et Artisanale Mohammedia (September 17, 2019)
-- Professional hairdressing/craft status — Chamber of Handicrafts, Salé (2009)
+- Diploma in Esthetics — Association de Solidarité Sociale et Artisanale, Mohammedia (September 17, 2019)
 - Moroccan Baccalaureate, Literature and Humanities (French Option) — 2025, "Assez bien"
 
-ADDITIONAL PROFESSIONAL TRAINING
+ADDITIONAL TRAINING
+- Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique (2022–2023)
 - Advanced Esthetics — Al-Majd Academy, Casablanca (35 hours, 2023)
 - Microblading — Maison Joulla, Casablanca (November 29, 2022)
 - Permanent Make-up — Ozone Plus, Casablanca (2016)
@@ -59,76 +62,58 @@ LANGUAGES
 Arabic — Native | English — Good working proficiency | French — Beginner
 
 RELOCATION
-Available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process.
+Based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process.
 ```
-### Factual annotation
-| Statement | Fact ID | Evidence | Source | In public doc |
-|---|---|---|---|---|
-| Samira Benaciri | `full_name` | VERIFIED_BY_DOCUMENT | authenticated account + candidate | yes |
-| samirabenaciri88@gmail.com | `email` | VERIFIED_BY_DOCUMENT | authenticated Supabase auth.users | yes |
-| +212 6 62 79 32 95 | `phone` | USER_CONFIRMED | candidate binding fact (Phase 5A) | yes |
-| Salé, Morocco | `city_country` | USER_CONFIRMED | candidate binding fact | yes |
-| 17 years of experience | `experience_duration` | USER_CONFIRMED | July 2009→Aug 2026 timeline + 2009 hairdressing status + ASY since 2021 | yes |
-| Owner-Manager ... ASY Beauty (Sept 2021 – Present) | `current_employer` | USER_CONFIRMED | registered in candidate name; activity start 2021-09-01 | yes |
-| Salon Cléopâtre (2015–2021), Salon Top 2000 (2013–2015), Salon La Manucure (2009–2013), Salon Al Amira intern (2009) | `previous_employers` | USER_CONFIRMED | candidate-confirmed timeline | yes |
-| Microblading, Permanent make-up, Advanced esthetics | `skill_microblading/permanent_makeup/advanced_esthetics` | VERIFIED_BY_DOCUMENT | Maison Joulla 2022, Ozone Plus 2016, Al-Majd 2023 training documents | yes |
-| Women’s hairdressing, cutting, colouring, styling, treatments, event styling | `skill_womens_hairdressing/…` | USER_CONFIRMED | Diploma + confirmed timeline | yes |
-| Facials, make-up, cosmetic products | `skill_facials/makeup/cosmetic_products` | USER_CONFIRMED | Esthetics diploma + AM Prod training | yes |
-| Diploma in Women’s Hairdressing — École Nito | `hairdressing_qualification` | VERIFIED_BY_DOCUMENT | diploma document | yes |
-| Diploma in Esthetics — Mohammedia (2019-09-17) | `esthetics_qualification` | VERIFIED_BY_DOCUMENT | diploma document | yes |
-| Moroccan Baccalaureate (2025, Assez bien) | `education` | VERIFIED_BY_DOCUMENT | baccalaureate document | yes |
-| Arabic Native / English Good working proficiency / French Beginner | `language_arabic/english/french` | USER_CONFIRMED | candidate binding facts | yes |
-| Relocation after formal offer + Canadian work-authorization process | `relocation` | USER_CONFIRMED | candidate binding fact; no work-auth claimed | yes |
 
-## B. Sukhi Laser Beauty Salon — hairstylist (BC)
-*App ID `54e663b2-225e-46ad-88c9-4edd38d1aab9` (JOBBANK_50023156) · exact employer "Sukhi Laser Beauty Salon & Academy Ltd." · exact title "hairstylist"*
+## B. Esthetician-tailored CV (Glamour) — CV
+*Words: 486 · checksum `c905659c9bf34fbd630da908cee6fa009656cf69a09439cd5c03322533963c89` · differs from Master only in summary lead + Core Skills ordering (Esthetics first)*
 
-### B.1 Tailored CV
-*Words: 495 · est. pages: 0.99 · CV v4 checksum `4356c74e471b191d`*
 ```text
 Samira Benaciri
 Salé, Morocco | samirabenaciri88@gmail.com | +212 6 62 79 32 95
 
 PROFESSIONAL SUMMARY
-Beauty professional with 17 years of experience in women's hairdressing and esthetics, including salon ownership and management since 2021. Owner-manager of ASY Beauty in Salé, delivering hairdressing and esthetic services with a focus on client care, service quality, and hygiene standards. Skilled in haircutting, colouring, styling, facials, make-up, microblading and permanent make-up, with strong client consultation and day-to-day salon operations.
+Beauty professional with 17 years of experience in esthetics and women's hairdressing, and owner-manager of ASY Beauty in Salé since 2021. Experienced in haircutting, colouring, hairstyling, and hair treatments, along with general esthetic care and make-up, supported by attentive client consultation and consistent hygiene standards. Skilled in day-to-day salon operations, including appointment scheduling, stock coordination, and service-quality supervision.
 
 CORE SKILLS
-Hairdressing: Women's hairdressing, Haircutting, Hairstyling, Hair colouring, Hair treatments, Hair and scalp care, Event styling, Client consultation
-Esthetics: Facial and beauty care, General esthetic services, Make-up, Microblading, Permanent make-up, Advanced esthetics, Cosmetic skin and hair products
-Salon operations: Salon daily operations, Appointment and client management, Stock and product coordination, Service-quality supervision, Hygiene and safety
+Esthetics: General esthetic care, Make-up application
+Hairdressing: Women's haircutting, Hair colouring (highlights, tints, rinses), Hairstyling, Hair treatments, Hair and scalp care, Client consultation
+Salon operations: Daily salon operations, Appointment and client management, Stock and product coordination, Service-quality supervision, Hygiene and safety
 
 PROFESSIONAL EXPERIENCE
 Owner-Manager | Senior Hairdresser and Esthetician — ASY Beauty, Salé, Morocco (September 2021 – Present)
-- Own and manage the salon's daily operations, scheduling, and client experience.
-- Provide women's hairdressing and esthetic services, including cutting, colouring, styling, facials, make-up, microblading and permanent make-up.
-- Lead client consultations and tailor services to individual needs.
+- Own and manage the salon's daily operations, scheduling, and client bookings.
+- Provide women's hairdressing and esthetic services, including cutting, colouring, styling, hair treatments, general esthetic care, and make-up.
+- Lead client consultations and recommend services based on each client's preferences.
 - Maintain hygiene and safety standards and supervise service quality.
 - Coordinate stock and product ordering.
 
 Hairdresser and Esthetician — Salon Cléopâtre, Salé, Morocco (2015 – 2021)
-- Delivered hairdressing and esthetic services to a regular clientele.
-- Advised clients on hair and skin care and performed make-up services.
+- Provided women's hairdressing and general esthetic services to a regular clientele.
+- Advised clients on hair care and performed make-up services.
 
 Hairdresser and Esthetician — Salon Top 2000, Rabat, Morocco (2013 – 2015)
-- Provided cutting, colouring, styling, and esthetic treatments.
+- Provided cutting, colouring, and styling services.
 - Supported client reception and salon organization.
 
 Hairdresser and Esthetician — Salon La Manucure, Rabat, Morocco (July 2009 – 2013)
-- Performed women's hairdressing and beauty services.
+- Performed women's hairdressing and general beauty services.
 - Maintained workstation hygiene and prepared client services.
 
 Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009 | 6-month internship)
-- Practical salon training in women's hairdressing and esthetic services.
-- Customer reception, hygiene, workstation preparation, and supervised beauty services.
+- Practical salon training in women's hairdressing and general esthetic services.
+- Customer reception, hygiene, and workstation preparation under supervision.
 
-EDUCATION AND CORE QUALIFICATIONS
+PROFESSIONAL CREDENTIALS
+- Professional hairdressing/craft registration — Chamber of Handicrafts, Salé (2009)
+
+EDUCATION AND DIPLOMAS
 - Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
-- Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique, 2022–2023
-- Diploma in Esthetics — Association de Solidarité Sociale et Artisanale Mohammedia (September 17, 2019)
-- Professional hairdressing/craft status — Chamber of Handicrafts, Salé (2009)
+- Diploma in Esthetics — Association de Solidarité Sociale et Artisanale, Mohammedia (September 17, 2019)
 - Moroccan Baccalaureate, Literature and Humanities (French Option) — 2025, "Assez bien"
 
-ADDITIONAL PROFESSIONAL TRAINING
+ADDITIONAL TRAINING
+- Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique (2022–2023)
 - Advanced Esthetics — Al-Majd Academy, Casablanca (35 hours, 2023)
 - Microblading — Maison Joulla, Casablanca (November 29, 2022)
 - Permanent Make-up — Ozone Plus, Casablanca (2016)
@@ -140,330 +125,210 @@ LANGUAGES
 Arabic — Native | English — Good working proficiency | French — Beginner
 
 RELOCATION
-Available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process.
+Based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process.
 ```
-### B.2 Cover letter
-*Words: 268 · est. pages: 0.54 · letter v3 checksum `9c8361b2249a4953`*
+
+> The three hairstylist CVs (Sukhi, Blades, OLIHA) are identical to the Master CV (hairdressing-first). Checksum `313bb06aca881ba3bfa7d52d2e5f41299ca9a4a617a73dbf0ea6af510c193897`.
+
+## C. Cover letter — Sukhi Laser Beauty Salon & Academy Ltd. (hairstylist)
+*Words: 281 · checksum `2b748ff7bff615ed458b9cbf868c7df8edd0005b1bedb678683e04dac2455a82`*
+
 ```text
 Dear Hiring Manager,
 
 I am writing to apply for the hairstylist position at Sukhi Laser Beauty Salon & Academy Ltd. As a beauty professional with 17 years of experience in women's hairdressing and esthetics — and owner-manager of my own salon, ASY Beauty, in Salé since 2021 — I would bring hands-on skill and a genuine commitment to client care to your team.
 
-My hands-on expertise spans haircutting, colouring, styling, and hair treatments, together with attentive client consultation and consistent hygiene standards. I enjoy translating each client's preferences into a finished look and building the kind of trust that turns first-time visitors into regulars. I complement my hairdressing with esthetic services such as make-up and permanent make-up, and I keep my skills current through ongoing professional training.
+My hands-on hairdressing covers women's haircutting, colouring — including highlights, tints, and rinses — styling and finishing, together with hair and scalp treatments. I consult with each client to agree on the result before I begin, and I keep to consistent hygiene and sanitation practices throughout.
 
-Running ASY Beauty has strengthened my salon operations, appointment and client management, and service-quality supervision. I am used to keeping a busy salon organized, maintaining high standards, and making sure every client leaves satisfied. Over the years I have built a loyal client base through reliable, personalized service, and I would be glad to bring that same dedication to your salon.
+Your posting calls for colour work — applying bleach, tints, and rinses to colour, frost, or streak hair — alongside cutting and styling, which are services I perform daily. It also asks for suggesting a style that suits each client's features and preferences, which is how I approach every consultation. I would be glad to bring this colour and styling focus to Sukhi Laser Beauty Salon & Academy Ltd.
 
-I am confident my experience aligns well with the needs of Sukhi Laser Beauty Salon & Academy Ltd, and I would welcome the opportunity to contribute. I am currently based in Salé, Morocco, and available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can support your team.
+As the owner-manager of ASY Beauty, I handle appointment scheduling, client consultations, stock coordination, and day-to-day salon operations while maintaining consistent service and hygiene standards. I provide personalized service based on each client's preferences.
+
+I would welcome the opportunity to bring this experience to Sukhi Laser Beauty Salon & Academy Ltd. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
 Sincerely,
 Samira Benaciri
 +212 6 62 79 32 95
 samirabenaciri88@gmail.com
 ```
-### B.3 Annotation (CV identical to master except role ordering; letter facts below)
-| Statement | Fact ID | Evidence | Source | In public doc |
-|---|---|---|---|---|
-| 17 years combined hairdressing/esthetics experience | `experience_duration` | USER_CONFIRMED | timeline | yes |
-| owner-manager of ASY Beauty since 2021 | `current_employer` | USER_CONFIRMED | ASY registration | yes |
-| applies to "Sukhi Laser Beauty Salon & Academy Ltd." for "hairstylist" | `live_posting` | VERIFIED_BY_DOCUMENT | Job Bank posting https://www.jobbank.gc.ca/jobposting/50023156 | yes |
-| Samira Benaciri / +212 6 62 79 32 95 / samirabenaciri88@gmail.com | `full_name/phone/email` | USER_CONFIRMED | verified contact | yes |
-| relocate after formal offer + work-authorization process | `relocation` | USER_CONFIRMED | binding fact | yes |
 
-## C. Blades & Scissors Hair Salon — hairstylist (BC)
-*App ID `fb7f4c41-d75f-4520-8936-983ff2d0a2ae` (JOBBANK_50071923) · exact employer "Blades & Scissors Hair Salon Ltd." · exact title "hairstylist"*
+**Requirement-to-evidence matrix** (duty importance not stated on Job Bank → REQUIREMENT_IMPORTANCE_UNKNOWN)
 
-### C.1 Tailored CV
-*Words: 495 · est. pages: 0.99 · CV v4 checksum `4356c74e471b191d`*
-```text
-Samira Benaciri
-Salé, Morocco | samirabenaciri88@gmail.com | +212 6 62 79 32 95
+| Advertised duty / requirement | Classification |
+|---|---|
+| Shampoo customers' hair | MATCH_USER_CONFIRMED |
+| Apply bleach, tints, dyes or rinses to colour, frost or streak hair | MATCH_USER_CONFIRMED |
+| Cut, trim, taper, curl and style hair | MATCH_USER_CONFIRMED |
+| Perm / permanent wave (technique within the styling duty) | NOT_EVIDENCED |
+| Suggest hair style compatible with client's features and preferences | MATCH_USER_CONFIRMED |
 
-PROFESSIONAL SUMMARY
-Beauty professional with 17 years of experience in women's hairdressing and esthetics, including salon ownership and management since 2021. Owner-manager of ASY Beauty in Salé, delivering hairdressing and esthetic services with a focus on client care, service quality, and hygiene standards. Skilled in haircutting, colouring, styling, facials, make-up, microblading and permanent make-up, with strong client consultation and day-to-day salon operations.
+**Job-fit decision: PARTIAL_MATCH** · tailoring confidence: **HIGH**
 
-CORE SKILLS
-Hairdressing: Women's hairdressing, Haircutting, Hairstyling, Hair colouring, Hair treatments, Hair and scalp care, Event styling, Client consultation
-Esthetics: Facial and beauty care, General esthetic services, Make-up, Microblading, Permanent make-up, Advanced esthetics, Cosmetic skin and hair products
-Salon operations: Salon daily operations, Appointment and client management, Stock and product coordination, Service-quality supervision, Hygiene and safety
+> Core duties (shampoo, colour, cut, style, style-consultation) all MATCH_USER_CONFIRMED. Only perm/permanent-wave is NOT_EVIDENCED. Near-strong, but not STRONG_MATCH while an advertised technique is unevidenced and its importance is unknown.
 
-PROFESSIONAL EXPERIENCE
-Owner-Manager | Senior Hairdresser and Esthetician — ASY Beauty, Salé, Morocco (September 2021 – Present)
-- Own and manage the salon's daily operations, scheduling, and client experience.
-- Provide women's hairdressing and esthetic services, including cutting, colouring, styling, facials, make-up, microblading and permanent make-up.
-- Lead client consultations and tailor services to individual needs.
-- Maintain hygiene and safety standards and supervise service quality.
-- Coordinate stock and product ordering.
+## D. Cover letter — Blades & Scissors Hair Salon Ltd. (hairstylist)
+*Words: 283 · checksum `d53d16d6143c08cdd89e94a8a12b72bb301d9bb7127fe604c27e176484f2ab70`*
 
-Hairdresser and Esthetician — Salon Cléopâtre, Salé, Morocco (2015 – 2021)
-- Delivered hairdressing and esthetic services to a regular clientele.
-- Advised clients on hair and skin care and performed make-up services.
-
-Hairdresser and Esthetician — Salon Top 2000, Rabat, Morocco (2013 – 2015)
-- Provided cutting, colouring, styling, and esthetic treatments.
-- Supported client reception and salon organization.
-
-Hairdresser and Esthetician — Salon La Manucure, Rabat, Morocco (July 2009 – 2013)
-- Performed women's hairdressing and beauty services.
-- Maintained workstation hygiene and prepared client services.
-
-Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009 | 6-month internship)
-- Practical salon training in women's hairdressing and esthetic services.
-- Customer reception, hygiene, workstation preparation, and supervised beauty services.
-
-EDUCATION AND CORE QUALIFICATIONS
-- Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
-- Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique, 2022–2023
-- Diploma in Esthetics — Association de Solidarité Sociale et Artisanale Mohammedia (September 17, 2019)
-- Professional hairdressing/craft status — Chamber of Handicrafts, Salé (2009)
-- Moroccan Baccalaureate, Literature and Humanities (French Option) — 2025, "Assez bien"
-
-ADDITIONAL PROFESSIONAL TRAINING
-- Advanced Esthetics — Al-Majd Academy, Casablanca (35 hours, 2023)
-- Microblading — Maison Joulla, Casablanca (November 29, 2022)
-- Permanent Make-up — Ozone Plus, Casablanca (2016)
-- Intensive Make-up Artist Training — The Moroccan Golden Beauty (April 19, 2019)
-- Protein Treatment and Hair Detox — Ozone Plus (2023/2024)
-- Cosmetic Products for Skin and Hair — AM Prod Cosmétique & Consulting, Casablanca (November 23–24, 2019)
-
-LANGUAGES
-Arabic — Native | English — Good working proficiency | French — Beginner
-
-RELOCATION
-Available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process.
-```
-### C.2 Cover letter
-*Words: 266 · est. pages: 0.53 · letter v3 checksum `fbd2eaaebfa27090`*
 ```text
 Dear Hiring Manager,
 
 I am writing to apply for the hairstylist position at Blades & Scissors Hair Salon Ltd. As a beauty professional with 17 years of experience in women's hairdressing and esthetics — and owner-manager of my own salon, ASY Beauty, in Salé since 2021 — I would bring hands-on skill and a genuine commitment to client care to your team.
 
-My hands-on expertise spans haircutting, colouring, styling, and hair treatments, together with attentive client consultation and consistent hygiene standards. I enjoy translating each client's preferences into a finished look and building the kind of trust that turns first-time visitors into regulars. I complement my hairdressing with esthetic services such as make-up and permanent make-up, and I keep my skills current through ongoing professional training.
+My hands-on hairdressing covers women's haircutting, colouring — including highlights, tints, and rinses — styling and finishing, together with hair and scalp treatments. I consult with each client to agree on the result before I begin, and I keep to consistent hygiene and sanitation practices throughout.
 
-Running ASY Beauty has strengthened my salon operations, appointment and client management, and service-quality supervision. I am used to keeping a busy salon organized, maintaining high standards, and making sure every client leaves satisfied. Over the years I have built a loyal client base through reliable, personalized service, and I would be glad to bring that same dedication to your salon.
+Your posting spans a broad range of hair services, and my experience aligns closely with the women's hairdressing side of the role — cutting, colouring, hair and scalp treatments such as straightening and tinting, and styling to suit each client. My background is in women's hairdressing rather than barbering, so I would contribute most across the cutting, colouring, and treatment work the position describes. I keep these techniques current through ongoing professional training.
 
-I am confident my experience aligns well with the needs of Blades & Scissors Hair Salon Ltd, and I would welcome the opportunity to contribute. I am currently based in Salé, Morocco, and available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can support your team.
+As the owner-manager of ASY Beauty, I handle appointment scheduling, client consultations, stock coordination, and day-to-day salon operations while maintaining consistent service and hygiene standards. I provide personalized service based on each client's preferences.
+
+I would welcome the opportunity to bring this experience to Blades & Scissors Hair Salon Ltd. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
 Sincerely,
 Samira Benaciri
 +212 6 62 79 32 95
 samirabenaciri88@gmail.com
 ```
-### C.3 Annotation (CV identical to master except role ordering; letter facts below)
-| Statement | Fact ID | Evidence | Source | In public doc |
-|---|---|---|---|---|
-| 17 years combined hairdressing/esthetics experience | `experience_duration` | USER_CONFIRMED | timeline | yes |
-| owner-manager of ASY Beauty since 2021 | `current_employer` | USER_CONFIRMED | ASY registration | yes |
-| applies to "Blades & Scissors Hair Salon Ltd." for "hairstylist" | `live_posting` | VERIFIED_BY_DOCUMENT | Job Bank posting https://www.jobbank.gc.ca/jobposting/50071923 | yes |
-| Samira Benaciri / +212 6 62 79 32 95 / samirabenaciri88@gmail.com | `full_name/phone/email` | USER_CONFIRMED | verified contact | yes |
-| relocate after formal offer + work-authorization process | `relocation` | USER_CONFIRMED | binding fact | yes |
 
-## D. OLIHA MUNIZ Boutique & Hair — hairstylist (ON)
-*App ID `49342a54-2488-44b9-a1b0-c4b989f94d08` (JOBBANK_50074303) · exact employer "OLIHA MUNIZ BOUTIQUE AND HAIR INC." · exact title "hairstylist"*
+**Requirement-to-evidence matrix** (duty importance not stated on Job Bank → REQUIREMENT_IMPORTANCE_UNKNOWN)
 
-### D.1 Tailored CV
-*Words: 495 · est. pages: 0.99 · CV v4 checksum `4356c74e471b191d`*
-```text
-Samira Benaciri
-Salé, Morocco | samirabenaciri88@gmail.com | +212 6 62 79 32 95
+| Advertised duty / requirement | Classification |
+|---|---|
+| Cut and trim hair per client's instructions | MATCH_USER_CONFIRMED |
+| Shampoo customers' hair | MATCH_USER_CONFIRMED |
+| Shave and trim beards and mustaches (barbering) | NOT_EVIDENCED |
+| Other hair treatment: straightening, tinting + scalp conditioning massages | MATCH_USER_CONFIRMED |
+| Apply bleach, tints, dyes or rinses | MATCH_USER_CONFIRMED |
+| Apply hair extensions | NOT_EVIDENCED |
+| Clean and style wigs and hair pieces | NOT_EVIDENCED |
+| Cut, trim, taper, curl and style hair | MATCH_USER_CONFIRMED |
+| Perm / permanent wave (technique within the styling duty) | NOT_EVIDENCED |
+| Suggest compatible hair style | MATCH_USER_CONFIRMED |
 
-PROFESSIONAL SUMMARY
-Beauty professional with 17 years of experience in women's hairdressing and esthetics, including salon ownership and management since 2021. Owner-manager of ASY Beauty in Salé, delivering hairdressing and esthetic services with a focus on client care, service quality, and hygiene standards. Skilled in haircutting, colouring, styling, facials, make-up, microblading and permanent make-up, with strong client consultation and day-to-day salon operations.
+**Job-fit decision: PARTIAL_MATCH** · tailoring confidence: **MEDIUM**
 
-CORE SKILLS
-Hairdressing: Women's hairdressing, Haircutting, Hairstyling, Hair colouring, Hair treatments, Hair and scalp care, Event styling, Client consultation
-Esthetics: Facial and beauty care, General esthetic services, Make-up, Microblading, Permanent make-up, Advanced esthetics, Cosmetic skin and hair products
-Salon operations: Salon daily operations, Appointment and client management, Stock and product coordination, Service-quality supervision, Hygiene and safety
+> Matches the women's-hairdressing core (cut, colour, straightening/tinting treatments, style, consultation). Three distinct service areas are NOT_EVIDENCED — beard/moustache barbering, hair extensions, wig/hairpiece work — plus perm/wave. DOWNGRADES TO HOLD if any of barbering/extensions/wig work is a mandatory duty; not STRONG_MATCH.
 
-PROFESSIONAL EXPERIENCE
-Owner-Manager | Senior Hairdresser and Esthetician — ASY Beauty, Salé, Morocco (September 2021 – Present)
-- Own and manage the salon's daily operations, scheduling, and client experience.
-- Provide women's hairdressing and esthetic services, including cutting, colouring, styling, facials, make-up, microblading and permanent make-up.
-- Lead client consultations and tailor services to individual needs.
-- Maintain hygiene and safety standards and supervise service quality.
-- Coordinate stock and product ordering.
+## E. Cover letter — OLIHA MUNIZ BOUTIQUE AND HAIR INC. (hairstylist)
+*Words: 276 · checksum `13727364d8d828f159be8c9e2aba795b49f1a39a9cdcdb09420c76f61c6c7709`*
 
-Hairdresser and Esthetician — Salon Cléopâtre, Salé, Morocco (2015 – 2021)
-- Delivered hairdressing and esthetic services to a regular clientele.
-- Advised clients on hair and skin care and performed make-up services.
-
-Hairdresser and Esthetician — Salon Top 2000, Rabat, Morocco (2013 – 2015)
-- Provided cutting, colouring, styling, and esthetic treatments.
-- Supported client reception and salon organization.
-
-Hairdresser and Esthetician — Salon La Manucure, Rabat, Morocco (July 2009 – 2013)
-- Performed women's hairdressing and beauty services.
-- Maintained workstation hygiene and prepared client services.
-
-Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009 | 6-month internship)
-- Practical salon training in women's hairdressing and esthetic services.
-- Customer reception, hygiene, workstation preparation, and supervised beauty services.
-
-EDUCATION AND CORE QUALIFICATIONS
-- Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
-- Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique, 2022–2023
-- Diploma in Esthetics — Association de Solidarité Sociale et Artisanale Mohammedia (September 17, 2019)
-- Professional hairdressing/craft status — Chamber of Handicrafts, Salé (2009)
-- Moroccan Baccalaureate, Literature and Humanities (French Option) — 2025, "Assez bien"
-
-ADDITIONAL PROFESSIONAL TRAINING
-- Advanced Esthetics — Al-Majd Academy, Casablanca (35 hours, 2023)
-- Microblading — Maison Joulla, Casablanca (November 29, 2022)
-- Permanent Make-up — Ozone Plus, Casablanca (2016)
-- Intensive Make-up Artist Training — The Moroccan Golden Beauty (April 19, 2019)
-- Protein Treatment and Hair Detox — Ozone Plus (2023/2024)
-- Cosmetic Products for Skin and Hair — AM Prod Cosmétique & Consulting, Casablanca (November 23–24, 2019)
-
-LANGUAGES
-Arabic — Native | English — Good working proficiency | French — Beginner
-
-RELOCATION
-Available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process.
-```
-### D.2 Cover letter
-*Words: 266 · est. pages: 0.53 · letter v3 checksum `07d6b6349cf54037`*
 ```text
 Dear Hiring Manager,
 
 I am writing to apply for the hairstylist position at OLIHA MUNIZ BOUTIQUE AND HAIR INC. As a beauty professional with 17 years of experience in women's hairdressing and esthetics — and owner-manager of my own salon, ASY Beauty, in Salé since 2021 — I would bring hands-on skill and a genuine commitment to client care to your team.
 
-My hands-on expertise spans haircutting, colouring, styling, and hair treatments, together with attentive client consultation and consistent hygiene standards. I enjoy translating each client's preferences into a finished look and building the kind of trust that turns first-time visitors into regulars. I complement my hairdressing with esthetic services such as make-up and permanent make-up, and I keep my skills current through ongoing professional training.
+My hands-on hairdressing covers women's haircutting, colouring — including highlights, tints, and rinses — styling and finishing, together with hair and scalp treatments. I consult with each client to agree on the result before I begin, and I keep to consistent hygiene and sanitation practices throughout.
 
-Running ASY Beauty has strengthened my salon operations, appointment and client management, and service-quality supervision. I am used to keeping a busy salon organized, maintaining high standards, and making sure every client leaves satisfied. Over the years I have built a loyal client base through reliable, personalized service, and I would be glad to bring that same dedication to your salon.
+Beyond hands-on hairdressing, your posting includes booking appointments and supervising other stylists and staff — responsibilities I carry out every day as the owner-manager of my own salon. I manage scheduling and coordinate the team while continuing to cut, colour, treat, and style hair myself. I would be glad to bring both this supervisory experience and my hairdressing skills to OLIHA MUNIZ BOUTIQUE AND HAIR INC.
 
-I am confident my experience aligns well with the needs of OLIHA MUNIZ BOUTIQUE AND HAIR INC, and I would welcome the opportunity to contribute. I am currently based in Salé, Morocco, and available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can support your team.
+As the owner-manager of ASY Beauty, I handle appointment scheduling, client consultations, stock coordination, and day-to-day salon operations while maintaining consistent service and hygiene standards. I provide personalized service based on each client's preferences.
+
+I would welcome the opportunity to bring this experience to OLIHA MUNIZ BOUTIQUE AND HAIR INC. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
 Sincerely,
 Samira Benaciri
 +212 6 62 79 32 95
 samirabenaciri88@gmail.com
 ```
-### D.3 Annotation (CV identical to master except role ordering; letter facts below)
-| Statement | Fact ID | Evidence | Source | In public doc |
-|---|---|---|---|---|
-| 17 years combined hairdressing/esthetics experience | `experience_duration` | USER_CONFIRMED | timeline | yes |
-| owner-manager of ASY Beauty since 2021 | `current_employer` | USER_CONFIRMED | ASY registration | yes |
-| applies to "OLIHA MUNIZ BOUTIQUE AND HAIR INC." for "hairstylist" | `live_posting` | VERIFIED_BY_DOCUMENT | Job Bank posting https://www.jobbank.gc.ca/jobposting/50074303 | yes |
-| Samira Benaciri / +212 6 62 79 32 95 / samirabenaciri88@gmail.com | `full_name/phone/email` | USER_CONFIRMED | verified contact | yes |
-| relocate after formal offer + work-authorization process | `relocation` | USER_CONFIRMED | binding fact | yes |
 
-## E. Glamour Touch Studio — esthetician (BC)
-*App ID `803aa648-7bba-41f1-926c-bfb153abb37d` (JOBBANK_50015027) · exact employer "Glamour touch studio inc" · exact title "esthetician"*
+**Requirement-to-evidence matrix** (duty importance not stated on Job Bank → REQUIREMENT_IMPORTANCE_UNKNOWN)
 
-### E.1 Tailored CV
-*Words: 495 · est. pages: 0.99 · CV v4 checksum `eac7ea293d99e295`*
-```text
-Samira Benaciri
-Salé, Morocco | samirabenaciri88@gmail.com | +212 6 62 79 32 95
+| Advertised duty / requirement | Classification |
+|---|---|
+| Book appointments | MATCH_USER_CONFIRMED |
+| Cut and trim hair per client's instructions | MATCH_USER_CONFIRMED |
+| Shampoo customers' hair | MATCH_USER_CONFIRMED |
+| Other hair treatment: straightening, tinting + scalp conditioning massages | MATCH_USER_CONFIRMED |
+| Supervise other hair stylists and staff | MATCH_USER_CONFIRMED |
+| Apply bleach, tints, dyes or rinses | MATCH_USER_CONFIRMED |
+| Clean and style wigs and hair pieces | NOT_EVIDENCED |
+| Cut, trim, taper, curl and style hair | MATCH_USER_CONFIRMED |
+| Perm / permanent wave (technique within the styling duty) | NOT_EVIDENCED |
+| Suggest compatible hair style | MATCH_USER_CONFIRMED |
+| Personal suitability: dependability, flexibility, judgement, reliability, team player | REQUIRES_CLARIFICATION |
 
-PROFESSIONAL SUMMARY
-Beauty professional with 17 years of experience in esthetics and women's hairdressing, including salon ownership and management since 2021. Owner-manager of ASY Beauty in Salé, delivering hairdressing and esthetic services with a focus on client care, service quality, and hygiene standards. Skilled in haircutting, colouring, styling, facials, make-up, microblading and permanent make-up, with strong client consultation and day-to-day salon operations.
+**Job-fit decision: STRONG_MATCH** · tailoring confidence: **HIGH**
 
-CORE SKILLS
-Esthetics: Facial and beauty care, General esthetic services, Make-up, Microblading, Permanent make-up, Advanced esthetics, Cosmetic skin and hair products
-Hairdressing: Women's hairdressing, Haircutting, Hairstyling, Hair colouring, Hair treatments, Hair and scalp care, Event styling, Client consultation
-Salon operations: Salon daily operations, Appointment and client management, Stock and product coordination, Service-quality supervision, Hygiene and safety
+> Best fit: hairdressing core matched AND the two differentiators — booking appointments and supervising other stylists/staff — are MATCH_USER_CONFIRMED through ASY Beauty ownership. Only wig/hairpiece work and perm/wave are NOT_EVIDENCED (not "several essential"). Supervision stated qualitatively only — no quantified team-size claim.
 
-PROFESSIONAL EXPERIENCE
-Owner-Manager | Senior Hairdresser and Esthetician — ASY Beauty, Salé, Morocco (September 2021 – Present)
-- Own and manage the salon's daily operations, scheduling, and client experience.
-- Provide women's hairdressing and esthetic services, including cutting, colouring, styling, facials, make-up, microblading and permanent make-up.
-- Lead client consultations and tailor services to individual needs.
-- Maintain hygiene and safety standards and supervise service quality.
-- Coordinate stock and product ordering.
+## F. Cover letter — Glamour Touch Studio Inc. (esthetician)
+*Words: 263 · checksum `d5d31536a30097e2ca32f4cfce604b1caaedc22afe4fdc61b8e5b01bae6c61ac`*
 
-Hairdresser and Esthetician — Salon Cléopâtre, Salé, Morocco (2015 – 2021)
-- Delivered hairdressing and esthetic services to a regular clientele.
-- Advised clients on hair and skin care and performed make-up services.
-
-Hairdresser and Esthetician — Salon Top 2000, Rabat, Morocco (2013 – 2015)
-- Provided cutting, colouring, styling, and esthetic treatments.
-- Supported client reception and salon organization.
-
-Hairdresser and Esthetician — Salon La Manucure, Rabat, Morocco (July 2009 – 2013)
-- Performed women's hairdressing and beauty services.
-- Maintained workstation hygiene and prepared client services.
-
-Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009 | 6-month internship)
-- Practical salon training in women's hairdressing and esthetic services.
-- Customer reception, hygiene, workstation preparation, and supervised beauty services.
-
-EDUCATION AND CORE QUALIFICATIONS
-- Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
-- Specialization Training in Hairdressing — École Nito de Coiffure et d'Esthétique, 2022–2023
-- Diploma in Esthetics — Association de Solidarité Sociale et Artisanale Mohammedia (September 17, 2019)
-- Professional hairdressing/craft status — Chamber of Handicrafts, Salé (2009)
-- Moroccan Baccalaureate, Literature and Humanities (French Option) — 2025, "Assez bien"
-
-ADDITIONAL PROFESSIONAL TRAINING
-- Advanced Esthetics — Al-Majd Academy, Casablanca (35 hours, 2023)
-- Microblading — Maison Joulla, Casablanca (November 29, 2022)
-- Permanent Make-up — Ozone Plus, Casablanca (2016)
-- Intensive Make-up Artist Training — The Moroccan Golden Beauty (April 19, 2019)
-- Protein Treatment and Hair Detox — Ozone Plus (2023/2024)
-- Cosmetic Products for Skin and Hair — AM Prod Cosmétique & Consulting, Casablanca (November 23–24, 2019)
-
-LANGUAGES
-Arabic — Native | English — Good working proficiency | French — Beginner
-
-RELOCATION
-Available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process.
-```
-### E.2 Cover letter
-*Words: 269 · est. pages: 0.54 · letter v3 checksum `0892d17ecf67b95e`*
 ```text
 Dear Hiring Manager,
 
-I am writing to apply for the esthetician position at Glamour touch studio inc. As a beauty professional with 17 years of experience in esthetics and women's hairdressing — and owner-manager of my own salon, ASY Beauty, in Salé since 2021 — I would bring hands-on skill and a genuine commitment to client care to your team.
+I am writing to apply for the esthetician position at Glamour Touch Studio Inc. As a beauty professional with 17 years of experience in esthetics and women's hairdressing — and owner-manager of my own salon, ASY Beauty, in Salé since 2021 — I would bring hands-on skill and a genuine commitment to client care to your team.
 
-My esthetics practice covers facial and beauty care, make-up, microblading and permanent make-up, and advanced esthetic services, all supported by careful client consultation and consistent hygiene standards. I take the time to understand each client's goals and to recommend the right service, then deliver results they can rely on. I also draw on my hairdressing background to offer well-rounded beauty services, and I keep my techniques current through ongoing professional training.
+My esthetics work covers general esthetic care and make-up application, delivered with careful client consultation and consistent hygiene standards. I also draw on my hairdressing background to offer well-rounded beauty services, and I keep my techniques current through ongoing professional training.
 
-Running ASY Beauty has strengthened my salon operations, appointment and client management, and service-quality supervision. I am used to keeping a busy salon organized, maintaining high standards, and making sure every client leaves satisfied. Over the years I have built a loyal client base through reliable, personalized service, and I would be glad to bring that same dedication to your salon.
+As a hairdresser and esthetician, I provide general esthetic care and make-up services alongside careful client consultation and hygiene. Running my own salon, ASY Beauty, I am comfortable managing a full appointment schedule while delivering services myself. I would welcome the opportunity to bring these skills to Glamour Touch Studio Inc. and to learn more about the specific services your studio offers.
 
-I am confident my experience aligns well with the needs of Glamour touch studio inc, and I would welcome the opportunity to contribute. I am currently based in Salé, Morocco, and available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can support your team.
+As the owner-manager of ASY Beauty, I handle appointment scheduling, client consultations, stock coordination, and day-to-day salon operations while maintaining consistent service and hygiene standards. I provide personalized service based on each client's preferences.
+
+I would welcome the opportunity to bring this experience to Glamour Touch Studio Inc. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
 Sincerely,
 Samira Benaciri
 +212 6 62 79 32 95
 samirabenaciri88@gmail.com
 ```
-### E.3 Annotation (CV identical to master except role ordering; letter facts below)
-| Statement | Fact ID | Evidence | Source | In public doc |
+
+**Requirement-to-evidence matrix** (duty importance not stated on Job Bank → REQUIREMENT_IMPORTANCE_UNKNOWN)
+
+| Advertised duty / requirement | Classification |
+|---|---|
+| Partner-site (indeed.com) posting — Job Bank page lists NO duties (title + wage $19.50–$21.50/hr, NOC 63211 esthetician only) | NOT_EVIDENCED |
+| Specific esthetic service list (facials, waxing, nails, lashes, devices?) | REQUIRES_CLARIFICATION |
+
+**Job-fit decision: UNRESOLVED** · tailoring confidence: **LOW** · CONSERVATIVE_TITLE_LEVEL_TAILORING
+
+> No duties in the verified posting evidence (partner/Indeed stub). Fit cannot be resolved above title level until duties are obtained from an authoritative employer/Indeed source. Letter is title-level only.
+
+## Job-fit summary (from requirement-to-evidence matrices)
+
+| Employer | Role | Job-fit | Tailoring confidence | Duty importance |
 |---|---|---|---|---|
-| 17 years combined hairdressing/esthetics experience | `experience_duration` | USER_CONFIRMED | timeline | yes |
-| owner-manager of ASY Beauty since 2021 | `current_employer` | USER_CONFIRMED | ASY registration | yes |
-| applies to "Glamour touch studio inc" for "esthetician" | `live_posting` | VERIFIED_BY_DOCUMENT | Job Bank posting https://www.jobbank.gc.ca/jobposting/50015027 | yes |
-| Samira Benaciri / +212 6 62 79 32 95 / samirabenaciri88@gmail.com | `full_name/phone/email` | USER_CONFIRMED | verified contact | yes |
-| relocate after formal offer + work-authorization process | `relocation` | USER_CONFIRMED | binding fact | yes |
+| Sukhi Laser Beauty Salon & Academy Ltd. | hairstylist | PARTIAL_MATCH | HIGH | REQUIREMENT_IMPORTANCE_UNKNOWN |
+| Blades & Scissors Hair Salon Ltd. | hairstylist | PARTIAL_MATCH | MEDIUM | REQUIREMENT_IMPORTANCE_UNKNOWN |
+| OLIHA MUNIZ BOUTIQUE AND HAIR INC. | hairstylist | STRONG_MATCH | HIGH | REQUIREMENT_IMPORTANCE_UNKNOWN |
+| Glamour Touch Studio Inc. | esthetician | UNRESOLVED | LOW (CONSERVATIVE_TITLE_LEVEL_TAILORING) | REQUIREMENT_IMPORTANCE_UNKNOWN |
 
-## Manual content checks
-**Exact sentences (master CV):**
-- **17 years:** Beauty professional with 17 years of experience in women's hairdressing and esthetics, including salon ownership and management since 2021.
-- **ASY ownership:** Owner-manager of ASY Beauty in Salé, delivering hairdressing and esthetic services with a focus on client care, service quality, and hygiene standards.
-- **microblading/permanent make-up:** Skilled in haircutting, colouring, styling, facials, make-up, microblading and permanent make-up, with strong client consultation and day-to-day salon operations.
-- **education:** - Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
-- **training:** - Advanced Esthetics — Al-Majd Academy, Casablanca (35 hours, 2023)
-- **languages:** Arabic — Native | English — Good working proficiency | French — Beginner
-- **relocation:** Available to relocate promptly after receiving a formal offer of employment and completing the required Canadian work-authorization process.
-- **contact:** Salé, Morocco | samirabenaciri88@gmail.com | +212 6 62 79 32 95
+No application is approved or sent. Job-fit is advisory input for the human reviewer.
 
-**Negative checks (all documents):**
-- unsupported immigration/LMIA/work-auth claim: none ✓
-- sensitive identifier / visitor visa wording: none ✓
-- medical-aesthetic / HydraFacial / laser / nails / lash: none ✓
-- native/fluent-French / bilingual / test-score: none ✓
-- generic placeholder / nested-paren date: none ✓
-- training described as licence / Canadian certification: none ✓ (education lists diplomas/training only; no "licence"/"certified in Canada")
-- claim historical LMIA applies to current role: none ✓ (LMIA never mentioned in candidate documents)
-- employer & title match live posting: ✓ for all four
-- spelling "Samira Benaciri" consistent: ✓ · Canadian English (colour/organization): ✓
+## Removed unsupported sentences (verbatim, Phase 5B → 5C)
 
-## Cross-document consistency
-| Employer | Role ordering | Errors |
+- `keeping a busy salon organized`
+- `making sure every client leaves satisfied`
+- `I have built a loyal client base`
+- `deliver results they can rely on`
+
+## Pairwise cover-letter similarity (trigram Jaccard; 1.0 = identical)
+
+| Letter A | Letter B | Similarity |
 |---|---|---|
-| Sukhi Laser Beauty Salon | Hairdressing-first (legitimate) | none ✓ |
-| Blades & Scissors Hair Salon | Hairdressing-first (legitimate) | none ✓ |
-| OLIHA MUNIZ Boutique & Hair | Hairdressing-first (legitimate) | none ✓ |
-| Glamour Touch Studio | Esthetics-first (legitimate) | none ✓ |
+| Glamour Touch Studio Inc. | Sukhi Laser Beauty Salon & Academy Ltd. | 0.389 |
+| Glamour Touch Studio Inc. | Blades & Scissors Hair Salon Ltd. | 0.394 |
+| Glamour Touch Studio Inc. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.405 |
+| Sukhi Laser Beauty Salon & Academy Ltd. | Blades & Scissors Hair Salon Ltd. | 0.583 |
+| Sukhi Laser Beauty Salon & Academy Ltd. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.599 |
+| Blades & Scissors Hair Salon Ltd. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.571 |
 
-All CVs share identical dates, employers, 17-year duration, skills, training, languages, and contact with master_cv@v5.1; the only differences are legitimate role-specific skill ordering (Esthetics-first for Glamour) and the employer/title named in each cover letter.
+## Factual & sensitive-data scans
+
+All documents scanned for: unsupported_claim, sensitive_data, forbidden_skill, language_claim, promotional_claim, placeholder. Result: **all clean**.
+
+## Skills awaiting candidate practice-confirmation (training verified, omitted from Core Skills)
+
+- microblading (training verified; professional practice not yet confirmed → kept only under Additional Training)
+- permanent_makeup (training verified; professional practice not yet confirmed → kept only under Additional Training)
+- advanced_esthetics (training verified; professional practice not yet confirmed → kept only under Additional Training)
+- event_styling (training verified; professional practice not yet confirmed → kept only under Additional Training)
+- cosmetic_products (training verified; professional practice not yet confirmed → kept only under Additional Training)
+
+## Employer-name verification
+
+| Employer used | Literal posting value | Normalized? |
+|---|---|---|
+| Sukhi Laser Beauty Salon & Academy Ltd. | Sukhi Laser Beauty Salon & Academy Ltd. | no (used exactly as posted) |
+| Blades & Scissors Hair Salon Ltd. | Blades & Scissors Hair Salon Ltd. | no (used exactly as posted) |
+| OLIHA MUNIZ BOUTIQUE AND HAIR INC. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | no (used exactly as posted) |
+| Glamour Touch Studio Inc. | Glamour touch studio inc | yes (posting was lowercase; normalized to proper case + suffix) |
+
