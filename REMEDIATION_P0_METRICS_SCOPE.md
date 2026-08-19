@@ -1,6 +1,6 @@
 # P0 Remediation — Metrics Scope Correction (NON-DESTRUCTIVE)
 
-**Outcome: applied and verified. Zero row mutations to any protected table. Zero external actions.**
+**Outcome: applied and verified. Zero business-data row mutations; one schema_migrations ledger row inserted. Zero external actions.**
 
 Scope: view/DDL-only correction so production-facing metric views count only jobs where `data_source='production' AND is_deleted=false`. No row was deleted, updated, approved, sent, or archived. Migration `025_metrics_scope.sql` applied in one guarded transaction with in-transaction assertions (rollback on mismatch). Ref: `INCIDENT_P0_APPLICATION_COUNT.md`.
 
@@ -82,7 +82,7 @@ The two test packages are **preserved with full history** and are now excluded f
 
 ## Confirmation
 
-- **Zero row mutations to protected tables.** `application_packages` content checksum is **identical** before/after: `c4c3408f383e1d49a62c2376e7e7bbc7`. Row counts unchanged: application_packages 64, applications 2, emails 6, generated_documents 269, jobs 66, production_actions 24.
+- **Zero business-data row mutations; one schema_migrations ledger row inserted (version `025`).** `application_packages` content checksum is **identical** before/after: `c4c3408f383e1d49a62c2376e7e7bbc7`. Business-data row counts unchanged: application_packages 64, applications 2, emails 6, generated_documents 269, jobs 66, production_actions 24.
 - **Zero package/application status mutations.** No approve / send / mark_sent / Gmail / employer contact / external call.
 - 4 target packages remain `prepared`; 6 rejections remain `rejected`; the sent test row is untouched (still `sent`, still `data_source='test'`, now excluded from production metrics).
 - Regression **42/42** before and after.
