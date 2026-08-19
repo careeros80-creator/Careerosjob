@@ -2,53 +2,62 @@
  * services/pilot/facts.js
  *
  * Candidate-fact integrity registry + generation gates for Samira Benaciri.
- * Facts are marked with an evidence status and are NEVER auto-resolved. Document
- * generation is blocked while material facts remain CONFLICTING or MISSING.
+ * Phase 5: previously-conflicting facts are RESOLVED to the user-confirmed
+ * binding values. Facts are still never auto-resolved silently; excluded/missing
+ * facts remain non-assertable so generation cannot claim them.
  *
- * status: VERIFIED_BY_DOCUMENT | USER_DECLARED | CONFLICTING | MISSING | UNSUPPORTED
+ * status: VERIFIED_BY_DOCUMENT | USER_CONFIRMED | USER_DECLARED |
+ *         CONFLICTING | MISSING | UNSUPPORTED | EXCLUDED_NOT_CONFIRMED
  */
+const ASSERTABLE = new Set(['VERIFIED_BY_DOCUMENT', 'USER_CONFIRMED', 'USER_DECLARED']);
+
 const FACTS = {
-  full_name:        { value: 'Samira Benaciri', status: 'VERIFIED_BY_DOCUMENT', source: 'authenticated Supabase account + master_cv@v4' },
+  full_name:        { value: 'Samira Benaciri', status: 'VERIFIED_BY_DOCUMENT', source: 'authenticated account + candidate' },
   email:            { value: 'samirabenaciri88@gmail.com', status: 'VERIFIED_BY_DOCUMENT', source: 'authenticated auth.users + pilot_profile' },
-  phone:            { value: null, status: 'MISSING', note: 'not present in any canonical source — must NOT be invented' },
-  city_country:     { value: null, status: 'MISSING', note: 'Salé / Rabat, Morocco declared externally; absent from canonical CV' },
-  experience_duration: { value: null, status: 'CONFLICTING', variants: ['15 years (canonical CV headline + experience 2011–2026)', '18 years (external)', '10+ years (external)', '2020–2024 only (external)'], source: 'master_cv@v4 vs external declarations' },
-  current_employer: { value: null, status: 'CONFLICTING', variants: ["Salon d'esthétique (canonical placeholder)", 'ASY Beauty Salon, Salé (external)'] },
-  previous_employer:{ value: null, status: 'CONFLICTING', variants: ['Salon de coiffure 2011–2026 (canonical)', 'Top 2000, Rabat 2013–2015 (external)'] },
-  esthetics_qualification: { value: 'Formation en esthétique', status: 'USER_DECLARED', note: 'no diploma name / institution / date on file' },
-  hairdressing_qualification: { value: 'Coiffeuse', status: 'USER_DECLARED' },
-  skill_hydrafacial:   { status: 'USER_DECLARED', source: 'master_cv@v4 skills' },
-  skill_microneedling: { status: 'USER_DECLARED', source: 'master_cv@v4 skills' },
-  skill_carbon_laser:  { status: 'USER_DECLARED', source: 'master_cv@v4 skills (Laser Carbone)' },
-  skill_permanent_makeup: { status: 'USER_DECLARED', source: 'master_cv@v4 skills (Maquillage Permanent)' },
-  skill_microblading:  { status: 'USER_DECLARED', source: 'master_cv@v4 skills' },
-  skill_event_hairstyles: { status: 'USER_DECLARED', source: 'master_cv@v4 experience bullet (Coiffures événementielles)' },
-  skill_nails:         { status: 'MISSING', note: 'no nail/manicure skill in canonical CV — must NOT be claimed' },
-  availability_date:   { status: 'MISSING' },
-  visa_status:         { status: 'MISSING', note: 'work_authorization UNKNOWN; prior "visa valide 2028" was UNSUPPORTED and removed' },
-  language_arabic:     { value: 'Native', status: 'USER_DECLARED', note: 'binding fact' },
-  language_english:    { value: 'Good working proficiency', status: 'USER_DECLARED', note: 'binding fact; no CEFR/IELTS/CLB' },
-  language_french:     { value: 'Beginner', status: 'USER_DECLARED', note: 'binding fact' },
+  phone:            { value: '+212 6 62 79 32 95', status: 'USER_DECLARED', source: 'candidate binding fact (Phase 5)' },
+  city_country:     { value: 'Salé, Morocco', status: 'USER_DECLARED', source: 'candidate binding fact' },
+  relocation:       { value: 'Available to relocate promptly after a formal offer and completion of the required Canadian work-authorization process.', status: 'USER_DECLARED' },
+  experience_duration: { value: '17 years (July 2009 – August 2026)', status: 'USER_CONFIRMED', source: 'candidate-confirmed continuous timeline + documented 2009 hairdressing status + ASY Beauty ownership since 2021' },
+  current_employer: { value: 'ASY Beauty, Salé — Owner-Manager | Senior Hairdresser & Esthetician (Sept 2021–present)', status: 'USER_CONFIRMED', source: 'registered in candidate name; activity start 2021-09-01' },
+  previous_employers: { value: 'Salon Cléopâtre, Salé (2015–2021); Salon Top 2000, Rabat (2013–2015); Salon La Manucure, Rabat (2009–2013); Salon Al Amira intern, Salé (2009)', status: 'USER_CONFIRMED' },
+  esthetics_qualification: { value: 'Diploma in Esthetics — Assoc. de Solidarité Sociale et Artisanale Mohammedia (2019-09-17)', status: 'USER_CONFIRMED' },
+  hairdressing_qualification: { value: "Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé", status: 'USER_CONFIRMED' },
+  // assertable skills (verified training / confirmed timeline)
+  skill_womens_hairdressing: { status: 'USER_CONFIRMED' },
+  skill_haircutting_styling: { status: 'USER_CONFIRMED' },
+  skill_hair_colouring:      { status: 'USER_CONFIRMED' },
+  skill_hair_treatments:     { status: 'USER_CONFIRMED' },
+  skill_event_styling:       { status: 'USER_CONFIRMED' },
+  skill_facials:             { status: 'USER_CONFIRMED' },
+  skill_makeup:              { status: 'USER_CONFIRMED' },
+  skill_microblading:        { status: 'USER_CONFIRMED', source: 'Maison Joulla training 2022-11-29' },
+  skill_permanent_makeup:    { status: 'USER_CONFIRMED', source: 'Ozone Plus 2016' },
+  skill_advanced_esthetics:  { status: 'USER_CONFIRMED', source: 'Al-Majd Academy 35h 2023' },
+  skill_client_consultation: { status: 'USER_CONFIRMED' },
+  skill_cosmetic_products:   { status: 'USER_CONFIRMED', source: 'AM Prod Cosmétique training 2019-11' },
+  skill_salon_management:    { status: 'USER_CONFIRMED', source: 'ASY Beauty ownership' },
+  // NON-assertable (must never appear in documents)
+  skill_hydrafacial:   { status: 'EXCLUDED_NOT_CONFIRMED', note: 'not confirmed in fact registry' },
+  skill_microneedling: { status: 'EXCLUDED_NOT_CONFIRMED' },
+  skill_carbon_laser:  { status: 'EXCLUDED_NOT_CONFIRMED' },
+  skill_ipl:           { status: 'EXCLUDED_NOT_CONFIRMED' },
+  skill_nails:         { status: 'MISSING', note: 'no nail/manicure skill confirmed' },
+  skill_lash_extensions: { status: 'EXCLUDED_NOT_CONFIRMED' },
+  visa_status:  { value: 'V-1 multiple-entry visitor visa valid to 2028-09-12', status: 'VERIFIED_BY_DOCUMENT', note: 'VISITOR visa — NOT work authorization; number never stored; NOT included in CV' },
+  language_arabic:  { value: 'Native', status: 'USER_DECLARED' },
+  language_english: { value: 'Good working proficiency', status: 'USER_DECLARED', note: 'no CEFR/IELTS/CLB' },
+  language_french:  { value: 'Beginner', status: 'USER_DECLARED' },
 };
 
-// A fact may be asserted in generated documents only if it is verified or a
-// binding user-declared value (never CONFLICTING / MISSING / UNSUPPORTED).
-function canAssert(key) {
-  const f = FACTS[key]; if (!f) return false;
-  return f.status === 'VERIFIED_BY_DOCUMENT' || (f.status === 'USER_DECLARED');
-}
-function canClaimExperienceDuration() { return FACTS.experience_duration.status === 'VERIFIED_BY_DOCUMENT'; }
-function verifiedContact() {
-  const out = {};
-  for (const k of ['email', 'phone']) if (FACTS[k].status === 'VERIFIED_BY_DOCUMENT' && FACTS[k].value) out[k] = FACTS[k].value;
-  return out; // { email: ... } — phone excluded (MISSING)
-}
-// Material facts that block honest generation while unresolved.
+function canAssert(key) { const f = FACTS[key]; return !!f && ASSERTABLE.has(f.status); }
+function experienceStatement() { return FACTS.experience_duration.status === 'USER_CONFIRMED' ? FACTS.experience_duration.value : null; }
+function verifiedContact() { return { name: FACTS.full_name.value, email: FACTS.email.value, phone: FACTS.phone.value, location: FACTS.city_country.value }; }
+function assertableSkills() { return Object.keys(FACTS).filter(k => k.startsWith('skill_') && canAssert(k)).map(k => k.replace('skill_', '')); }
+function forbiddenSkills() { return Object.keys(FACTS).filter(k => k.startsWith('skill_') && !canAssert(k)).map(k => k.replace('skill_', '')); }
 function generationReadiness() {
-  const material = ['experience_duration', 'current_employer'];
-  const blockers = material.filter(k => FACTS[k].status === 'CONFLICTING').map(k => `${k} CONFLICTING`);
-  if (FACTS.phone.status === 'MISSING') blockers.push('phone MISSING (cannot be invented; needed for a complete application)');
+  const material = ['experience_duration', 'current_employer', 'phone', 'email'];
+  const blockers = material.filter(k => !canAssert(k)).map(k => `${k} not assertable (${FACTS[k].status})`);
   return { ready: blockers.length === 0, blockers };
 }
 
-module.exports = { FACTS, canAssert, canClaimExperienceDuration, verifiedContact, generationReadiness };
+module.exports = { FACTS, canAssert, experienceStatement, verifiedContact, assertableSkills, forbiddenSkills, generationReadiness };
