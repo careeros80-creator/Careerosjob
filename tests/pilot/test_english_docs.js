@@ -17,13 +17,14 @@ const FORBIDDEN = /hydrafacial|microneedling|carbon laser|laser carbone|\bIPL\b|
 const FRLANG = /native\s+french|fluent\s+french|bilingual|bilingue|couramment|IELTS|\bCLB\b|CEFR/i;
 
 console.log('\n[ master v5 ]');
-check(master.version === 'v5' && master.language === 'en', 'master_cv is v5 / English');
+check(master.version === 'v5.1' && master.language === 'en', 'master_cv is v5.1 / English');
+check(!/\(\d{4} \(/.test(generateEnglishCV(master, { title: 'x' }).content), 'no nested-parenthesis date (internship formatting fixed)');
 check(master.experience.length === 5 && /ASY Beauty/.test(master.experience[0].employer), '5-role timeline, ASY Beauty first (reverse chrono)');
 
 const hair = generateEnglishCV(master, { title: 'hairstylist' });
 const esth = generateEnglishCV(master, { title: 'esthetician' });
 console.log('\n[ CV content + claims ]');
-check(hair.source_master === 'master_cv@v5', 'CV traces master_cv@v5');
+check(hair.source_master === 'master_cv@v5.1', 'CV traces master_cv@v5.1');
 check(/17 years/.test(hair.content) && /ASY Beauty/.test(hair.content), 'CV states 17 years + ASY Beauty');
 check(hair.content.includes('samirabenaciri88@gmail.com') && hair.content.includes('+212 6 62 79 32 95') && hair.content.includes('Salé, Morocco'), 'CV has verified email/phone/location');
 check(!CLAIM.test(hair.content), 'CV has no immigration/work-authorization claim');
