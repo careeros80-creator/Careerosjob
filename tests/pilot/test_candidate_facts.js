@@ -20,17 +20,20 @@ check(verifiedContact().location === 'Salé, Morocco', 'location Salé, Morocco'
 console.log('\n[ evidence provenance: prior CV is not documentary evidence ]');
 check(FACTS.previous_employers.status === 'USER_CONFIRMED' && /not independent documentary/i.test(FACTS.previous_employers.source), 'previous employers USER_CONFIRMED (timeline, not a CV)');
 
-console.log('\n[ skills classified by evidence — training is not practice ]');
+console.log('\n[ skills classified by evidence — 6B confirmations ]');
 check(outgoingSkills().includes('womens_hairdressing') && outgoingSkills().includes('makeup') && outgoingSkills().includes('general_esthetic_care'), 'core practice-supported skills are outgoing');
-check(outgoingSkills().includes('salon_management') && outgoingSkills().includes('appointment_management'), 'salon management + appointment management outgoing (ownership)');
-check(!outgoingSkills().includes('microblading') && !outgoingSkills().includes('permanent_makeup'), 'microblading + permanent make-up NOT outgoing (practice unconfirmed)');
-check(trainingOnlySkills().includes('microblading') && trainingOnlySkills().includes('permanent_makeup') && trainingOnlySkills().includes('event_styling'), 'microblading/permanent make-up/event styling are training-only');
+check(outgoingSkills().includes('salon_management') && !outgoingSkills().includes('appointment_management'), 'salon management outgoing; appointment management NOT (ASY scheduling UNKNOWN)');
+check(outgoingSkills().includes('microblading') && outgoingSkills().includes('permanent_makeup'), 'microblading + permanent make-up ARE outgoing (BOTH: training + practice confirmed)');
+check(FACTS.skill_microblading.evidence === 'BOTH' && FACTS.skill_permanent_makeup.evidence === 'BOTH', 'microblading + permanent make-up evidence = BOTH');
+check(trainingOnlySkills().includes('event_styling') && trainingOnlySkills().includes('advanced_esthetics') && !trainingOnlySkills().includes('microblading'), 'event styling / advanced esthetics remain training-only; microblading is not');
+check(/never hair perming/i.test(FACTS.skill_permanent_makeup.note || ''), 'permanent make-up flagged esthetics-only (never hair perming)');
 check(!outgoingSkills().includes('facials') && unsupportedSkills().includes('facials'), 'facials unsupported (use general esthetic care)');
-check(['hydrafacial', 'microneedling', 'carbon_laser', 'ipl', 'nails', 'lash_extensions', 'barbering', 'hair_extensions', 'wig_work'].every(s => unsupportedSkills().includes(s)), 'devices/nails/lashes/barbering/extensions/wigs all unsupported');
+check(['perming_waving', 'straightening', 'appointment_management', 'stock_coordination', 'barbering', 'hair_extensions', 'wig_work', 'nails', 'lash_extensions', 'hydrafacial', 'microneedling', 'ipl', 'carbon_laser'].every(s => unsupportedSkills().includes(s)), 'perming/straightening/appointments/stock/barbering/extensions/wigs/nails/lashes/devices all unsupported');
 
-console.log('\n[ non-assertable skills cannot be asserted ]');
-['skill_hydrafacial', 'skill_microneedling', 'skill_carbon_laser', 'skill_ipl', 'skill_nails', 'skill_lash_extensions', 'skill_microblading', 'skill_permanent_makeup'].forEach(k =>
-  check(canAssert(k) === false, `${k} not assertable in Core Skills`));
+console.log('\n[ assertability gate ]');
+['skill_hydrafacial', 'skill_microneedling', 'skill_carbon_laser', 'skill_ipl', 'skill_nails', 'skill_lash_extensions', 'skill_perming_waving', 'skill_straightening', 'skill_appointment_management', 'skill_barbering'].forEach(k =>
+  check(canAssert(k) === false, `${k} not assertable`));
+check(canAssert('skill_microblading') === true && canAssert('skill_permanent_makeup') === true, 'microblading + permanent make-up ARE assertable (BOTH)');
 check(forbiddenSkills().includes('hydrafacial') && forbiddenSkills().includes('nails'), 'hydrafacial + nails are forbidden skills');
 check(assertableSkills().length === outgoingSkills().length, 'assertableSkills() aliases outgoingSkills()');
 

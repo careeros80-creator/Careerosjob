@@ -45,19 +45,24 @@ const FACTS = {
   skill_hair_scalp_care:     { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: 'confirmed hairdressing timeline' },
   skill_client_consultation: { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: 'confirmed timeline' },
   skill_general_esthetic_care: { status: 'USER_CONFIRMED', evidence: 'BOTH', source: 'Diploma in Esthetics + confirmed esthetician role' },
-  skill_makeup:              { status: 'USER_CONFIRMED', evidence: 'BOTH', source: 'Make-up Artist training + confirmed esthetician role' },
-  skill_salon_management:    { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: 'ASY Beauty ownership/management' },
-  skill_appointment_management: { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: 'ASY Beauty ownership/management' },
-  skill_hygiene_safety:      { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: 'confirmed salon operations' },
+  skill_makeup:              { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: '6B: practical make-up application user-confirmed (Make-up Artist training on file)' },
+  skill_salon_management:    { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: '6B: Gérante — supervises day-to-day salon work + service quality; team size UNKNOWN, never quantified' },
+  skill_hygiene_safety:      { status: 'USER_CONFIRMED', evidence: 'PRACTICE_USER_CONFIRMED', source: 'supervises service quality + hygiene (confirmed)' },
+
+  // microblading + permanent make-up: BOTH (training document-verified + practice USER_CONFIRMED, 6B)
+  skill_microblading:        { status: 'USER_CONFIRMED', evidence: 'BOTH', source: 'Maison Joulla training 2022-11-29 (document-verified) + practical client service USER_CONFIRMED (6B)' },
+  skill_permanent_makeup:    { status: 'USER_CONFIRMED', evidence: 'BOTH', source: 'Ozone Plus 2016 (document-verified) + practical client service USER_CONFIRMED (6B)', note: 'ESTHETICS permanent make-up ONLY — never hair perming / permanent wave' },
 
   // training verified, professional practice NOT separately confirmed -> Additional Training only, never Core Skills
-  skill_microblading:        { status: 'TRAINING_ONLY_NOT_PRACTICE', evidence: 'TRAINING_VERIFIED', note: 'Maison Joulla training 2022-11-29; practice awaiting candidate confirmation' },
-  skill_permanent_makeup:    { status: 'TRAINING_ONLY_NOT_PRACTICE', evidence: 'TRAINING_VERIFIED', note: 'Ozone Plus 2016; practice awaiting candidate confirmation' },
   skill_advanced_esthetics:  { status: 'TRAINING_ONLY_NOT_PRACTICE', evidence: 'TRAINING_VERIFIED', note: 'Al-Majd Academy 35h 2023; techniques not enumerated -> use general esthetic care' },
   skill_event_styling:       { status: 'TRAINING_ONLY_NOT_PRACTICE', evidence: 'TRAINING_VERIFIED', note: 'hairstyling training; separate event-styling practice awaiting confirmation' },
   skill_cosmetic_products:   { status: 'TRAINING_ONLY_NOT_PRACTICE', evidence: 'TRAINING_VERIFIED', note: 'AM Prod training 2019-11' },
 
-  // unsupported / excluded -> never in any document
+  // UNKNOWN / unsupported -> never in any document
+  skill_appointment_management: { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6B: appointment scheduling at ASY NOT confirmed' },
+  skill_stock_coordination:  { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6B: stock coordination / product ordering at ASY NOT confirmed' },
+  skill_perming_waving:      { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6B: hair perming / permanent wave NOT confirmed — never claim (distinct from esthetics permanent make-up)' },
+  skill_straightening:       { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6B: hair straightening / lissage NOT confirmed — never claim' },
   skill_facials:       { status: 'UNSUPPORTED', evidence: 'UNSUPPORTED', note: 'specific facials not separately evidenced; use general esthetic care' },
   skill_barbering:     { status: 'UNSUPPORTED', evidence: 'UNSUPPORTED', note: 'beard/mustache work — not evidenced (women\'s hairdressing)' },
   skill_hair_extensions: { status: 'UNSUPPORTED', evidence: 'UNSUPPORTED', note: 'not evidenced' },

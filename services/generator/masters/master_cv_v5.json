@@ -1,6 +1,6 @@
 {
   "id": "master_cv",
-  "version": "v5.2",
+  "version": "v5.3",
   "language": "en",
   "name": "Samira Benaciri",
   "contact": {
@@ -8,11 +8,11 @@
     "phone": "+212 6 62 79 32 95",
     "location": "Salé, Morocco"
   },
-  "summary": "Beauty professional with 17 years of experience in women's hairdressing and esthetics, and owner-manager of ASY Beauty in Salé since 2021. Experienced in haircutting, colouring, hairstyling, and hair treatments, along with general esthetic care and make-up, supported by attentive client consultation and consistent hygiene standards. Skilled in day-to-day salon operations, including appointment scheduling, stock coordination, and service-quality supervision.",
+  "summary": "Beauty professional with 17 years of experience in women's hairdressing and esthetics, and owner-manager of ASY Beauty in Salé since 2021. Experienced in haircutting, colouring, hairstyling, and hair treatments, along with general esthetic care, make-up, microblading, and permanent make-up, supported by attentive client consultation and consistent hygiene standards. As owner-manager, supervises the salon's day-to-day work and maintains service-quality and hygiene standards.",
   "core_skills": {
     "Hairdressing": ["Women's haircutting", "Hair colouring (highlights, tints, rinses)", "Hairstyling", "Hair treatments", "Hair and scalp care", "Client consultation"],
-    "Esthetics": ["General esthetic care", "Make-up application"],
-    "Salon operations": ["Daily salon operations", "Appointment and client management", "Stock and product coordination", "Service-quality supervision", "Hygiene and safety"]
+    "Esthetics": ["General esthetic care", "Make-up application", "Microblading", "Permanent make-up"],
+    "Salon operations": ["Service-quality supervision", "Hygiene and safety"]
   },
   "experience": [
     {
@@ -21,11 +21,10 @@
       "location": "Salé, Morocco",
       "dates": "September 2021 – Present",
       "bullets": [
-        "Own and manage the salon's daily operations, scheduling, and client bookings.",
-        "Provide women's hairdressing and esthetic services, including cutting, colouring, styling, hair treatments, general esthetic care, and make-up.",
+        "Own and run ASY Beauty as owner-manager (Gérante).",
+        "Personally provide women's hairdressing and esthetic services, including cutting, colouring, styling, hair treatments, general esthetic care, make-up, microblading, and permanent make-up.",
         "Lead client consultations and recommend services based on each client's preferences.",
-        "Maintain hygiene and safety standards and supervise service quality.",
-        "Coordinate stock and product ordering."
+        "Supervise the salon's day-to-day work and maintain service-quality and hygiene standards."
       ]
     },
     {
@@ -54,8 +53,11 @@
       "employer": "Salon Al Amira",
       "location": "Salé, Morocco",
       "dates": "2009 | 6-month internship",
-      "bullets": ["Practical salon training in women's hairdressing and general esthetic services.", "Customer reception, hygiene, and workstation preparation under supervision."]
+      "bullets": ["Practical training in women's hairdressing and general esthetic services."]
     }
+  ],
+  "_review_notes": [
+    "Salon Al Amira internship: exact start/end months in 2009 not specified by the candidate; confirm to rule out overlap with Salon La Manucure (July 2009). Do not invent months."
   ],
   "credentials": [
     "Professional hairdressing/craft registration — Chamber of Handicrafts, Salé (2009)"
