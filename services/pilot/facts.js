@@ -63,6 +63,8 @@ const FACTS = {
   skill_stock_coordination:  { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6B: stock coordination / product ordering at ASY NOT confirmed' },
   skill_perming_waving:      { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6B: hair perming / permanent wave NOT confirmed — never claim (distinct from esthetics permanent make-up)' },
   skill_straightening:       { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6B: hair straightening / lissage NOT confirmed — never claim' },
+  skill_bleaching:           { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6C: bleaching NOT confirmed as candidate experience — posting task only, never claim' },
+  skill_frosting:            { status: 'UNKNOWN', evidence: 'UNSUPPORTED', note: '6C: frosting NOT confirmed as candidate experience — posting task only, never claim' },
   skill_facials:       { status: 'UNSUPPORTED', evidence: 'UNSUPPORTED', note: 'specific facials not separately evidenced; use general esthetic care' },
   skill_barbering:     { status: 'UNSUPPORTED', evidence: 'UNSUPPORTED', note: 'beard/mustache work — not evidenced (women\'s hairdressing)' },
   skill_hair_extensions: { status: 'UNSUPPORTED', evidence: 'UNSUPPORTED', note: 'not evidenced' },

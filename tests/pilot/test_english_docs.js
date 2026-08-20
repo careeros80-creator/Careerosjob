@@ -17,18 +17,21 @@ const FORBIDDEN = /hydrafacial|microneedling|carbon laser|laser carbone|\bIPL\b|
 const FRLANG = /native\s+french|fluent\s+french|bilingual|bilingue|couramment|IELTS|\bCLB\b|CEFR/i;
 const PROMO = /busy salon|leaves satisfied|loyal client base|results they can rely on|proven track record|high[- ]volume|award[- ]winning/i;
 
-console.log('\n[ master v5.3 ]');
-check(master.version === 'v5.3' && master.language === 'en', 'master_cv is v5.3 / English');
+console.log('\n[ master v5.4 ]');
+check(master.version === 'v5.4' && master.language === 'en', 'master_cv is v5.4 / English');
 check(!/\(\d{4} \(/.test(generateEnglishCV(master, { title: 'x' }).content), 'no nested-parenthesis date');
 check(master.experience.length === 5 && /ASY Beauty/.test(master.experience[0].employer), '5-role timeline, ASY Beauty first');
-check(Array.isArray(master.credentials) && /Chamber of Handicrafts/.test(master.credentials.join()), 'craft status is a credential, not education');
+check(Array.isArray(master.credentials) && master.credentials.length === 0, 'Chamber credential withheld (credentials empty)');
+check(Array.isArray(master._review_notes) && master._review_notes.some(n => /Chamber of Handicrafts/.test(n)), 'Chamber recorded in review notes (not rendered)');
 
 const hair = generateEnglishCV(master, { title: 'hairstylist' });
 const esth = generateEnglishCV(master, { title: 'esthetician' });
 console.log('\n[ CV structure + claims ]');
-check(hair.source_master === 'master_cv@v5.3', 'CV traces master_cv@v5.3');
-check(/PROFESSIONAL CREDENTIALS/.test(hair.content) && /EDUCATION AND DIPLOMAS/.test(hair.content) && /ADDITIONAL TRAINING/.test(hair.content), 'CV has Credentials / Education and Diplomas / Additional Training sections');
-check(/PROFESSIONAL CREDENTIALS[\s\S]*Chamber of Handicrafts/.test(hair.content) && !/EDUCATION AND DIPLOMAS[\s\S]*Chamber of Handicrafts/.test(hair.content), 'Chamber status under Credentials, not Education');
+check(hair.source_master === 'master_cv@v5.4', 'CV traces master_cv@v5.4');
+check(/EDUCATION AND DIPLOMAS/.test(hair.content) && /ADDITIONAL TRAINING/.test(hair.content), 'CV has Education and Diplomas + Additional Training sections');
+check(!/Chamber of Handicrafts/.test(hair.content) && !/PROFESSIONAL CREDENTIALS/.test(hair.content), 'Chamber credential NOT rendered in CV (withheld)');
+check(!/regular clientele|Advised clients on hair care|client reception|salon organization|Maintained workstation hygiene/i.test(hair.content), 'unsupported legacy experience details removed');
+check(/2009, six-month internship/.test(hair.content), 'Al Amira kept as 2009, six-month internship');
 const coreSkills = hair.content.split('PROFESSIONAL EXPERIENCE')[0];
 const esthCoreSkills = esth.content.split('PROFESSIONAL EXPERIENCE')[0];
 check(!/Advanced esthetics|Event styling/i.test(coreSkills), 'Core Skills excludes training-only skills (advanced esthetics / event styling)');
@@ -43,10 +46,10 @@ check(hair.checksum !== esth.checksum, 'hairstylist CV differs from esthetician 
 
 console.log('\n[ cover letters — tailored, evidence-scoped, de-claimed ]');
 const T = {
-  sukhi: "Your posting calls for colour work — applying bleach, tints, and rinses — alongside cutting and styling, which are services I provide. It also asks for suggesting a style that suits each client's features. I would be glad to bring this colour and styling focus to Sukhi Laser Beauty Salon & Academy Ltd.",
+  sukhi: "Your posting includes colour and lightening work such as bleaching and frosting. My own experience is in colouring, highlights, tints, and rinses, along with cutting, styling, and consultation. I would be glad to bring these skills to Sukhi Laser Beauty Salon & Academy Ltd.",
   blades: "Your posting spans a broad range of hair services, and my experience aligns with the women's hairdressing side — cutting, colouring, and tinting treatments. My background is in women's hairdressing rather than barbering. I keep these techniques current through ongoing training.",
-  oliha: "Your posting includes supervising other stylists — a responsibility I hold as owner-manager of my own salon, where I supervise day-to-day work and service quality while cutting, colouring, and styling hair myself. I would bring both to OLIHA MUNIZ BOUTIQUE AND HAIR INC.",
-  glam: "As a hairdresser and esthetician, I provide general esthetic care and make-up with careful consultation and hygiene. Running my own salon, I deliver these services myself and supervise day-to-day work. I would welcome the chance to learn more about Glamour Touch Studio Inc.",
+  oliha: "Your posting includes supervising other stylists — a responsibility I hold as owner-manager of my own salon, where I oversee the day-to-day work and service quality. I would be glad to bring this supervisory experience together with my hairdressing skills to OLIHA MUNIZ BOUTIQUE AND HAIR INC.",
+  glam: "Because your posting does not set out the specific duties for this role, I have kept this application to my confirmed esthetic background. I would welcome the chance to learn more about Glamour Touch Studio Inc.",
 };
 const a = generateEnglishCoverLetter(master, { title: 'hairstylist', tailoring: { specific: T.sukhi } }, { name: 'Sukhi Laser Beauty Salon & Academy Ltd.' });
 const b = generateEnglishCoverLetter(master, { title: 'hairstylist', tailoring: { specific: T.blades } }, { name: 'Blades & Scissors Hair Salon Ltd.' });
@@ -69,6 +72,16 @@ check(!/\bperming\b|permanent wave|straighten|lissage/i.test(hair.content) && !/
 [a, b, o, e].forEach((L, i) => check(!/appointment scheduling|stock coordination|managing a full appointment/i.test(L.content), `letter ${i + 1} omits unsupported appointments/stock`));
 // esthetician letter must NOT claim facials/wax/nails/lashes/laser
 check(!/facial|\bwax|\bnail|lash|laser|device|medical/i.test(e.content), 'esthetician letter omits facials/wax/nails/lashes/devices');
+// 6C: bleach/frosting only as a posting task in Sukhi (never claimed); absent elsewhere
+check(/your posting includes colour and lightening work such as bleaching and frosting/i.test(a.content), 'Sukhi frames bleach/frosting as a posting task');
+check(!/(services I|I provide|I apply|I perform|my own)[^.]*(bleach|frost)/i.test(a.content), 'Sukhi does not claim bleach/frosting as candidate experience');
+[b, o, e, hair, esth].forEach((d, i) => check(!/bleach|frost/i.test(d.content), `doc ${i + 1} has no bleach/frosting`));
+// 6C: unsupported legacy phrases absent from every letter
+[a, b, o, e].forEach((L, i) => check(!/regular clientele|advised clients on hair care|client reception|salon organization/i.test(L.content), `letter ${i + 1} omits unsupported legacy phrases`));
+// 6C: de-duplication — operations paragraph no longer re-lists services
+[a, b, o, e].forEach((L, i) => check(!/personally provide hairdressing and esthetic services/i.test(L.content), `letter ${i + 1} operations paragraph de-duplicated`));
+// 6C: no quantified team claim
+[a, b, o, e].forEach((L, i) => check(!/\b\d+\s+(stylists?|staff|team)\b|team of \d+/i.test(L.content), `letter ${i + 1} no quantified team claim`));
 // exact employer names + punctuation
 check(a.content.includes('Sukhi Laser Beauty Salon & Academy Ltd.') && !/Ltd\.\./.test(a.content), 'Sukhi named exactly, no double period');
 check(o.content.includes('OLIHA MUNIZ BOUTIQUE AND HAIR INC.') && !/INC\.\./.test(o.content), 'OLIHA named exactly, no double period');

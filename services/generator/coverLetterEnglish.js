@@ -26,10 +26,11 @@ function skillsParagraph(esth) {
     : "My hands-on hairdressing covers women's haircutting, colouring — including highlights, tints, and rinses — styling and finishing, together with hair and scalp treatments. I consult with each client to agree on the result before I begin, and I keep to consistent hygiene and sanitation practices throughout.";
 }
 
-// De-claimed operations paragraph — confirmed duties only (no appointment scheduling /
-// stock coordination — UNKNOWN at ASY per 6B), no volume/retention/satisfaction claims.
+// Ownership angle — no service re-listing and no supervision here (supervision, where
+// relevant, lives in the employer-specific paragraph to avoid duplication — 6C).
+// No appointment scheduling / stock coordination (UNKNOWN at ASY); no quantified claims.
 function operationsParagraph() {
-  return "As the owner-manager of ASY Beauty, I personally provide hairdressing and esthetic services, supervise the salon's day-to-day work and service quality, and maintain consistent hygiene standards. I provide personalized service based on each client's preferences.";
+  return "As the owner-manager of ASY Beauty, I run my own salon and work directly with clients, holding myself to consistent hygiene standards. I tailor each service to the client's preferences.";
 }
 
 function generateEnglishCoverLetter(master, job = {}, company = {}) {

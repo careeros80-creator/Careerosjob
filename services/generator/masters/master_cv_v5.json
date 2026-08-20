@@ -1,6 +1,6 @@
 {
   "id": "master_cv",
-  "version": "v5.3",
+  "version": "v5.4",
   "language": "en",
   "name": "Samira Benaciri",
   "contact": {
@@ -32,36 +32,35 @@
       "employer": "Salon Cléopâtre",
       "location": "Salé, Morocco",
       "dates": "2015 – 2021",
-      "bullets": ["Provided women's hairdressing and general esthetic services to a regular clientele.", "Advised clients on hair care and performed make-up services."]
+      "bullets": ["Provided women's hairdressing and general esthetic services."]
     },
     {
       "role": "Hairdresser and Esthetician",
       "employer": "Salon Top 2000",
       "location": "Rabat, Morocco",
       "dates": "2013 – 2015",
-      "bullets": ["Provided cutting, colouring, and styling services.", "Supported client reception and salon organization."]
+      "bullets": ["Provided women's hairdressing and general esthetic services."]
     },
     {
       "role": "Hairdresser and Esthetician",
       "employer": "Salon La Manucure",
       "location": "Rabat, Morocco",
       "dates": "July 2009 – 2013",
-      "bullets": ["Performed women's hairdressing and general beauty services.", "Maintained workstation hygiene and prepared client services."]
+      "bullets": ["Provided women's hairdressing and general esthetic services."]
     },
     {
       "role": "Hairdressing and Esthetics Intern",
       "employer": "Salon Al Amira",
       "location": "Salé, Morocco",
-      "dates": "2009 | 6-month internship",
+      "dates": "2009, six-month internship",
       "bullets": ["Practical training in women's hairdressing and general esthetic services."]
     }
   ],
   "_review_notes": [
-    "Salon Al Amira internship: exact start/end months in 2009 not specified by the candidate; confirm to rule out overlap with Salon La Manucure (July 2009). Do not invent months."
+    "Salon Al Amira internship: exact start/end months in 2009 not specified by the candidate; confirm to rule out overlap with Salon La Manucure (July 2009). Do not invent months.",
+    "Chamber of Handicrafts registration (2009): exact document title and issue date NOT yet verified from the source image; withheld from the rendered CV until the precise wording/date is confirmed. Do not render as a verified credential."
   ],
-  "credentials": [
-    "Professional hairdressing/craft registration — Chamber of Handicrafts, Salé (2009)"
-  ],
+  "credentials": [],
   "education": [
     "Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé",
     "Diploma in Esthetics — Association de Solidarité Sociale et Artisanale, Mohammedia (September 17, 2019)",

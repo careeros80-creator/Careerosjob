@@ -28,7 +28,7 @@ check(FACTS.skill_microblading.evidence === 'BOTH' && FACTS.skill_permanent_make
 check(trainingOnlySkills().includes('event_styling') && trainingOnlySkills().includes('advanced_esthetics') && !trainingOnlySkills().includes('microblading'), 'event styling / advanced esthetics remain training-only; microblading is not');
 check(/never hair perming/i.test(FACTS.skill_permanent_makeup.note || ''), 'permanent make-up flagged esthetics-only (never hair perming)');
 check(!outgoingSkills().includes('facials') && unsupportedSkills().includes('facials'), 'facials unsupported (use general esthetic care)');
-check(['perming_waving', 'straightening', 'appointment_management', 'stock_coordination', 'barbering', 'hair_extensions', 'wig_work', 'nails', 'lash_extensions', 'hydrafacial', 'microneedling', 'ipl', 'carbon_laser'].every(s => unsupportedSkills().includes(s)), 'perming/straightening/appointments/stock/barbering/extensions/wigs/nails/lashes/devices all unsupported');
+check(['perming_waving', 'straightening', 'bleaching', 'frosting', 'appointment_management', 'stock_coordination', 'barbering', 'hair_extensions', 'wig_work', 'nails', 'lash_extensions', 'hydrafacial', 'microneedling', 'ipl', 'carbon_laser'].every(s => unsupportedSkills().includes(s)), 'perming/straightening/bleaching/frosting/appointments/stock/barbering/extensions/wigs/nails/lashes/devices all unsupported');
 
 console.log('\n[ assertability gate ]');
 ['skill_hydrafacial', 'skill_microneedling', 'skill_carbon_laser', 'skill_ipl', 'skill_nails', 'skill_lash_extensions', 'skill_perming_waving', 'skill_straightening', 'skill_appointment_management', 'skill_barbering'].forEach(k =>

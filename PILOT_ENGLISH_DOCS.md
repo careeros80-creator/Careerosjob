@@ -1,9 +1,9 @@
-# Samira Benaciri — English Application Documents (Phase 6B, human review)
+# Samira Benaciri — English Application Documents (Phase 6C, human review)
 
-NOT read-only — repository files and generated_documents rows were changed. Candidate confirmations applied (microblading + permanent make-up = BOTH; make-up practice-confirmed; conservative ASY supervision; appointments/stock/perming/straightening remain UNKNOWN). `master_cv@v5.2` → **`master_cv@v5.3`** (history preserved). No approval / send / Gmail / draft / employer contact; no application-status change.
+NOT read-only — repository files and generated_documents rows were changed. Surgical evidence cleanup: bleach/frosting framed as posting-only (never claimed); unsupported legacy bullets removed; OLIHA/Glamour de-duplicated; Chamber credential withheld pending source verification; Al Amira kept conservative. `master_cv@v5.3` → **`master_cv@v5.4`** (history preserved). No approval / send / Gmail / draft / employer contact; no application-status change.
 
-## A. Master English CV — master_cv@v5.3
-*Words: 468 · checksum `8ea92cb746027f23584ad533d0a45d94cf31593559f981078b38a662ace8df8c`*
+## A. Master English CV — master_cv@v5.4
+*Words: 427 · checksum `a4b0662463802c3c5b72c7dc39e9ad602179f3d34fe0669db5d4e396830e6f25`*
 
 ```text
 Samira Benaciri
@@ -25,22 +25,16 @@ Owner-Manager | Senior Hairdresser and Esthetician — ASY Beauty, Salé, Morocc
 - Supervise the salon's day-to-day work and maintain service-quality and hygiene standards.
 
 Hairdresser and Esthetician — Salon Cléopâtre, Salé, Morocco (2015 – 2021)
-- Provided women's hairdressing and general esthetic services to a regular clientele.
-- Advised clients on hair care and performed make-up services.
+- Provided women's hairdressing and general esthetic services.
 
 Hairdresser and Esthetician — Salon Top 2000, Rabat, Morocco (2013 – 2015)
-- Provided cutting, colouring, and styling services.
-- Supported client reception and salon organization.
+- Provided women's hairdressing and general esthetic services.
 
 Hairdresser and Esthetician — Salon La Manucure, Rabat, Morocco (July 2009 – 2013)
-- Performed women's hairdressing and general beauty services.
-- Maintained workstation hygiene and prepared client services.
+- Provided women's hairdressing and general esthetic services.
 
-Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009 | 6-month internship)
+Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009, six-month internship)
 - Practical training in women's hairdressing and general esthetic services.
-
-PROFESSIONAL CREDENTIALS
-- Professional hairdressing/craft registration — Chamber of Handicrafts, Salé (2009)
 
 EDUCATION AND DIPLOMAS
 - Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
@@ -64,7 +58,7 @@ Based in Salé, Morocco, and available to relocate after receiving a formal job 
 ```
 
 ## B. Esthetician-tailored CV (Glamour) — CV
-*Words: 468 · checksum `e9d3186e51ad09bd11b73be1990c243d1f303412586153b82dabe8fabbcc7bb4` · differs from Master only in summary lead + Core Skills ordering (Esthetics first)*
+*Words: 427 · checksum `cbdc4c45b19dcf2d9daada1163537101a10ad980e66afe46ebd0a624c8157a2f` · differs from Master only in summary lead + Core Skills ordering (Esthetics first)*
 
 ```text
 Samira Benaciri
@@ -86,22 +80,16 @@ Owner-Manager | Senior Hairdresser and Esthetician — ASY Beauty, Salé, Morocc
 - Supervise the salon's day-to-day work and maintain service-quality and hygiene standards.
 
 Hairdresser and Esthetician — Salon Cléopâtre, Salé, Morocco (2015 – 2021)
-- Provided women's hairdressing and general esthetic services to a regular clientele.
-- Advised clients on hair care and performed make-up services.
+- Provided women's hairdressing and general esthetic services.
 
 Hairdresser and Esthetician — Salon Top 2000, Rabat, Morocco (2013 – 2015)
-- Provided cutting, colouring, and styling services.
-- Supported client reception and salon organization.
+- Provided women's hairdressing and general esthetic services.
 
 Hairdresser and Esthetician — Salon La Manucure, Rabat, Morocco (July 2009 – 2013)
-- Performed women's hairdressing and general beauty services.
-- Maintained workstation hygiene and prepared client services.
+- Provided women's hairdressing and general esthetic services.
 
-Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009 | 6-month internship)
+Hairdressing and Esthetics Intern — Salon Al Amira, Salé, Morocco (2009, six-month internship)
 - Practical training in women's hairdressing and general esthetic services.
-
-PROFESSIONAL CREDENTIALS
-- Professional hairdressing/craft registration — Chamber of Handicrafts, Salé (2009)
 
 EDUCATION AND DIPLOMAS
 - Diploma in Women's Hairdressing — École Nito de Coiffure et d'Esthétique, Salé
@@ -124,10 +112,10 @@ RELOCATION
 Based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process.
 ```
 
-> The three hairstylist CVs (Sukhi, Blades, OLIHA) are identical to the Master CV (hairdressing-first). Checksum `8ea92cb746027f23584ad533d0a45d94cf31593559f981078b38a662ace8df8c`.
+> The three hairstylist CVs (Sukhi, Blades, OLIHA) are identical to the Master CV (hairdressing-first). Checksum `a4b0662463802c3c5b72c7dc39e9ad602179f3d34fe0669db5d4e396830e6f25`.
 
 ## C. Cover letter — Sukhi Laser Beauty Salon & Academy Ltd. (hairstylist)
-*Words: 281 · checksum `0dd81a2c4253866b3583b11d95fcb866074e58db3b41f1000cfe8f2ba90b855e`*
+*Words: 269 · checksum `7516ccfc5ad227e2d698dc84c6935314bb81b48e9161afe1c74ee80d9ab1a844`*
 
 ```text
 Dear Hiring Manager,
@@ -136,9 +124,9 @@ I am writing to apply for the hairstylist position at Sukhi Laser Beauty Salon &
 
 My hands-on hairdressing covers women's haircutting, colouring — including highlights, tints, and rinses — styling and finishing, together with hair and scalp treatments. I consult with each client to agree on the result before I begin, and I keep to consistent hygiene and sanitation practices throughout.
 
-Your posting calls for colour work — applying bleach, tints, and rinses to colour, frost, or streak hair — alongside cutting and styling, which are services I provide. It also asks for suggesting a style that suits each client's features and preferences, which is how I approach every consultation. I would be glad to bring this colour and styling focus to Sukhi Laser Beauty Salon & Academy Ltd.
+Your posting includes colour and lightening work such as bleaching and frosting. My own experience is in colouring, highlights, tints, and rinses, along with cutting, styling, and client consultation, and I would be glad to bring these skills to Sukhi Laser Beauty Salon & Academy Ltd. I also take care to suggest a style that suits each client's features and preferences.
 
-As the owner-manager of ASY Beauty, I personally provide hairdressing and esthetic services, supervise the salon's day-to-day work and service quality, and maintain consistent hygiene standards. I provide personalized service based on each client's preferences.
+As the owner-manager of ASY Beauty, I run my own salon and work directly with clients, holding myself to consistent hygiene standards. I tailor each service to the client's preferences.
 
 I would welcome the opportunity to bring this experience to Sukhi Laser Beauty Salon & Academy Ltd. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
@@ -163,7 +151,7 @@ samirabenaciri88@gmail.com
 > Core duties (shampoo, colour, cut, style, style-consultation) all MATCH_USER_CONFIRMED. Only perm/permanent-wave is NOT_EVIDENCED. Near-strong, but not STRONG_MATCH while an advertised technique is unevidenced and its importance is unknown.
 
 ## D. Cover letter — Blades & Scissors Hair Salon Ltd. (hairstylist)
-*Words: 282 · checksum `c2da2e8e0b5f5cc8f68093e1ccabbbd5e8128af29e7f4f25d0c3e5a0cf52e6ac`*
+*Words: 277 · checksum `fcd2b4ceddccf4ee554ff81f79f12fa84191cd97fc6f9ca1654af7873ed3d350`*
 
 ```text
 Dear Hiring Manager,
@@ -174,7 +162,7 @@ My hands-on hairdressing covers women's haircutting, colouring — including hig
 
 Your posting spans a broad range of hair services, and my experience aligns closely with the women's hairdressing side of the role — cutting, colouring, hair and scalp treatments such as tinting, and styling to suit each client. My background is in women's hairdressing rather than barbering, so I would contribute most across the cutting, colouring, and treatment work the position describes. I keep these techniques current through ongoing professional training.
 
-As the owner-manager of ASY Beauty, I personally provide hairdressing and esthetic services, supervise the salon's day-to-day work and service quality, and maintain consistent hygiene standards. I provide personalized service based on each client's preferences.
+As the owner-manager of ASY Beauty, I run my own salon and work directly with clients, holding myself to consistent hygiene standards. I tailor each service to the client's preferences.
 
 I would welcome the opportunity to bring this experience to Blades & Scissors Hair Salon Ltd. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
@@ -205,7 +193,7 @@ samirabenaciri88@gmail.com
 > Matches the women's-hairdressing core (cut, colour, tinting treatments, style, consultation). Unevidenced: beard/moustache barbering, hair extensions, wig/hairpiece work, straightening/lissage, and perm/wave. HOLD if any is a mandatory duty; not STRONG_MATCH.
 
 ## E. Cover letter — OLIHA MUNIZ BOUTIQUE AND HAIR INC. (hairstylist)
-*Words: 273 · checksum `23d16337c7e60a3b6eb3538b6ecf48ea74409eedcb536c345b4441c1442a4970`*
+*Words: 259 · checksum `3d74e83020850741a6a181e1bc266052c6ff9f987e4c2b0193fd65f6b0202bf1`*
 
 ```text
 Dear Hiring Manager,
@@ -214,9 +202,9 @@ I am writing to apply for the hairstylist position at OLIHA MUNIZ BOUTIQUE AND H
 
 My hands-on hairdressing covers women's haircutting, colouring — including highlights, tints, and rinses — styling and finishing, together with hair and scalp treatments. I consult with each client to agree on the result before I begin, and I keep to consistent hygiene and sanitation practices throughout.
 
-Beyond hands-on hairdressing, your posting includes supervising other stylists and staff — a responsibility I hold as the owner-manager of my own salon, where I supervise day-to-day work and service quality while continuing to cut, colour, treat, and style hair myself. I would be glad to bring both this supervisory experience and my hairdressing skills to OLIHA MUNIZ BOUTIQUE AND HAIR INC.
+Beyond hands-on hairdressing, your posting includes supervising other stylists and staff — a responsibility I hold as the owner-manager of my own salon, where I oversee the day-to-day work and service quality. I would be glad to bring this supervisory experience together with my hairdressing skills to OLIHA MUNIZ BOUTIQUE AND HAIR INC.
 
-As the owner-manager of ASY Beauty, I personally provide hairdressing and esthetic services, supervise the salon's day-to-day work and service quality, and maintain consistent hygiene standards. I provide personalized service based on each client's preferences.
+As the owner-manager of ASY Beauty, I run my own salon and work directly with clients, holding myself to consistent hygiene standards. I tailor each service to the client's preferences.
 
 I would welcome the opportunity to bring this experience to OLIHA MUNIZ BOUTIQUE AND HAIR INC. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
@@ -248,7 +236,7 @@ samirabenaciri88@gmail.com
 > Strong on core hairdressing + the supervisory differentiator (supervise other stylists/staff) — USER_CONFIRMED via ASY ownership, stated qualitatively with NO team-size claim. Partial on the full task list: booking appointments (appointment scheduling at ASY UNKNOWN), perm/wave, and wig/hairpiece work are NOT_EVIDENCED. A bare STRONG_MATCH is not defensible.
 
 ## F. Cover letter — Glamour Touch Studio Inc. (esthetician)
-*Words: 266 · checksum `19290c1c7997fb9109f57734405dba4bd4bc21dbd8d700ffb5800d2ef1d9c883`*
+*Words: 244 · checksum `6fc86958813801073a926e9f0ffab5ed6d6dc813f1c065329824c19b8464be2b`*
 
 ```text
 Dear Hiring Manager,
@@ -257,9 +245,9 @@ I am writing to apply for the esthetician position at Glamour Touch Studio Inc. 
 
 My esthetics work covers general esthetic care and make-up application, delivered with careful client consultation and consistent hygiene standards. I also draw on my hairdressing background to offer well-rounded beauty services, and I keep my techniques current through ongoing professional training.
 
-As a hairdresser and esthetician, I provide general esthetic care and make-up services alongside careful client consultation and hygiene. Running my own salon, ASY Beauty, I deliver these services myself and supervise the salon's day-to-day work and service quality. I would welcome the opportunity to bring these skills to Glamour Touch Studio Inc. and to learn more about the specific services your studio offers.
+Because your posting does not set out the specific duties for this role, I have kept this application to my confirmed esthetic background. I would welcome the chance to learn more about the services your studio offers and how I could contribute to Glamour Touch Studio Inc.
 
-As the owner-manager of ASY Beauty, I personally provide hairdressing and esthetic services, supervise the salon's day-to-day work and service quality, and maintain consistent hygiene standards. I provide personalized service based on each client's preferences.
+As the owner-manager of ASY Beauty, I run my own salon and work directly with clients, holding myself to consistent hygiene standards. I tailor each service to the client's preferences.
 
 I would welcome the opportunity to bring this experience to Glamour Touch Studio Inc. I am based in Salé, Morocco, and available to relocate after receiving a formal job offer and completing the required Canadian work-authorization process. Thank you for considering my application; I would be glad to discuss how I can contribute to your team.
 
@@ -302,12 +290,12 @@ No application is approved or sent. Job-fit is advisory input for the human revi
 
 | Letter A | Letter B | Similarity |
 |---|---|---|
-| Glamour Touch Studio Inc. | Sukhi Laser Beauty Salon & Academy Ltd. | 0.399 |
-| Glamour Touch Studio Inc. | Blades & Scissors Hair Salon Ltd. | 0.405 |
-| Glamour Touch Studio Inc. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.418 |
-| Sukhi Laser Beauty Salon & Academy Ltd. | Blades & Scissors Hair Salon Ltd. | 0.591 |
-| Sukhi Laser Beauty Salon & Academy Ltd. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.616 |
-| Blades & Scissors Hair Salon Ltd. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.589 |
+| Glamour Touch Studio Inc. | Sukhi Laser Beauty Salon & Academy Ltd. | 0.393 |
+| Glamour Touch Studio Inc. | Blades & Scissors Hair Salon Ltd. | 0.387 |
+| Glamour Touch Studio Inc. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.414 |
+| Sukhi Laser Beauty Salon & Academy Ltd. | Blades & Scissors Hair Salon Ltd. | 0.585 |
+| Sukhi Laser Beauty Salon & Academy Ltd. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.627 |
+| Blades & Scissors Hair Salon Ltd. | OLIHA MUNIZ BOUTIQUE AND HAIR INC. | 0.586 |
 
 ## Factual & sensitive-data scans
 
